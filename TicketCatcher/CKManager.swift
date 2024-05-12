@@ -41,7 +41,7 @@ class CKManager {
                 return
             }
 
-            record["Scanned"] = 1
+            record["ScanStatus"] = 1
             self.database.save(record) { _, error in
                 DispatchQueue.main.async {
                     completion(error == nil)

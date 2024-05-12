@@ -58,7 +58,7 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
             if captureSession.canAddOutput(metadataOutput) {
                 captureSession.addOutput(metadataOutput)
                 metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-                metadataOutput.metadataObjectTypes = [.qr, .pdf417]
+                metadataOutput.metadataObjectTypes = [.qr, .code128]
             } else {
                 print("failed to add metadata")
             }

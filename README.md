@@ -1,4 +1,4 @@
-![Banner](https://github.com/Junior-Caucus-SU/TicketCatcher/assets/65963376/34a97ebc-a1bd-4b6c-9fe7-071a75c12765)
+![Banner](https://github.com/Junior-Caucus-SU/TicketCatcher/assets/65963376/5c354efe-13c5-4ff4-831d-7f6bb337da04)
 
 # TicketCatcher
 The all-in-one ticketing solution for the Junior Caucus.

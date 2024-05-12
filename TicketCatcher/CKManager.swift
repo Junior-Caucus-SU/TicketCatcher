@@ -30,6 +30,7 @@ class CKManager {
     }
 
     func markBarcodeAsScanned(barcode: Int, completion: @escaping (Bool) -> Void) {
+        print("marking barcode as scanned")
         let pred = NSPredicate(format: "Barcode == %d", barcode)
         let query = CKQuery(recordType: "Codename", predicate: pred)
 

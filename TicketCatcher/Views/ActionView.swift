@@ -16,6 +16,7 @@ struct ActionView: View {
         Group {
             if barcode != "Place Barcode in View to Scan" && barcode != "Invalid Ticket" {
                 Button {
+                    print("readying for admission, restarting cam session")
                     if let barcodeInt = Int(cameraController.barcodeString) {
                         cameraController.resetBarcode()
                         cameraController.restartCameraSession()
@@ -27,8 +28,6 @@ struct ActionView: View {
                                 print("failed to mark barcode")
                             }
                         }
-                        
-                        print("clicked admit, restarting cam session")
                     }
                 } label: {
                     HStack {

@@ -97,7 +97,7 @@ struct ImportSheetView: View {
                     .cornerRadius(20)
                     .padding()
                     .controlSize(.large)
-                    .disabled(uploadManager.isUploading || !(account == correctName && passphrase == correctPassword))
+                    .disabled(!(account == correctName && passphrase == correctPassword))
             }
             .alert("Upload Error", isPresented: Binding<Bool>(
                 get: { uploadManager.errorMessage != nil },

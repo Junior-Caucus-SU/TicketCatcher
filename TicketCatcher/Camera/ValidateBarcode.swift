@@ -16,9 +16,19 @@ struct BarcodeValidator {
         
         CKManager.shared.database.perform(query, inZoneWith: nil) { records, error in
             DispatchQueue.main.async {
-                let isValid = records != nil && !records!.isEmpty && error == nil
-                completion(isValid)
+                guard error == nil, let records = records, !records.isEmpty else {
+                    if let error = error {
+                        print("Error querying records \(error.localizedDescription)")
+                    } else {
+                        print("\(barcode) is an invalid ticket or already scanned")
+                    }
+                    completion(false)
+                    return
+                }
+                print("\(barcode) is a valid ticket")
+                completion(true)
             }
         }
     }
 }
+

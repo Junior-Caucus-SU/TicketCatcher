@@ -44,8 +44,8 @@ struct ContentView: View {
             Button {
                 showAddSheet.toggle()
             } label: {
-                Image(systemName: "plus")
-                    .frame(maxWidth: 25, maxHeight: 25)
+                Image(systemName: "plus.circle.fill")
+                    .frame(maxWidth: 30, maxHeight: 30)
             }
             .buttonStyle(.borderedProminent)
             .cornerRadius(20)
@@ -58,8 +58,8 @@ struct ContentView: View {
             Button {
                 showList.toggle()
             } label: {
-                Image(systemName: "list.bullet")
-                    .frame(maxWidth: 25, maxHeight: 25)
+                Image(systemName: "person.3.fill")
+                    .frame(maxWidth: 30, maxHeight: 30)
             }
             .buttonStyle(.bordered)
             .cornerRadius(20)
@@ -72,8 +72,8 @@ struct ContentView: View {
             Button {
                 showImportSheet.toggle()
             } label: {
-                Image(systemName: "square.and.arrow.up")
-                    .frame(maxWidth: 25, maxHeight: 25)
+                Image(systemName: "doc.fill")
+                    .frame(maxWidth: 30, maxHeight: 30)
             }
             .buttonStyle(.bordered)
             .cornerRadius(20)
@@ -86,8 +86,8 @@ struct ContentView: View {
             Button {
                 showLog.toggle()
             } label: {
-                Image(systemName: "doc.plaintext")
-                    .frame(maxWidth: 25, maxHeight: 25)
+                Image(systemName: "doc.text.below.ecg.fill")
+                    .frame(maxWidth: 30, maxHeight: 30)
             }
             .buttonStyle(.bordered)
             .cornerRadius(20)

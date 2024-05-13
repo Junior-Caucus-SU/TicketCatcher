@@ -99,7 +99,7 @@ struct ImportSheetView: View {
                 .controlSize(.large)
                 .disabled(!(account == correctName && passphrase == correctPassword))
             }
-            .navigationTitle("Upload CSV File")
+            .navigationTitle("Upload List")
             .onDisappear {
                 if let csvURL = csvURL {
                     csvURL.stopAccessingSecurityScopedResource()

@@ -50,8 +50,8 @@ struct AddSheetView: View {
                 
                 Button {
                     CKManager.shared.addCodenameRecord(name: atname, barcode: Int(osis)!) { error in
-                        if let error = error {
-                            print("no record added")
+                        if error != nil {
+                            LogManager.shared.log("No record added due to an error")
                         }
                     }
                 }

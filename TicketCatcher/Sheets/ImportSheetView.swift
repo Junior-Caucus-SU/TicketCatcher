@@ -64,50 +64,40 @@ struct ImportSheetView: View {
                             if url.startAccessingSecurityScopedResource() {
                                 csvURL = url
                             } else {
-                                print("Cannot access")
+                                LogManager.shared.log("Cannot access CSV")
                             }
                         case .failure(let error):
-                            uploadManager.errorMessage = "File selection error: \(error.localizedDescription)"
+                            LogManager.shared.log("File selection error on \(error.localizedDescription)")
                         }
                     }
                 }
                 .scrollContentBackground(.hidden)
                 .scrollDisabled(true)
                 
-                    Button {
-                        if let csvURL = csvURL {
-                            uploadManager.uploadData(url: csvURL) {
-                                self.presentationMode.wrappedValue.dismiss()
-                            }
-                        }
-                    } label: {
-                        HStack {
-                            Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Import File to CloudKit")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            if (uploadManager.isUploading) {
-                                Image(systemName: "rays")
-                                    .symbolEffect(.variableColor.cumulative.dimInactiveLayers.nonReversing)
-                            } else {
-                                Image(systemName: "cloud")
-                            }
+                Button {
+                    if let csvURL = csvURL {
+                        uploadManager.uploadData(url: csvURL) {
+                            self.presentationMode.wrappedValue.dismiss()
                         }
                     }
-                    .buttonStyle(.borderedProminent)
-                    .cornerRadius(20)
-                    .padding()
-                    .controlSize(.large)
-                    .disabled(!(account == correctName && passphrase == correctPassword))
-            }
-            .alert("Upload Error", isPresented: Binding<Bool>(
-                get: { uploadManager.errorMessage != nil },
-                set: { _ in uploadManager.errorMessage = nil }
-            ), presenting: uploadManager.errorMessage) { error in
-                Button("Quit App") {
-                    exit(0)
+                } label: {
+                    HStack {
+                        Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Import File to CloudKit")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        if (uploadManager.isUploading) {
+                            Image(systemName: "rays")
+                                .symbolEffect(.variableColor.cumulative.dimInactiveLayers.nonReversing)
+                        } else {
+                            Image(systemName: "cloud")
+                        }
+                    }
                 }
-            } message: { error in
-                Text(error)
+                .buttonStyle(.borderedProminent)
+                .cornerRadius(20)
+                .padding()
+                .controlSize(.large)
+                .disabled(!(account == correctName && passphrase == correctPassword))
             }
             .navigationTitle("Upload CSV File")
             .onDisappear {

@@ -12,58 +12,58 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
     @Published var barcodeString: String = "Place Barcode in View to Scan"
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-
+    
     override init() {
-        print("initializing cam")
+        LogManager.shared.log("Initializing camera")
         super.init()
         setupCamera()
     }
-
+    
     func setupPreviewLayer(in view: UIView) {
-            DispatchQueue.main.async {
-                if self.captureSession == nil {
-                    print("no capture sesh. setting up camera.")
-                    self.setupCamera()
-                }
-                guard let videoDevice = AVCaptureDevice.default(for: .video),
-                      let videoInput = try? AVCaptureDeviceInput(device: videoDevice),
-                      self.captureSession.canAddInput(videoInput) else {
-                    print("faulty video input")
-                    return
-                }
-
-                if self.captureSession.inputs.isEmpty {
-                    self.captureSession.addInput(videoInput)
-                }
-                self.configureMetadataOutput()
-
-                self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-                self.previewLayer.frame = view.bounds
-                self.previewLayer.videoGravity = .resizeAspectFill
-                view.layer.addSublayer(self.previewLayer)
-                if !self.captureSession.isRunning {
-                    self.captureSession.startRunning()//NEED TO FIX TO CALL ON BACKGROUND THREAD!!!
-                    print("capture session started on main")
-                }
+        DispatchQueue.main.async {
+            if self.captureSession == nil {
+                LogManager.shared.log("No capture session yet, setting up the camera")
+                self.setupCamera()
+            }
+            guard let videoDevice = AVCaptureDevice.default(for: .video),
+                  let videoInput = try? AVCaptureDeviceInput(device: videoDevice),
+                  self.captureSession.canAddInput(videoInput) else {
+                LogManager.shared.log("Faulty video input")
+                return
+            }
+            
+            if self.captureSession.inputs.isEmpty {
+                self.captureSession.addInput(videoInput)
+            }
+            self.configureMetadataOutput()
+            
+            self.previewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
+            self.previewLayer.frame = view.bounds
+            self.previewLayer.videoGravity = .resizeAspectFill
+            view.layer.addSublayer(self.previewLayer)
+            if !self.captureSession.isRunning {
+                self.captureSession.startRunning()//NEED TO FIX TO CALL ON BACKGROUND THREAD!!!
+                LogManager.shared.log("Starting new capture session on the main thread")
             }
         }
-
-        private func setupCamera() {
-            captureSession = AVCaptureSession()
-            captureSession.sessionPreset = .photo
+    }
+    
+    private func setupCamera() {
+        captureSession = AVCaptureSession()
+        captureSession.sessionPreset = .photo
+    }
+    
+    private func configureMetadataOutput() {
+        let metadataOutput = AVCaptureMetadataOutput()
+        if captureSession.canAddOutput(metadataOutput) {
+            captureSession.addOutput(metadataOutput)
+            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            metadataOutput.metadataObjectTypes = [.qr, .code128]
+        } else {
+            LogManager.shared.log("Failed to add metadata")
         }
-
-        private func configureMetadataOutput() {
-            let metadataOutput = AVCaptureMetadataOutput()
-            if captureSession.canAddOutput(metadataOutput) {
-                captureSession.addOutput(metadataOutput)
-                metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-                metadataOutput.metadataObjectTypes = [.qr, .code128]
-            } else {
-                print("failed to add metadata")
-            }
-        }
-
+    }
+    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
            let stringValue = metadataObject.stringValue,
@@ -75,18 +75,18 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
             }
         }
     }
-
+    
     func resetBarcode() {
         DispatchQueue.main.async {
             self.barcodeString = "Place Barcode in View to Scan"
         }
     }
-
+    
     func restartCameraSession() {
         DispatchQueue.global(qos: .userInitiated).async {
             if !self.captureSession.isRunning {
                 self.captureSession.startRunning()
-                print("capture sesh restarted")
+                LogManager.shared.log("Capture session restarted")
             }
         }
     }
@@ -95,7 +95,7 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
         DispatchQueue.main.async {
             if self.captureSession.isRunning {
                 self.captureSession.stopRunning()
-                print("camera stopped")
+                LogManager.shared.log("Camera stopped")
             }
         }
     }

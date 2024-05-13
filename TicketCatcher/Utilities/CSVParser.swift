@@ -15,7 +15,7 @@ class CSVParser {
             rows = rows.filter { !$0.isEmpty }
             return rows.map { $0.components(separatedBy: ",")[15] } //assume name column is the 16th column
         } catch {
-            print("Error reading CSV file: \(error)")
+            LogManager.shared.log("Error reading CSV file: \(error)")
             return nil
         }
     }

@@ -16,16 +16,16 @@ struct ActionView: View {
         Group {
             if barcode != "Place Barcode in View to Scan" && barcode != "Invalid Ticket" {
                 Button {
-                    print("readying for admission, restarting cam session")
+                    LogManager.shared.log("Selected to mark valid admission, restarting camera session")
                     if let barcodeInt = Int(cameraController.barcodeString) {
                         cameraController.resetBarcode()
                         cameraController.restartCameraSession()
-
+                        
                         CKManager.shared.markBarcodeAsScanned(barcode: barcodeInt) { success in
                             if success {
-                                print("barcode marked as scanned successfully.")
+                                LogManager.shared.log("Barcode marked as scanned successfully")
                             } else {
-                                print("failed to mark barcode")
+                                LogManager.shared.log("Failed to mark barcode")
                             }
                         }
                     }
@@ -43,7 +43,7 @@ struct ActionView: View {
                 Button {
                     cameraController.resetBarcode()
                     cameraController.restartCameraSession()
-                    print("clicked Ignore, restarting cam sesh")
+                    LogManager.shared.log("Ignored valid ticket, restarting camera session")
                 } label: {
                     HStack {
                         Text("Ignore")
@@ -59,7 +59,7 @@ struct ActionView: View {
                     Button {
                         cameraController.resetBarcode()
                         cameraController.restartCameraSession()
-                        print("clicked scan again, restarting cam sesh")
+                        LogManager.shared.log("Scanning again after invalid scan, restarting camera session")
                     } label: {
                         HStack {
                             Text("Scan Again")

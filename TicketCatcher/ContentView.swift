@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var showList = false
     @State private var showImportSheet = false
     @State private var showAddSheet = false
+    @State private var showLog = false
     @State private var barcode: String = "Place Barcode in View to Scan"
     @ObservedObject var cameraController = CameraController()
     
@@ -41,53 +42,58 @@ struct ContentView: View {
     private var navigationButtons: some View {
         HStack {
             Button {
+                showAddSheet.toggle()
+            } label: {
+                Image(systemName: "plus")
+                    .frame(maxWidth: 25, maxHeight: 25)
+            }
+            .buttonStyle(.borderedProminent)
+            .cornerRadius(20)
+            .sheet(isPresented: $showAddSheet) {
+                AddSheetView()
+                    .presentationBackground(.thickMaterial)
+            }
+            .controlSize(.large)
+            
+            Button {
                 showList.toggle()
             } label: {
-                HStack {
-                    Text("List")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Image(systemName: "list.bullet")
-                }
+                Image(systemName: "list.bullet")
+                    .frame(maxWidth: 25, maxHeight: 25)
             }
             .buttonStyle(.bordered)
             .cornerRadius(20)
             .sheet(isPresented: $showList) {
                 ListSheetView()
-                .presentationBackground(.thickMaterial)
-            }
-            .controlSize(.large)
-            
-            Button {
-                showAddSheet.toggle()
-            } label: {
-                HStack {
-                    Text("Add")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Image(systemName: "plus")
-                }
-            }
-            .buttonStyle(.bordered)
-            .cornerRadius(20)
-            .sheet(isPresented: $showAddSheet) {
-                AddSheetView()
-                .presentationBackground(.thickMaterial)
+                    .presentationBackground(.thickMaterial)
             }
             .controlSize(.large)
             
             Button {
                 showImportSheet.toggle()
             } label: {
-                HStack {
-                    Text("CSV")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Image(systemName: "square.and.arrow.up")
-                }
+                Image(systemName: "square.and.arrow.up")
+                    .frame(maxWidth: 25, maxHeight: 25)
             }
             .buttonStyle(.bordered)
             .cornerRadius(20)
             .sheet(isPresented: $showImportSheet) {
                 ImportSheetView()
-                .presentationBackground(.thickMaterial)
+                    .presentationBackground(.thickMaterial)
+            }
+            .controlSize(.large)
+            
+            Button {
+                showLog.toggle()
+            } label: {
+                Image(systemName: "doc.plaintext")
+                    .frame(maxWidth: 25, maxHeight: 25)
+            }
+            .buttonStyle(.bordered)
+            .cornerRadius(20)
+            .sheet(isPresented: $showLog) {
+                LogSheetView()
+                    .presentationBackground(.thickMaterial)
             }
             .controlSize(.large)
         }

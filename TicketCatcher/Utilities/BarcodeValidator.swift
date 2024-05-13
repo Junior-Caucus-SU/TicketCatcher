@@ -1,5 +1,5 @@
 //
-//  ValidateBarcode.swift
+//  BarcodeValidator.swift
 //  TicketCatcher
 //
 //  Created by Yinwei Z on 2/28/24.
@@ -18,14 +18,14 @@ struct BarcodeValidator {
             DispatchQueue.main.async {
                 guard error == nil, let records = records, !records.isEmpty else {
                     if let error = error {
-                        print("Error querying records \(error.localizedDescription)")
+                        LogManager.shared.log("Error querying records \(error.localizedDescription)")
                     } else {
-                        print("\(barcode) is an invalid ticket or already scanned")
+                        LogManager.shared.log("\(barcode) is an invalid ticket or already scanned")
                     }
                     completion(false)
                     return
                 }
-                print("\(barcode) is a valid ticket")
+                LogManager.shared.log("\(barcode) is a valid ticket")
                 completion(true)
             }
         }

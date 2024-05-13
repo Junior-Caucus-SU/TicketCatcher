@@ -12,20 +12,18 @@ class UploadManager: ObservableObject {
     @Published var progress: Double = 0.0
     @Published var isUploading: Bool = false
     @Published var uploadCompleted: Bool = false
-    @Published var errorMessage: String?
-
+    
     private var progressObj = Progress(totalUnitCount: 1)
-
+    
     ///Upload data from the CSV file and call generator, then upload to CK
-    ///If the errors are shown user-side, they're bascially fucked, except for iCloud issues
+    ///If an error happens here, you're bascially fucked, except for iCloud issues
     func uploadData(url: URL, completion: @escaping () -> Void) {
         isUploading = true
         progress = 0.0
-        errorMessage = nil
-
+        
         let parser = CSVParser()
         let generator = CodeGenerator()
-
+        
         if let names = parser.parseCSV(contentsOfURL: url, encoding: .utf8) {
             progressObj = Progress(totalUnitCount: Int64(names.count))
             var currentCount = 0
@@ -35,11 +33,11 @@ class UploadManager: ObservableObject {
                 CKManager.shared.addCodenameRecord(name: name, barcode: Int(barcode)) { error in
                     DispatchQueue.main.async {
                         if let error = error {
-                            self.errorMessage = "Error: \(error.localizedDescription). Have you signed in to your iCloud account on this device?"
+                            LogManager.shared.log("Error: \(error.localizedDescription). Have you signed in to your iCloud account on this device?")
                             self.isUploading = false
                             return
                         }
-
+                        
                         currentCount += 1
                         self.progressObj.completedUnitCount = Int64(currentCount)
                         self.progress = Double(self.progressObj.fractionCompleted)
@@ -54,7 +52,7 @@ class UploadManager: ObservableObject {
             }
         } else {
             DispatchQueue.main.async {
-                self.errorMessage = "Invalid CSV File."
+                LogManager.shared.log("Invalid CSV File.")
                 self.isUploading = false
             }
         }

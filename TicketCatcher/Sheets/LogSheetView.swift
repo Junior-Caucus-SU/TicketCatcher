@@ -17,8 +17,13 @@ class LogManager: ObservableObject {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let timestamp = dateFormatter.string(from: Date())
+        let fullMessage = "\(timestamp)~\(message)"
+        
         DispatchQueue.main.async {
-            self.logs.append("\(timestamp)~\(message)")
+            if let lastLog = self.logs.last, lastLog == fullMessage {
+                return
+            }
+            self.logs.append(fullMessage)
         }
     }
 }

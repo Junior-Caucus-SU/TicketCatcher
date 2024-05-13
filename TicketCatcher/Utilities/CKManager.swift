@@ -29,6 +29,76 @@ class CKManager {
         }
     }
     
+    func fetchCodenames(completion: @escaping ([Codename], Error?) -> Void) {
+        let query = CKQuery(recordType: "Codename", predicate: NSPredicate(value: true))
+        let operation = CKQueryOperation(query: query)
+        operation.resultsLimit = 200
+        var newCodenames = [Codename]()
+        
+        operation.recordMatchedBlock = { recordID, result in
+            switch result {
+            case .success(let record):
+                let codename = Codename(record: record)
+                newCodenames.append(codename)
+            case .failure(let error):
+                LogManager.shared.log("Failed to fetch a record with error \(error)")
+            }
+        }
+        
+        operation.queryResultBlock = { result in
+            switch result {
+            case .success(let cursor):
+                if let cursor = cursor {
+                    self.fetchMoreCodenames(cursor: cursor, currentCodenames: newCodenames, completion: completion)
+                } else {
+                    DispatchQueue.main.async {
+                        completion(newCodenames, nil)
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion([], error)
+                }
+            }
+        }
+        
+        database.add(operation)
+    }
+    
+    private func fetchMoreCodenames(cursor: CKQueryOperation.Cursor, currentCodenames: [Codename], completion: @escaping ([Codename], Error?) -> Void) {
+        let operation = CKQueryOperation(cursor: cursor)
+        operation.resultsLimit = 200
+        var newCodenames = currentCodenames
+        
+        operation.recordMatchedBlock = { recordID, result in
+            switch result {
+            case .success(let record):
+                let codename = Codename(record: record)
+                newCodenames.append(codename)
+            case .failure(let error):
+                LogManager.shared.log("Failed to fetch a record with error \(error)")
+            }
+        }
+        
+        operation.queryResultBlock = { result in
+            switch result {
+            case .success(let cursor):
+                if let cursor = cursor {
+                    self.fetchMoreCodenames(cursor: cursor, currentCodenames: newCodenames, completion: completion)
+                } else {
+                    DispatchQueue.main.async {
+                        completion(newCodenames, nil)
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion([], error)
+                }
+            }
+        }
+        database.add(operation)
+    }
+    
     func markBarcodeAsScanned(barcode: Int, completion: @escaping (Bool) -> Void) {
         LogManager.shared.log("Marking barcode as scanned")
         let pred = NSPredicate(format: "Barcode == %d", barcode)

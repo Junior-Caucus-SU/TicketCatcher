@@ -60,14 +60,11 @@ struct ListSheetView: View {
     }
     
     private func loadData() {
-        let query = CKQuery(recordType: "Codename", predicate: NSPredicate(value: true))
-        CKManager.shared.database.perform(query, inZoneWith: nil) { (records, error) in
-            if let records = records {
-                DispatchQueue.main.async {
-                    self.codenames = records.map { Codename(record: $0) }
-                }
+        CKManager.shared.fetchCodenames { codenames, error in
+            if let error = error {
+                LogManager.shared.log("Error fetching codenames with error \(error)")
             } else {
-                LogManager.shared.log("Can't fetch records with reason \(String(describing: error))")
+                self.codenames = codenames
             }
         }
     }

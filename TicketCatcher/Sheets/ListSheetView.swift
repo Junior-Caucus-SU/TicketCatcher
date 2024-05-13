@@ -34,7 +34,10 @@ struct ListSheetView: View {
             .navigationTitle("Attendees")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Text("\(scannedCount)/\(totalCount) Scanned")
+                    HStack {
+                        Text("\(scannedCount)/\(totalCount)").bold()
+                        Image(systemName: "person.fill.checkmark")
+                    }.foregroundColor(.accentColor)
                 }
             }
             .searchable(text: $searchText, prompt: "Search")

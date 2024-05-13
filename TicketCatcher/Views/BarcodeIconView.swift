@@ -11,10 +11,21 @@ struct BarcodeIconView: View {
     var barcode: String
     
     var body: some View {
-        Image(systemName: (barcode == "Place Barcode in View to Scan") ? "barcode.viewfinder" : "ticket")
-            .contentTransition(.symbolEffect(.replace))
-            .foregroundColor((barcode == "Place Barcode in View to Scan") ? .white : (barcode == "Invalid Ticket") ? .red : .green )
-            .font(.title)
-            .animation(.easeInOut)
+        VStack {
+            Image(systemName: (barcode == "Place Barcode in View to Scan") ? "barcode.viewfinder" : "ticket")
+                .contentTransition(.symbolEffect(.replace))
+                .foregroundColor((barcode == "Place Barcode in View to Scan") ? .white : (barcode == "Invalid Ticket") ? .red : .green )
+                .font(.title)
+                .frame(width: 55, height: 55)
+                .animation(.easeInOut)
+            Text(barcode)
+                .font(.system(size: 16).monospaced())
+                .bold()
+                .animation(.easeInOut)
+        }
     }
+}
+
+#Preview {
+    BarcodeIconView(barcode: "Example Text")
 }

@@ -21,15 +21,12 @@ struct ContentView: View {
             Spacer()
             VStack(alignment: .center) {
                 CameraWrapper(cameraController: cameraController, barcode: $barcode)
-                    .frame(maxHeight: 250)
+                    .frame(maxHeight: 300)
                     .cornerRadius(25)
                 ActionView(barcode: $barcode, cameraController: cameraController)
             }
-            .animation(.easeInOut(duration: 0.3), value: barcode)
+            .animation(.easeInOut(duration: 0.5), value: barcode)
             Spacer()
-            Text(barcode)
-                .font(.headline)
-                .frame(height: 50)
             navigationButtons
         }
         .padding(25)
@@ -97,6 +94,8 @@ struct ContentView: View {
             }
             .controlSize(.large)
         }
+        .padding(.top, 35)
+        .padding(.bottom, 20)
     }
     
     func handleBarcodeChange(newBarcode: String) {
@@ -107,8 +106,6 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }

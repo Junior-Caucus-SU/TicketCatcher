@@ -10,21 +10,37 @@ import CloudKit
 
 struct ListSheetView: View {
     @State private var codenames = [Codename]()
+    @State private var showingBarcode = false
+    @State private var selectedBarcode = 0
     
     var body: some View {
         NavigationView {
             List(codenames, id: \.self) { codename in
-                VStack(alignment: .leading) {
-                    Text(codename.name)
-                        .font(.headline)
-                    Text("\(codename.barcode)")
-                        .font(.caption)
-                        .foregroundColor(.gray)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(codename.name)
+                            .font(.headline)
+                        Text("\(codename.barcode)")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    Spacer()
+                    Image(systemName: "barcode")
+                        .foregroundColor(.accentColor)
+                        .accessibilityLabel("Show Barcode")
                 }
+                .onTapGesture {
+                    self.selectedBarcode = codename.barcode
+                    self.showingBarcode = true
+                }
+                .contentShape(Rectangle())
             }
             .navigationTitle("Attendees")
             .onAppear(perform: loadData)
             .scrollContentBackground(.hidden)
+        }
+        .sheet(isPresented: $showingBarcode) {
+            BarcodeSheetView(barcodeValue: "\(selectedBarcode)")
         }
     }
     

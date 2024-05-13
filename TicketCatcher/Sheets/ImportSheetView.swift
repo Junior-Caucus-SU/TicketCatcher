@@ -21,7 +21,7 @@ struct ImportSheetView: View {
         NavigationStack {
             VStack(spacing: 0){
                 VStack (alignment: .leading){
-                    Text("Upload a CSV file with the correct format provided by Polazzo. Files with incorrect formatting will not be accepted. CloudKit will be updated in a few minutes post-upload. All existing IDs will not have their statuses changed.")
+                    Text("Upload an attendee CSV file with the correct identifications and formatting provided by Polazzo. Files with incorrect formatting will not be accepted. CloudKit will be updated in a few minutes post-upload. All existing IDs will not have their statuses changed.")
                         .font(.caption)
                         .foregroundColor(Color.gray)
                         .multilineTextAlignment(.leading)
@@ -82,7 +82,7 @@ struct ImportSheetView: View {
                     }
                 } label: {
                     HStack {
-                        Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Import File to CloudKit")
+                        Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Upload List to CloudKit")
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                         if (uploadManager.isUploading) {

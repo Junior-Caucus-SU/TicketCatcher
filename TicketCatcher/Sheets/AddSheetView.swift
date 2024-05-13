@@ -13,6 +13,10 @@ struct AddSheetView: View {
     @State private var atname: String = ""
     @State private var osis: String = ""
     
+    @State private var showAlert = false
+    @State private var Message = ""
+    @State private var showBarcodeSheet = false
+    
     let correctPassword = Secrets.adminPassword
     let correctName = Secrets.adminName
     
@@ -52,6 +56,11 @@ struct AddSheetView: View {
                     CKManager.shared.addCodenameRecord(name: atname, barcode: Int(osis)!) { error in
                         if error != nil {
                             LogManager.shared.log("No record added due to an error")
+                            Message = "Failed to add attendee due to an error."
+                            showAlert = true
+                        } else {
+                            Message = "Added Attendee Successfully"
+                            showAlert = true
                         }
                     }
                 }
@@ -69,6 +78,21 @@ struct AddSheetView: View {
             .disabled(!(account == correctName && passphrase == correctPassword))
             }
             .navigationTitle("Add Attendee")
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Add Attendee"),
+                      message: Text(Message),
+                      primaryButton: .default(Text("OK")),
+                      secondaryButton: .default(Text("Generate Barcode"), action: {
+                    showBarcodeSheet = true
+                }))
+            }
+            .sheet(isPresented: $showBarcodeSheet) {
+                if let barcodeNumber = Int(osis) {
+                    BarcodeSheetView(barcodeValue: "\(barcodeNumber)")
+                } else {
+                    Text("Invalid OSIS number")
+                }
+            }
         }
     }
 }

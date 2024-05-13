@@ -72,7 +72,7 @@ struct ContentView: View {
             Button {
                 showImportSheet.toggle()
             } label: {
-                Image(systemName: "doc.fill")
+                Image(systemName: "arrow.up.doc.fill")
                     .frame(maxWidth: 30, maxHeight: 30)
             }
             .buttonStyle(.bordered)

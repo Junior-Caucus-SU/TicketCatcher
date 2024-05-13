@@ -18,10 +18,17 @@ struct BarcodeIconView: View {
                 .font(.title)
                 .frame(width: 55, height: 55)
                 .animation(.easeInOut)
-            Text(barcode)
-                .font(.system(size: 16).monospaced())
-                .bold()
-                .animation(.easeInOut)
+            HStack {
+                if (barcode != "Place Barcode in View to Scan") {
+                    if (barcode != "Invalid Ticket") {
+                        Text("Valid Ticket").font(.system(size: 16).monospaced())
+                    }
+                }
+                Text(barcode)
+                    .font(.system(size: 16).monospaced())
+                    .bold()
+                    .foregroundColor(.gray)
+            }
         }
     }
 }

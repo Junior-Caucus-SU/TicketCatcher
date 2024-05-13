@@ -15,5 +15,6 @@ struct BarcodeIconView: View {
             .contentTransition(.symbolEffect(.replace))
             .foregroundColor((barcode == "Place Barcode in View to Scan") ? .white : (barcode == "Invalid Ticket") ? .red : .green )
             .font(.title)
+            .animation(.easeInOut)
     }
 }

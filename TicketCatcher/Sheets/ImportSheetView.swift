@@ -87,7 +87,6 @@ struct ImportSheetView: View {
                     }
                 }
                 .scrollContentBackground(.hidden)
-                .scrollDisabled(true)
                 
                 Button {
                     if (!uploadManager.isUploading) {
@@ -104,7 +103,7 @@ struct ImportSheetView: View {
                         
                         if (uploadManager.isUploading) {
                             Image(systemName: "rays")
-                                .symbolEffect(.variableColor.cumulative.dimInactiveLayers.nonReversing)
+                                .symbolEffect(.variableColor.cumulative.hideInactiveLayers.nonReversing)
                         } else {
                             Image(systemName: "cloud")
                         }

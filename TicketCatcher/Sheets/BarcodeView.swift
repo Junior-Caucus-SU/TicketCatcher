@@ -9,23 +9,38 @@ import SwiftUI
 import CoreImage.CIFilterBuiltins
 
 struct BarcodeSheetView: View {
+    let numberFont = Font
+        .system(size: 28)
+        .monospaced()
     var barcodeValue: String
     var barcodeImage: Image? {
         generateBarcode(from: barcodeValue)
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                barcodeImage?
-                    .resizable()
-                    .scaledToFit()
-                    .padding()
-                Text(barcodeValue)
-                    .padding()
+        VStack {
+            Text("Below is your generated barcode.\nBe sure to save this image!")
+                .font(.headline)
+                .foregroundColor(.orange)
+                .multilineTextAlignment(.center)
+                .padding()
+            barcodeImage?
+                .resizable()
+                .scaledToFit()
+            Text(barcodeValue)
+                .font(numberFont)
+                .foregroundColor(.gray)
+            Spacer()
+            Button {
+                //do something
+            } label: {
+                Text("Share Code").frame(maxWidth: .infinity, alignment: .center)
             }
-            .navigationTitle("Barcode")
+            .buttonStyle(.borderedProminent)
+            .cornerRadius(20)
+            .controlSize(.large)
         }
+        .padding()
     }
     
     func generateBarcode(from string: String) -> Image? {
@@ -35,14 +50,18 @@ struct BarcodeSheetView: View {
         filter.message = data
         filter.quietSpace = 7
         
-        if let outputImage = filter.outputImage,
+        guard let barcodeImage = filter.outputImage else { return nil }
+        let invertFilter = CIFilter.colorInvert()
+        invertFilter.inputImage = barcodeImage
+        
+        if let outputImage = invertFilter.outputImage,
            let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
             return Image(uiImage: UIImage(cgImage: cgImage))
         } else {
             return nil
         }
     }
-
+    
 }
 
 #Preview {

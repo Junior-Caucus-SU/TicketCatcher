@@ -10,9 +10,10 @@ import CloudKit
 
 struct ListSheetView: View {
     @State private var codenames = [Codename]()
-    @State private var showingBarcode = false
-    @State private var selectedBarcode = 0
     @State private var searchText = ""
+    let codeFont = Font
+        .system(size: 14)
+        .monospaced()
     
     var body: some View {
         NavigationView {
@@ -21,28 +22,19 @@ struct ListSheetView: View {
                     VStack(alignment: .leading) {
                         Text(codename.name)
                             .font(.headline)
-                        Text("\(codename.barcode)")
-                            .font(.caption)
+                        Text("\(codename.barcode)".prefix(3) + "xxxxxx")
+                            .font(codeFont)
                             .foregroundColor(.gray)
                     }
                     Spacer()
-                    Image(systemName: "barcode")
+                    Image(systemName: codename.scanStatus == 1 ? "person.fill.checkmark" : "ticket")
                         .foregroundColor(.accentColor)
-                        .accessibilityLabel("Show Barcode")
                 }
-                .onTapGesture {
-                    self.selectedBarcode = codename.barcode
-                    self.showingBarcode = true
-                }
-                .contentShape(Rectangle())
             }
             .navigationTitle("Attendees")
             .searchable(text: $searchText, prompt: "Search")
             .onAppear(perform: loadData)
             .scrollContentBackground(.hidden)
-        }
-        .sheet(isPresented: $showingBarcode) {
-            BarcodeSheetView(barcodeValue: "\(selectedBarcode)")
         }
     }
     
@@ -71,8 +63,10 @@ struct ListSheetView: View {
 struct Codename: Hashable {
     let name: String
     let barcode: Int
+    let scanStatus: Int
     
     init(record: CKRecord) {
+        self.scanStatus = record["ScanStatus"] as? Int ?? 0
         self.name = record["Name"] as? String ?? "Unknown"
         self.barcode = record["Barcode"] as? Int ?? 0
     }

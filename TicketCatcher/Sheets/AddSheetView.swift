@@ -15,6 +15,7 @@ struct AddSheetView: View {
     
     @State private var showAlert = false
     @State private var Message = ""
+    @State private var Title = ""
     @State private var showBarcodeSheet = false
     
     let correctPassword = Secrets.adminPassword
@@ -50,16 +51,17 @@ struct AddSheetView: View {
                     
                 }
                 .scrollContentBackground(.hidden)
-                .scrollDisabled(true)
                 
                 Button {
                     CKManager.shared.addCodenameRecord(name: atname, barcode: Int(osis)!) { error in
                         if error != nil {
                             LogManager.shared.log("No record added due to an error")
                             Message = "Failed to add attendee due to an error."
+                            Title = "Failed to Add Attendee"
                             showAlert = true
                         } else {
-                            Message = "Added Attendee Successfully"
+                            Message = "Added attendee successfully. Be sure to save the barcode now as it cannot be viewed again."
+                            Title = "Added Attendee"
                             showAlert = true
                         }
                     }
@@ -79,12 +81,11 @@ struct AddSheetView: View {
             }
             .navigationTitle("Add Attendee")
             .alert(isPresented: $showAlert) {
-                Alert(title: Text("Add Attendee"),
+                Alert(title: Text(Title),
                       message: Text(Message),
-                      primaryButton: .default(Text("OK")),
-                      secondaryButton: .default(Text("Generate Barcode"), action: {
+                      primaryButton: .default(Text("Generate Barcode"), action: {
                     showBarcodeSheet = true
-                }))
+                }), secondaryButton: .destructive(Text("Dismiss")))
             }
             .sheet(isPresented: $showBarcodeSheet) {
                 if let barcodeNumber = Int(osis) {

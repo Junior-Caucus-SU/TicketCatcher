@@ -32,6 +32,11 @@ struct ListSheetView: View {
                 }
             }
             .navigationTitle("Attendees")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Text("\(scannedCount)/\(totalCount) Scanned")
+                }
+            }
             .searchable(text: $searchText, prompt: "Search")
             .onAppear(perform: loadData)
             .scrollContentBackground(.hidden)
@@ -44,6 +49,14 @@ struct ListSheetView: View {
         } else {
             return codenames.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
+    }
+    
+    private var totalCount: Int {
+        codenames.count
+    }
+    
+    private var scannedCount: Int {
+        codenames.filter { $0.scanStatus == 1 }.count
     }
     
     private func loadData() {

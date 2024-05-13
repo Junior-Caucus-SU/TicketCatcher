@@ -12,10 +12,11 @@ struct ListSheetView: View {
     @State private var codenames = [Codename]()
     @State private var showingBarcode = false
     @State private var selectedBarcode = 0
+    @State private var searchText = ""
     
     var body: some View {
         NavigationView {
-            List(codenames, id: \.self) { codename in
+            List(filteredCodes, id: \.self) { codename in
                 HStack {
                     VStack(alignment: .leading) {
                         Text(codename.name)
@@ -36,11 +37,20 @@ struct ListSheetView: View {
                 .contentShape(Rectangle())
             }
             .navigationTitle("Attendees")
+            .searchable(text: $searchText, prompt: "Search")
             .onAppear(perform: loadData)
             .scrollContentBackground(.hidden)
         }
         .sheet(isPresented: $showingBarcode) {
             BarcodeSheetView(barcodeValue: "\(selectedBarcode)")
+        }
+    }
+    
+    private var filteredCodes: [Codename] {
+        if searchText.isEmpty {
+            return codenames
+        } else {
+            return codenames.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
     }
     

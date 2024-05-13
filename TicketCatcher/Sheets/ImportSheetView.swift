@@ -6,6 +6,11 @@
 
 import SwiftUI
 
+enum Schema: String, CaseIterable, Identifiable {
+    case jprom, general, testing
+    var id: Self { self }
+}
+
 struct ImportSheetView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var uploadManager = UploadManager()
@@ -13,6 +18,7 @@ struct ImportSheetView: View {
     @State private var passphrase: String = ""
     @State private var pickingFile = false
     @State private var csvURL: URL?
+    @State private var selectedSchema: Schema = .jprom
     
     let correctPassword = Secrets.accountPassword
     let correctName = Secrets.accountName
@@ -39,18 +45,27 @@ struct ImportSheetView: View {
                         TextField("Account", text: $account)
                         SecureField("Passphrase", text: $passphrase)
                     }
-                    Button {
-                        pickingFile = true
-                    } label: {
-                        HStack {
-                            if let csvURL = csvURL {
-                                Text(csvURL.lastPathComponent)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            } else {
-                                Text("Add CSV File")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                    Section {
+                        Button {
+                            pickingFile = true
+                        } label: {
+                            HStack {
+                                if let csvURL = csvURL {
+                                    Text(csvURL.lastPathComponent)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                } else {
+                                    Text("Add CSV File")
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                Image(systemName: "plus")
                             }
-                            Image(systemName: "plus")
+                        }
+                        List {
+                            Picker("Schema", selection: $selectedSchema) {
+                                Text("Junior Prom 2024 Receipt").tag(Schema.jprom)
+                                Text("General").tag(Schema.general)
+                                Text("Internal Testing").tag(Schema.testing)
+                            }
                         }
                     }
                     .fileImporter(
@@ -75,9 +90,11 @@ struct ImportSheetView: View {
                 .scrollDisabled(true)
                 
                 Button {
-                    if let csvURL = csvURL {
-                        uploadManager.uploadData(url: csvURL) {
-                            self.presentationMode.wrappedValue.dismiss()
+                    if (!uploadManager.isUploading) {
+                        if let csvURL = csvURL {
+                            uploadManager.uploadData(url: csvURL) {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
                         }
                     }
                 } label: {

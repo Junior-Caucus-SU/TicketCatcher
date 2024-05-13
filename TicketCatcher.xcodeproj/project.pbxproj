@@ -26,6 +26,7 @@
 		304321772BEFEC6600EDF9D2 /* ImportSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304321762BEFEC6600EDF9D2 /* ImportSheetView.swift */; };
 		304BC2B72BF10F8100701726 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 304BC2B62BF10F8100701726 /* .gitignore */; };
 		304BC2B92BF1118D00701726 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304BC2B82BF1118D00701726 /* Secrets.swift */; };
+		3053DEF02BF1C1BE00239BB0 /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3053DEEF2BF1C1BE00239BB0 /* BarcodeView.swift */; };
 		306FBA192AEF0AD000799B43 /* ScanningLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306FBA182AEF0AD000799B43 /* ScanningLineView.swift */; };
 		307A97252BF17C80007193D3 /* LogSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A97242BF17C80007193D3 /* LogSheetView.swift */; };
 		30B5C90D2BF1053800F12B4C /* AddSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5C90C2BF1053800F12B4C /* AddSheetView.swift */; };
@@ -54,6 +55,7 @@
 		304321762BEFEC6600EDF9D2 /* ImportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSheetView.swift; sourceTree = "<group>"; };
 		304BC2B62BF10F8100701726 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		304BC2B82BF1118D00701726 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		3053DEEF2BF1C1BE00239BB0 /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		306FBA182AEF0AD000799B43 /* ScanningLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningLineView.swift; sourceTree = "<group>"; };
 		307A97242BF17C80007193D3 /* LogSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheetView.swift; sourceTree = "<group>"; };
 		30B5C90C2BF1053800F12B4C /* AddSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheetView.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				30B5C90C2BF1053800F12B4C /* AddSheetView.swift */,
+				3053DEEF2BF1C1BE00239BB0 /* BarcodeView.swift */,
 				304321762BEFEC6600EDF9D2 /* ImportSheetView.swift */,
 				301195292BF019E300544510 /* ListSheetView.swift */,
 				307A97242BF17C80007193D3 /* LogSheetView.swift */,
@@ -233,6 +236,7 @@
 				302ACBCE2BEF0E1200791571 /* ActionView.swift in Sources */,
 				302769A42AEDE02500B33074 /* ContentView.swift in Sources */,
 				3001D41E2BF0539A00652C6B /* CKManager.swift in Sources */,
+				3053DEF02BF1C1BE00239BB0 /* BarcodeView.swift in Sources */,
 				302ACBC62BEF0DE000791571 /* CameraView.swift in Sources */,
 				307A97252BF17C80007193D3 /* LogSheetView.swift in Sources */,
 				304BC2B92BF1118D00701726 /* Secrets.swift in Sources */,

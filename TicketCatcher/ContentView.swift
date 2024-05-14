@@ -42,6 +42,7 @@ struct ContentView: View {
             alignment: .bottom
         )
         .preferredColorScheme(.dark)
+        .sensoryFeedback(.impact, trigger: cameraController.barcodeString)
         .onChange(of: cameraController.barcodeString) { newBarcode in
             handleBarcodeChange(newBarcode: newBarcode) //fix deprecation soon!!!
         }

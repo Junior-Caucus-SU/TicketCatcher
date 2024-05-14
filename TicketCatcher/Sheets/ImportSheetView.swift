@@ -27,7 +27,7 @@ struct ImportSheetView: View {
         NavigationStack {
             VStack(spacing: 0){
                 VStack (alignment: .leading){
-                    Text("Upload an attendee CSV file with the correct identifications and formatting provided by Polazzo. Files with incorrect formatting will not be accepted. CloudKit will be updated in a few minutes post-upload. All existing IDs will not have their statuses changed.")
+                    Text("Upload an attendee CSV file with the correct identifications and formatting. The file header should be removed. Files with incorrect formatting will not be accepted. CloudKit will be updated immediately post-upload. All existing IDs will not have their statuses changed.")
                         .font(.caption)
                         .foregroundColor(Color.gray)
                         .multilineTextAlignment(.leading)

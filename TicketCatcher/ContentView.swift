@@ -38,7 +38,7 @@ struct ContentView: View {
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
-                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5)),
+                .animation(.spring(response: 0, dampingFraction: 0.5, blendDuration: 0.5)),
             alignment: .bottom
         )
         .preferredColorScheme(.dark)

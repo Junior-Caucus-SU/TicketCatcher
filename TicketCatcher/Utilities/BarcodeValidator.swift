@@ -19,14 +19,13 @@ struct BarcodeValidator {
                 guard error == nil, let records = records, !records.isEmpty else {
                     if let error = error {
                         LogManager.shared.log("Error querying records \(error.localizedDescription)")
-                    } else {
-                        LogManager.shared.log("\(barcode) is an invalid ticket or already scanned")
                     }
                     completion(false)
+                    LogManager.shared.log("\(barcode) is an invalid ticket or already scanned")
                     return
                 }
-                LogManager.shared.log("\(barcode) is a valid ticket")
                 completion(true)
+                LogManager.shared.log("\(barcode) is a valid ticket")
             }
         }
     }

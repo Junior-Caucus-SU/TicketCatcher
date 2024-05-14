@@ -60,6 +60,7 @@ struct AddSheetView: View {
                             Title = "Failed to Add Attendee"
                             showAlert = true
                         } else {
+                            LogManager.shared.log("Added attendee record manually for \(osis)")
                             Message = "Added attendee successfully. Be sure to save the barcode now as it cannot be viewed again."
                             Title = "Added Attendee"
                             showAlert = true

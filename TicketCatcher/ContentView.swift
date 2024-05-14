@@ -24,7 +24,18 @@ struct ContentView: View {
                 CameraWrapper(cameraController: cameraController, barcode: $barcode)
                     .frame(maxHeight: 300)
                     .cornerRadius(25)
+                    .shadow(color: {
+                        if barcode == "Invalid or Used Ticket" {
+                            return Color.red.opacity(0.6)
+                        } else if barcode == "Place Barcode in View to Scan" {
+                            return Color.clear
+                        } else {
+                            return Color.green.opacity(0.6)
+                        }
+                    }(), radius: 20, x: 0, y: 0)
+                    .zIndex(1)
                 ActionView(barcode: $barcode, showAdmitView: $showAdmitView, cameraController: cameraController)
+                    .zIndex(2)
             }
             .animation(.easeInOut(duration: 0.5), value: barcode)
             Spacer()
@@ -38,7 +49,7 @@ struct ContentView: View {
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
             }
-                .animation(.spring(response: 0, dampingFraction: 0.5, blendDuration: 0.5)),
+                .animation(.spring(response: 0.3, dampingFraction: 0.4, blendDuration: 0.5)),
             alignment: .bottom
         )
         .preferredColorScheme(.dark)

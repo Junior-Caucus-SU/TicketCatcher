@@ -14,13 +14,13 @@ struct BarcodeIconView: View {
         VStack {
             Image(systemName: (barcode == "Place Barcode in View to Scan") ? "barcode.viewfinder" : "ticket")
                 .contentTransition(.symbolEffect(.replace))
-                .foregroundColor((barcode == "Place Barcode in View to Scan") ? .white : (barcode == "Invalid Ticket") ? .red : .green )
+                .foregroundColor((barcode == "Place Barcode in View to Scan") ? .white : (barcode == "Invalid or Used Ticket") ? .red : .green )
                 .font(.title)
                 .frame(width: 55, height: 55)
                 .animation(.easeInOut)
             HStack {
                 if (barcode != "Place Barcode in View to Scan") {
-                    if (barcode != "Invalid Ticket") {
+                    if (barcode != "Invalid or Used Ticket") {
                         Text("Valid Ticket").font(.system(size: 16).monospaced())
                     }
                 }

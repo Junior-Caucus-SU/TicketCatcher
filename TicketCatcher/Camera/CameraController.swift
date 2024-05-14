@@ -70,7 +70,7 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
            let barcodeValue = Int(stringValue) {
             BarcodeValidator.validate(barcode: barcodeValue) { isValid in
                 DispatchQueue.main.async {
-                    self.barcodeString = isValid ? "\(barcodeValue)" : "Invalid Ticket"
+                    self.barcodeString = isValid ? "\(barcodeValue)" : "Invalid or Used Ticket"
                 }
             }
         }

@@ -15,7 +15,7 @@ struct ActionView: View {
     
     var body: some View {
         Group {
-            if barcode != "Place Barcode in View to Scan" && barcode != "Invalid Ticket" {
+            if barcode != "Place Barcode in View to Scan" && barcode != "Invalid or Used Ticket" {
                 Button {
                     LogManager.shared.log("Selected to mark valid admission, restarting camera session")
                     if let barcodeInt = Int(cameraController.barcodeString) {
@@ -62,7 +62,7 @@ struct ActionView: View {
                 .cornerRadius(20)
                 .controlSize(.large)
             } else {
-                if barcode == "Invalid Ticket" {
+                if barcode == "Invalid or Used Ticket" {
                     Button {
                         cameraController.resetBarcode()
                         cameraController.restartCameraSession()

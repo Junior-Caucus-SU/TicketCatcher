@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showAdmitView = false
     @State private var showList = false
     @State private var showImportSheet = false
     @State private var showAddSheet = false
@@ -23,13 +24,23 @@ struct ContentView: View {
                 CameraWrapper(cameraController: cameraController, barcode: $barcode)
                     .frame(maxHeight: 300)
                     .cornerRadius(25)
-                ActionView(barcode: $barcode, cameraController: cameraController)
+                ActionView(barcode: $barcode, showAdmitView: $showAdmitView, cameraController: cameraController)
             }
             .animation(.easeInOut(duration: 0.5), value: barcode)
             Spacer()
             navigationButtons
         }
         .padding(25)
+        .overlay(
+            Group {
+                if showAdmitView {
+                    AdmitView()
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                }
+            }
+                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.5)),
+            alignment: .bottom
+        )
         .preferredColorScheme(.dark)
         .onChange(of: cameraController.barcodeString) { newBarcode in
             handleBarcodeChange(newBarcode: newBarcode) //fix deprecation soon!!!
@@ -42,7 +53,7 @@ struct ContentView: View {
                 showAddSheet.toggle()
             } label: {
                 Image(systemName: "plus.circle.fill")
-                    .frame(maxWidth: 30, maxHeight: 30)
+                    .frame(maxWidth: .infinity, maxHeight: 30)
             }
             .buttonStyle(.borderedProminent)
             .cornerRadius(20)
@@ -56,7 +67,7 @@ struct ContentView: View {
                 showList.toggle()
             } label: {
                 Image(systemName: "person.3.fill")
-                    .frame(maxWidth: 30, maxHeight: 30)
+                    .frame(maxWidth: .infinity, maxHeight: 30)
             }
             .buttonStyle(.bordered)
             .cornerRadius(20)
@@ -70,7 +81,7 @@ struct ContentView: View {
                 showImportSheet.toggle()
             } label: {
                 Image(systemName: "arrow.up.doc.fill")
-                    .frame(maxWidth: 30, maxHeight: 30)
+                    .frame(maxWidth: .infinity, maxHeight: 30)
             }
             .buttonStyle(.bordered)
             .cornerRadius(20)
@@ -84,7 +95,7 @@ struct ContentView: View {
                 showLog.toggle()
             } label: {
                 Image(systemName: "doc.text.below.ecg.fill")
-                    .frame(maxWidth: 30, maxHeight: 30)
+                    .frame(maxWidth: .infinity, maxHeight: 30)
             }
             .buttonStyle(.bordered)
             .cornerRadius(20)

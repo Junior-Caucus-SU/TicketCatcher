@@ -27,6 +27,7 @@
 		304BC2B72BF10F8100701726 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 304BC2B62BF10F8100701726 /* .gitignore */; };
 		304BC2B92BF1118D00701726 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304BC2B82BF1118D00701726 /* Secrets.swift */; };
 		3053DEF02BF1C1BE00239BB0 /* BarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3053DEEF2BF1C1BE00239BB0 /* BarcodeView.swift */; };
+		3058AB192BF2CF3400AEF971 /* AdmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3058AB182BF2CF3400AEF971 /* AdmitView.swift */; };
 		306FBA192AEF0AD000799B43 /* ScanningLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306FBA182AEF0AD000799B43 /* ScanningLineView.swift */; };
 		307A97252BF17C80007193D3 /* LogSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A97242BF17C80007193D3 /* LogSheetView.swift */; };
 		30B5C90D2BF1053800F12B4C /* AddSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5C90C2BF1053800F12B4C /* AddSheetView.swift */; };
@@ -56,6 +57,7 @@
 		304BC2B62BF10F8100701726 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		304BC2B82BF1118D00701726 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		3053DEEF2BF1C1BE00239BB0 /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
+		3058AB182BF2CF3400AEF971 /* AdmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmitView.swift; sourceTree = "<group>"; };
 		306FBA182AEF0AD000799B43 /* ScanningLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningLineView.swift; sourceTree = "<group>"; };
 		307A97242BF17C80007193D3 /* LogSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheetView.swift; sourceTree = "<group>"; };
 		30B5C90C2BF1053800F12B4C /* AddSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheetView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				302ACBCD2BEF0E1200791571 /* ActionView.swift */,
 				306FBA182AEF0AD000799B43 /* ScanningLineView.swift */,
 				302ACBC92BEF0DF300791571 /* BarcodeIconView.swift */,
+				3058AB182BF2CF3400AEF971 /* AdmitView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				302ACBC62BEF0DE000791571 /* CameraView.swift in Sources */,
 				307A97252BF17C80007193D3 /* LogSheetView.swift in Sources */,
 				304BC2B92BF1118D00701726 /* Secrets.swift in Sources */,
+				3058AB192BF2CF3400AEF971 /* AdmitView.swift in Sources */,
 				3011952A2BF019E300544510 /* ListSheetView.swift in Sources */,
 				3036807D2BF0487200509514 /* BarcodeValidator.swift in Sources */,
 				301195252BEFFFBD00544510 /* CSVParser.swift in Sources */,
@@ -383,7 +387,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;
@@ -417,7 +421,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;

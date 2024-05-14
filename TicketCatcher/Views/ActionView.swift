@@ -10,6 +10,7 @@ import CloudKit
 
 struct ActionView: View {
     @Binding var barcode: String
+    @Binding var showAdmitView: Bool
     var cameraController: CameraController
     
     var body: some View {
@@ -24,6 +25,12 @@ struct ActionView: View {
                         CKManager.shared.markBarcodeAsScanned(barcode: barcodeInt) { success in
                             if success {
                                 LogManager.shared.log("Barcode marked as scanned successfully")
+                                DispatchQueue.main.async {
+                                    self.showAdmitView = true  //admitview notification
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                        self.showAdmitView = false
+                                    }
+                                }
                             } else {
                                 LogManager.shared.log("Failed to mark barcode")
                             }

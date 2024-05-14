@@ -15,22 +15,27 @@ class UploadManager: ObservableObject {
     
     private var progressObj = Progress(totalUnitCount: 1)
     
-    ///Upload data from the CSV file and call generator, then upload to CK
+    ///Get data from the CSV file then upload to CK
     ///If an error happens here, you're bascially fucked, except for iCloud issues
     func uploadData(url: URL, completion: @escaping () -> Void) {
         isUploading = true
         progress = 0.0
         
         let parser = CSVParser()
-        let generator = CodeGenerator()
         
-        if let names = parser.parseCSV(contentsOfURL: url, encoding: .utf8) {
-            progressObj = Progress(totalUnitCount: Int64(names.count))
+        if let records = parser.parseCSV(contentsOfURL: url, encoding: .utf8) {
+            progressObj = Progress(totalUnitCount: Int64(records.count))
             var currentCount = 0
             
-            for name in names {
-                let barcode = generator.generateUniqueCode()
-                CKManager.shared.addCodenameRecord(name: name, barcode: Int(barcode)) { error in
+            for record in records {
+                let (name, barcodeString) = record
+                guard let barcode = Int(barcodeString) else {
+                    LogManager.shared.log("Invalid barcode format \(barcodeString)")
+                    self.isUploading = false
+                    return
+                }
+                
+                CKManager.shared.addCodenameRecord(name: name, barcode: barcode) { error in
                     DispatchQueue.main.async {
                         if let error = error {
                             LogManager.shared.log("Error: \(error.localizedDescription). Have you signed in to your iCloud account on this device?")
@@ -42,7 +47,7 @@ class UploadManager: ObservableObject {
                         self.progressObj.completedUnitCount = Int64(currentCount)
                         self.progress = Double(self.progressObj.fractionCompleted)
                         
-                        if currentCount == names.count {
+                        if currentCount == records.count {
                             self.isUploading = false
                             self.uploadCompleted = true
                             completion()

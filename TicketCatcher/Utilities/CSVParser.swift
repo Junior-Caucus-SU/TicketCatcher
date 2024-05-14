@@ -13,8 +13,8 @@ class CSVParser {
             let content = try String(contentsOf: contentsOfURL, encoding: encoding)
             var rows = content.components(separatedBy: "\n")
             rows = rows.filter { !$0.isEmpty }
-            return rows.compactMap { row in
-                let columns = parseCSVRow(row)
+            return rows.enumerated().compactMap { (rowIndex, row) in
+                let columns = parseCSVRow(row, rowIndex: rowIndex)
                 guard columns.count > 16 else { return nil }
                 let name = columns[15]
                 let barcode = columns[16]
@@ -27,7 +27,7 @@ class CSVParser {
     }
     
     ///Handle commas in addresses
-    private func parseCSVRow(_ row: String) -> [String] {
+    private func parseCSVRow(_ row: String, rowIndex: Int) -> [String] {
         var result: [String] = []
         var current = ""
         var quoted = false
@@ -35,8 +35,8 @@ class CSVParser {
         
         for char in row {
             if char == "\"" {
+                LogManager.shared.log("Found quotes in CSV file on row \(rowIndex). Ignoring commas between.")
                 if quoted && prev == "\"" {
-                    LogManager.shared.log("Found quotes in CSV file in character \(char) on row \(row). Ignoring commas between.")
                     current.append(char)
                 }
                 quoted.toggle()

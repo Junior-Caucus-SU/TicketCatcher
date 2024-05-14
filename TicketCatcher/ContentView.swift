@@ -23,7 +23,7 @@ struct ContentView: View {
             VStack(alignment: .center) {
                 CameraWrapper(cameraController: cameraController, barcode: $barcode)
                     .frame(maxHeight: 300)
-                    .cornerRadius(25)
+                    .cornerRadius(30)
                     .shadow(color: {
                         if barcode == "Invalid or Used Ticket" {
                             return Color.red.opacity(0.6)

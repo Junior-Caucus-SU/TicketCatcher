@@ -89,21 +89,21 @@ struct ImportSheetView: View {
                 .scrollContentBackground(.hidden)
                 
                 Button {
-                    if (!uploadManager.isUploading) {
                         if let csvURL = csvURL {
                             uploadManager.uploadData(url: csvURL) {
                                 self.presentationMode.wrappedValue.dismiss()
                             }
                         }
-                    }
                 } label: {
                     HStack {
                         Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Upload List to CloudKit")
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                         if (uploadManager.isUploading) {
-                            Image(systemName: "rays")
-                                .symbolEffect(.variableColor.cumulative.hideInactiveLayers.nonReversing)
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .scaleEffect(0.5)
+                                .frame(width: 20, height: 20)
                         } else {
                             Image(systemName: "cloud")
                         }
@@ -113,7 +113,7 @@ struct ImportSheetView: View {
                 .cornerRadius(20)
                 .padding()
                 .controlSize(.large)
-                .disabled(!(account == correctName && passphrase == correctPassword))
+                .disabled(uploadManager.isUploading || !(account == correctName && passphrase == correctPassword))
             }
             .navigationTitle("Upload List")
             .onDisappear {

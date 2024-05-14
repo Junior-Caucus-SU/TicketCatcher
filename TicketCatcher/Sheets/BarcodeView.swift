@@ -21,9 +21,10 @@ struct BarcodeSheetView: View {
         VStack {
             Text("Below is your generated barcode.\nBe sure to save this image!")
                 .font(.headline)
-                .foregroundColor(.orange)
+                .foregroundColor(.accentColor)
                 .multilineTextAlignment(.center)
                 .padding()
+            Spacer()
             barcodeImage?
                 .resizable()
                 .scaledToFit()
@@ -31,11 +32,13 @@ struct BarcodeSheetView: View {
                 .font(numberFont)
                 .foregroundColor(.gray)
             Spacer()
-            Button {
-                //do something
-            } label: {
-                Text("Share Code").frame(maxWidth: .infinity, alignment: .center)
-            }
+            ShareLink(
+                item: (barcodeImage)!,
+                preview: SharePreview(
+                    "Share Barcode",
+                    image: (barcodeImage)!
+                )
+            )
             .buttonStyle(.borderedProminent)
             .cornerRadius(20)
             .controlSize(.large)

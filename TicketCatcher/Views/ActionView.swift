@@ -15,6 +15,8 @@ struct ActionView: View {
     
     var body: some View {
         Group {
+            Spacer()
+                .frame(height: 15)
             if barcode != "Place Barcode in View to Scan" && barcode != "Invalid or Used Ticket" {
                 Button {
                     LogManager.shared.log("Selected to mark valid admission, restarting camera session")

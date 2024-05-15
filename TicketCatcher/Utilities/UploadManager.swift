@@ -24,10 +24,11 @@ class UploadManager: ObservableObject {
         let parser = CSVParser()
         
         if let records = parser.parseCSV(contentsOfURL: url, encoding: .utf8) {
-            progressObj = Progress(totalUnitCount: Int64(records.count))
+            let validRecords = records.filter { $0.validity.contains("Approved") }
+            progressObj = Progress(totalUnitCount: Int64(validRecords.count))
             var currentCount = 0
             
-            for record in records {
+            for record in validRecords {
                 let (name, barcodeString, validity) = record
                 guard let barcode = Int(barcodeString) else {
                     LogManager.shared.log("Invalid barcode format \(barcodeString)")
@@ -47,7 +48,7 @@ class UploadManager: ObservableObject {
                         self.progressObj.completedUnitCount = Int64(currentCount)
                         self.progress = Double(self.progressObj.fractionCompleted)
                         
-                        if currentCount == records.count {
+                        if currentCount == validRecords.count {
                             self.isUploading = false
                             self.uploadCompleted = true
                             completion()
@@ -62,4 +63,5 @@ class UploadManager: ObservableObject {
             }
         }
     }
+
 }

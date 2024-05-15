@@ -16,7 +16,7 @@ class CKManager {
     
     func addCodenameRecord(name: String, barcode: Int, validity: String, completion: @escaping (Error?) -> Void) {
         if !validity.contains("Approved") {
-            LogManager.shared.log("Record \(barcode) has no approved payment. Skipping.")
+            LogManager.shared.log("Record \(barcode) is correctly formatted but not approved. Skipping.")
         } else
         {
             let record = CKRecord(recordType: "Codename")

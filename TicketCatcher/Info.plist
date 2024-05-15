@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSCameraUsageDescription</key>
-	<string>Our app needs access to camera to scan barcodes.</string>
+	<string>TicketCatcher needs access to your camera to do the scanning.</string>
 	<key>NSFileProviderPresenceUsageDescription</key>
-	<string>Our app needs access to your files to import CSV files.</string>
+	<string>TicketCatcher needs access to your files for uploading.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 </dict>

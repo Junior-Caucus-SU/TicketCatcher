@@ -57,6 +57,7 @@
 		3053DEEF2BF1C1BE00239BB0 /* BarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeView.swift; sourceTree = "<group>"; };
 		3058AB182BF2CF3400AEF971 /* AdmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmitView.swift; sourceTree = "<group>"; };
 		306FBA182AEF0AD000799B43 /* ScanningLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanningLineView.swift; sourceTree = "<group>"; };
+		3075FBAD2BF43FEA00260395 /* Privacy Policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Privacy Policy.md"; sourceTree = "<group>"; };
 		307A97242BF17C80007193D3 /* LogSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheetView.swift; sourceTree = "<group>"; };
 		30B5C90C2BF1053800F12B4C /* AddSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +76,7 @@
 		302769952AEDE02500B33074 = {
 			isa = PBXGroup;
 			children = (
+				3075FBAD2BF43FEA00260395 /* Privacy Policy.md */,
 				304BC2B62BF10F8100701726 /* .gitignore */,
 				304BC2B82BF1118D00701726 /* Secrets.swift */,
 				3001D4192BF04FBC00652C6B /* Launch Screen.storyboard */,
@@ -383,7 +385,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;
@@ -417,7 +419,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;

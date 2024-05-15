@@ -99,7 +99,7 @@ class CKManager {
         database.add(operation)
     }
     
-    func markBarcodeAsScanned(barcode: Int, completion: @escaping (Bool) -> Void) {
+    func markBarcodeAsScanned(barcode: Int, completion: @escaping (Bool, String?) -> Void) {
         LogManager.shared.log("Marking barcode as scanned")
         let pred = NSPredicate(format: "Barcode == %d", barcode)
         let query = CKQuery(recordType: "Codename", predicate: pred)
@@ -107,15 +107,15 @@ class CKManager {
         database.perform(query, inZoneWith: nil) { records, error in
             guard let record = records?.first, error == nil else {
                 DispatchQueue.main.async {
-                    completion(false)
+                    completion(false, error?.localizedDescription ?? "Unknown error querying")
                 }
                 return
             }
             
             record["ScanStatus"] = 1
-            self.database.save(record) { _, error in
+            self.database.save(record) { _, markScannedError in
                 DispatchQueue.main.async {
-                    completion(error == nil)
+                    completion(markScannedError == nil, markScannedError?.localizedDescription)
                 }
             }
         }

@@ -24,7 +24,7 @@ struct ActionView: View {
                         cameraController.resetBarcode()
                         cameraController.restartCameraSession()
                         
-                        CKManager.shared.markBarcodeAsScanned(barcode: barcodeInt) { success in
+                        CKManager.shared.markBarcodeAsScanned(barcode: barcodeInt) { success, err in
                             if success {
                                 LogManager.shared.log("Barcode marked as scanned successfully")
                                 DispatchQueue.main.async {
@@ -34,7 +34,7 @@ struct ActionView: View {
                                     }
                                 }
                             } else {
-                                LogManager.shared.log("Failed to mark barcode")
+                                LogManager.shared.log("Failed to mark barcode with reason \(err ?? "unknown")")
                             }
                         }
                     }

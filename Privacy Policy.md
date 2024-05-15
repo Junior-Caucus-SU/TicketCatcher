@@ -9,7 +9,7 @@ Even though we do not collect any data, we are committed to ensuring that any in
 
 ## Uploading Data
 
-As the app is used for ticket storing and scanning, users may choose to upload entrant data sets to our database according to provided schemas. In such cases, only the nessasary data is stored securely in our database.
+As the app is used for ticket storing and scanning, users may choose to upload entrant data sets to our database according to provided schemas. In such cases, only the necessary data is stored securely in our database.
 
 ## Changes to This Privacy Policy
 

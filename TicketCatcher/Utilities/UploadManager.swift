@@ -15,8 +15,7 @@ class UploadManager: ObservableObject {
     
     private var progressObj = Progress(totalUnitCount: 1)
     
-    ///Get data from the CSV file then upload to CK
-    ///If an error happens here, you're bascially fucked, except for iCloud issues
+    ///Get data from a file URL then upload to CK. If an error happens here, you're bascially fucked, except for iCloud issues
     func uploadData(url: URL, completion: @escaping () -> Void) {
         isUploading = true
         progress = 0.0
@@ -43,7 +42,7 @@ class UploadManager: ObservableObject {
                             self.isUploading = false
                             return
                         }
-                        
+                        //Keep track of progress amount for the progress display.
                         currentCount += 1
                         self.progressObj.completedUnitCount = Int64(currentCount)
                         self.progress = Double(self.progressObj.fractionCompleted)

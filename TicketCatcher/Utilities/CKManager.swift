@@ -7,6 +7,7 @@
 
 import CloudKit
 
+///CloudKit operations should be done by calling this.
 class CKManager {
     static let shared = CKManager()
     private let container = CKContainer(identifier: "iCloud.Barcodes")
@@ -14,6 +15,7 @@ class CKManager {
         return container.publicCloudDatabase
     }
     
+    ///Add a codename record with provided name,  barcode, and validity
     func addCodenameRecord(name: String, barcode: Int, validity: String, completion: @escaping (Error?) -> Void) {
         if !validity.contains("Approved") {
             LogManager.shared.log("Record \(barcode) is correctly formatted but not approved. Skipping.")
@@ -34,6 +36,7 @@ class CKManager {
         }
     }
     
+    ///Fetch a list of all codenames.
     func fetchCodenames(completion: @escaping ([Codename], Error?) -> Void) {
         let query = CKQuery(recordType: "Codename", predicate: NSPredicate(value: true))
         let operation = CKQueryOperation(query: query)
@@ -70,6 +73,7 @@ class CKManager {
         database.add(operation)
     }
     
+    ///Fetch more codenames according to the cursor location.
     private func fetchMoreCodenames(cursor: CKQueryOperation.Cursor, currentCodenames: [Codename], completion: @escaping ([Codename], Error?) -> Void) {
         let operation = CKQueryOperation(cursor: cursor)
         operation.resultsLimit = 200
@@ -104,6 +108,7 @@ class CKManager {
         database.add(operation)
     }
     
+    ///Mark the selected barcode as scanned.
     func markBarcodeAsScanned(barcode: Int, completion: @escaping (Bool, String?) -> Void) {
         LogManager.shared.log("Marking barcode as scanned")
         let pred = NSPredicate(format: "Barcode == %d", barcode)

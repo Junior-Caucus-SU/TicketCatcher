@@ -18,6 +18,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            //Icon and barcode status text
             BarcodeIconView(barcode: barcode)
             Spacer()
             VStack(alignment: .center) {
@@ -34,12 +35,13 @@ struct ContentView: View {
                         }
                     }(), radius: 20, x: 0, y: 0)
                     .zIndex(1)
+                //Action buttons when a valid barcode is found
                 ActionView(barcode: $barcode, showAdmitView: $showAdmitView, cameraController: cameraController)
-                    .zIndex(2)
+                    .zIndex(2) //Should be above the shadow
             }
             .animation(.easeInOut(duration: 0.5), value: barcode)
             Spacer()
-            navigationButtons
+            navigationButtons //Bottom buttons
         }
         .padding(25)
         .overlay(
@@ -47,6 +49,7 @@ struct ContentView: View {
                 if showAdmitView {
                     AdmitView()
                         .transition(.move(edge: .bottom).combined(with: .opacity))
+                    //Admitted flyout
                 }
             }
                 .animation(.spring(response: 0.3, dampingFraction: 0.4, blendDuration: 0.5)),
@@ -59,6 +62,7 @@ struct ContentView: View {
         }
     }
     
+    ///Bottom buttons
     private var navigationButtons: some View {
         HStack {
             Button {
@@ -74,6 +78,7 @@ struct ContentView: View {
                     .presentationBackground(.thickMaterial)
             }
             .controlSize(.large)
+            //Add attendee
             
             Button {
                 showList.toggle()
@@ -88,6 +93,7 @@ struct ContentView: View {
                     .presentationBackground(.thickMaterial)
             }
             .controlSize(.large)
+            //Attendee List
             
             Button {
                 showImportSheet.toggle()
@@ -102,6 +108,7 @@ struct ContentView: View {
                     .presentationBackground(.thickMaterial)
             }
             .controlSize(.large)
+            //Upload Attendee List
             
             Button {
                 showLog.toggle()
@@ -116,11 +123,13 @@ struct ContentView: View {
                     .presentationBackground(.thickMaterial)
             }
             .controlSize(.large)
+            //Logs
         }
         .padding(.top, 35)
         .padding(.bottom, 20)
     }
     
+    ///If the barcode is not idle, then stop the camera
     func handleBarcodeChange(newBarcode: String) {
         barcode = newBarcode
         if newBarcode != "Place Barcode in View to Scan" {

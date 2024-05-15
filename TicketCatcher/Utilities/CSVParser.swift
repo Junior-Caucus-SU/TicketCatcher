@@ -8,6 +8,7 @@
 import Foundation
 
 class CSVParser {
+    ///Parse a CSV file to return its Name, Validity, and Barcode
     func parseCSV(contentsOfURL: URL, encoding: String.Encoding) -> [(name: String, barcode: String, validity: String)]? {
         do {
             let content = try String(contentsOf: contentsOfURL, encoding: encoding)
@@ -27,7 +28,7 @@ class CSVParser {
         }
     }
     
-    ///Handle commas in addresses
+    ///Parse an individual row of text, ignoring commas if they are not column separators.
     private func parseCSVRow(_ row: String, rowIndex: Int) -> [String] {
         var result: [String] = []
         var current = ""

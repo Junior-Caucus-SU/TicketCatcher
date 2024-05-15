@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+///Main log in screne. Maybe consider moving login logic here.
 @main
 struct TicketCatcherApp: App {
     @State private var entered = false
@@ -21,6 +22,7 @@ struct TicketCatcherApp: App {
     }
 }
 
+///Login view.
 struct EntrantView: View {
     @Binding var entered: Bool
     var body: some View {

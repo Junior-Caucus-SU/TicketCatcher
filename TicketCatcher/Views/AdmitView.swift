@@ -8,6 +8,7 @@
 import SwiftUI
 import UIKit
 
+///Admitted person flyout
 struct AdmitView: View {
     var body: some View {
         HStack {

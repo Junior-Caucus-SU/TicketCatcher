@@ -19,6 +19,7 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
         setupCamera()
     }
     
+    ///Set up a capture session
     func setupPreviewLayer(in view: UIView) {
         DispatchQueue.main.async {
             if self.captureSession == nil {
@@ -48,11 +49,13 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
         }
     }
     
+    ///Prepare the camera
     private func setupCamera() {
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .photo
     }
     
+    ///Identify the desired metadata to capture
     private func configureMetadataOutput() {
         let metadataOutput = AVCaptureMetadataOutput()
         if captureSession.canAddOutput(metadataOutput) {
@@ -64,6 +67,7 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
         }
     }
     
+    ///Output the recognized barcode
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
            let stringValue = metadataObject.stringValue,

@@ -14,17 +14,22 @@ class CKManager {
         return container.publicCloudDatabase
     }
     
-    func addCodenameRecord(name: String, barcode: Int, completion: @escaping (Error?) -> Void) {
-        let record = CKRecord(recordType: "Codename")
-        record["Name"] = name as CKRecordValue
-        record["Barcode"] = barcode as CKRecordValue
-        
-        database.save(record) { _, error in
-            DispatchQueue.main.async {
-                if let error = error {
-                    LogManager.shared.log("Error saving a record due to \(error)")
+    func addCodenameRecord(name: String, barcode: Int, validity: String, completion: @escaping (Error?) -> Void) {
+        if !validity.contains("Approved") {
+            LogManager.shared.log("Record \(barcode) has no approved payment. Skipping.")
+        } else
+        {
+            let record = CKRecord(recordType: "Codename")
+            record["Name"] = name as CKRecordValue
+            record["Barcode"] = barcode as CKRecordValue
+            
+            database.save(record) { _, error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        LogManager.shared.log("Error saving a record due to \(error)")
+                    }
+                    completion(error)
                 }
-                completion(error)
             }
         }
     }

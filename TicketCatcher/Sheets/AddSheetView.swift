@@ -53,7 +53,7 @@ struct AddSheetView: View {
                 .scrollContentBackground(.hidden)
                 
                 Button {
-                    CKManager.shared.addCodenameRecord(name: atname, barcode: Int(osis)!) { error in
+                    CKManager.shared.addCodenameRecord(name: atname, barcode: Int(osis)!, validity: "Approved") { error in
                         if error != nil {
                             LogManager.shared.log("No record added due to an error")
                             Message = "Failed to add attendee due to an error."

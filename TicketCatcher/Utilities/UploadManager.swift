@@ -28,14 +28,14 @@ class UploadManager: ObservableObject {
             var currentCount = 0
             
             for record in records {
-                let (name, barcodeString) = record
+                let (name, barcodeString, validity) = record
                 guard let barcode = Int(barcodeString) else {
                     LogManager.shared.log("Invalid barcode format \(barcodeString)")
                     self.isUploading = false
                     return
                 }
                 
-                CKManager.shared.addCodenameRecord(name: name, barcode: barcode) { error in
+                CKManager.shared.addCodenameRecord(name: name, barcode: barcode, validity: validity) { error in
                     DispatchQueue.main.async {
                         if let error = error {
                             LogManager.shared.log("Error: \(error.localizedDescription). Have you signed in to your iCloud account on this device?")

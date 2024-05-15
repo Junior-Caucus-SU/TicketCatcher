@@ -8,7 +8,7 @@
 import Foundation
 
 class CSVParser {
-    func parseCSV(contentsOfURL: URL, encoding: String.Encoding) -> [(name: String, barcode: String)]? {
+    func parseCSV(contentsOfURL: URL, encoding: String.Encoding) -> [(name: String, barcode: String, validity: String)]? {
         do {
             let content = try String(contentsOf: contentsOfURL, encoding: encoding)
             var rows = content.components(separatedBy: "\n")
@@ -16,9 +16,10 @@ class CSVParser {
             return rows.enumerated().compactMap { (rowIndex, row) in
                 let columns = parseCSVRow(row, rowIndex: rowIndex)
                 guard columns.count > 16 else { return nil }
+                let validity = columns[13]
                 let name = columns[15]
                 let barcode = columns[16]
-                return (name, barcode)
+                return (name, barcode, validity)
             }
         } catch {
             LogManager.shared.log("Error reading CSV file: \(error)")

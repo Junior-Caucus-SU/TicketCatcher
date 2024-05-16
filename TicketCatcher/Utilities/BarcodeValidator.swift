@@ -14,18 +14,21 @@ struct BarcodeValidator {
         let predicate = NSPredicate(format: "Barcode == %d AND ScanStatus != 1", barcode)
         let query = CKQuery(recordType: "Codename", predicate: predicate)
         
-        CKManager.shared.database.perform(query, inZoneWith: nil) { records, error in
+        CKManager.shared.database.fetch(withQuery: query, inZoneWith: nil, desiredKeys: nil, resultsLimit: 1) { result in
             DispatchQueue.main.async {
-                guard error == nil, let records = records, !records.isEmpty else {
-                    if let error = error {
-                        LogManager.shared.log("Error querying records \(error.localizedDescription)")
+                switch result {
+                case .success(let (records, _)):
+                    if let _ = records.first {
+                        LogManager.shared.log("\(barcode) is a valid ticket")
+                        completion(true)
+                    } else {
+                        LogManager.shared.log("\(barcode) is an invalid ticket or already scanned")
+                        completion(false)
                     }
+                case .failure(let error):
+                    LogManager.shared.log("Error querying records \(error.localizedDescription)")
                     completion(false)
-                    LogManager.shared.log("\(barcode) is an invalid ticket or already scanned")
-                    return
                 }
-                completion(true)
-                LogManager.shared.log("\(barcode) is a valid ticket")
             }
         }
     }

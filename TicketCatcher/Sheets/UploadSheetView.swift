@@ -1,4 +1,4 @@
-//  ImportSheetView.swift
+//  UploadSheetView.swift
 //  TicketCatcher
 //
 //  Created by Yinwei Z on 2/11/24.
@@ -11,7 +11,7 @@ enum Schema: String, CaseIterable, Identifiable {
     var id: Self { self }
 }
 
-struct ImportSheetView: View {
+struct UploadSheetView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var uploadManager = UploadManager()
     @State private var account: String = ""
@@ -126,5 +126,5 @@ struct ImportSheetView: View {
 }
 
 #Preview {
-    ImportSheetView()
+    UploadSheetView()
 }

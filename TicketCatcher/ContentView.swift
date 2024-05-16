@@ -104,7 +104,7 @@ struct ContentView: View {
             .buttonStyle(.bordered)
             .cornerRadius(20)
             .sheet(isPresented: $showImportSheet) {
-                ImportSheetView()
+                UploadSheetView()
                     .presentationBackground(.thickMaterial)
             }
             .controlSize(.large)

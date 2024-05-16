@@ -10,6 +10,7 @@ import CloudKit
 
 struct ListSheetView: View {
     @State private var codenames = [Codename]()
+    @State private var showRemoveSheet = false
     @State private var searchText = ""
     let codeFont = Font
         .system(size: 14)
@@ -33,16 +34,28 @@ struct ListSheetView: View {
             }
             .navigationTitle("Attendees")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .status) {
                     HStack {
-                        Text("\(scannedCount)/\(totalCount)").bold()
+                        Text("\(scannedCount) Scanned Tickets of \(totalCount) Total").bold()
                         Image(systemName: "person.fill.checkmark")
                     }.foregroundColor(.accentColor)
+                }
+                ToolbarItem(placement: .destructiveAction) {
+                    Button {
+                        showRemoveSheet.toggle()
+                    } label: {
+                        Image(systemName: "trash")
+                        Text("Remove All")
+                    }.foregroundColor(.red)
                 }
             }
             .searchable(text: $searchText, prompt: "Search")
             .onAppear(perform: loadData)
             .scrollContentBackground(.hidden)
+        }
+        .sheet(isPresented: $showRemoveSheet) {
+            RemoveSheetView()
+                .presentationBackground(.thickMaterial)
         }
     }
     

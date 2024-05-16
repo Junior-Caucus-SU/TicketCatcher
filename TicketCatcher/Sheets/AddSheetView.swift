@@ -12,6 +12,7 @@ struct AddSheetView: View {
     @State private var passphrase: String = ""
     @State private var atname: String = ""
     @State private var osis: String = ""
+    @State private var sessionID: String = ""
     
     @State private var showAlert = false
     @State private var Message = ""
@@ -41,12 +42,17 @@ struct AddSheetView: View {
                 Form {
                     Section{
                         TextField("Account", text: $account)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
                         SecureField("Passphrase", text: $passphrase)
                     }
                     
                     Section{
                         TextField("Attendee Name", text: $atname)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
                         SecureField("OSIS", text: $osis)
+                        SecureField("Session ID (Leave blank for a new ID)", text: $sessionID)
                     }
                     
                 }

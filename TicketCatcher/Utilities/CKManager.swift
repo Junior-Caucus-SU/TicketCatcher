@@ -130,4 +130,25 @@ class CKManager {
             }
         }
     }
+    
+    func removeAllCodenames(completion: @escaping (Error?) -> Void) {
+        let query = CKQuery(recordType: "Codename", predicate: NSPredicate(value: true))
+        
+        database.perform(query, inZoneWith: nil) { records, error in
+            guard let records = records, error == nil else {
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+                return
+            }
+            let recordIDs = records.map { $0.recordID }
+            let deleteOp = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: recordIDs)
+            deleteOp.modifyRecordsCompletionBlock = { _, _, error in
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            }
+            self.database.add(deleteOp)
+        }
+    }
 }

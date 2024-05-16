@@ -1,5 +1,5 @@
 //
-//  BarcodeView.swift
+//  BarcodeSheetView.swift
 //  TicketCatcher
 //
 //  Created by Yinwei Z on 5/12/24.

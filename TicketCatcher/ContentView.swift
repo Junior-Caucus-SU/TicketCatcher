@@ -22,7 +22,7 @@ struct ContentView: View {
             BarcodeIconView(barcode: barcode)
             Spacer()
             VStack(alignment: .center) {
-                CameraWrapper(cameraController: cameraController, barcode: $barcode)
+                CameraView(cameraController: cameraController)
                     .frame(maxHeight: 300)
                     .cornerRadius(30)
                     .shadow(color: {
@@ -49,6 +49,7 @@ struct ContentView: View {
                 if showAdmitView {
                     AdmitView()
                         .transition(.move(edge: .bottom).combined(with: .opacity))
+                        .shadow(color: .green.opacity(0.75), radius: 50, x: 0, y: 0)
                     //Admitted flyout
                 }
             }

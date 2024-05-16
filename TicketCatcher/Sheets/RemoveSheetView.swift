@@ -23,14 +23,13 @@ struct RemoveSheetView: View {
                         .bold()
                         .foregroundColor(.red)
                         .font(.caption)
-                        .foregroundColor(Color.gray)
                         .multilineTextAlignment(.leading)
                         .padding(.bottom)
                     
                     Text("Removing records may take up to 1 minute. The app will quit upon completion. Call 929-519-5260 for confirmation before proceeding.")
                         .foregroundColor(.red)
                         .font(.caption)
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(.red)
                         .multilineTextAlignment(.leading)
                 }.padding([.top, .leading, .trailing])
                 

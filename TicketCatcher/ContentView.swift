@@ -52,13 +52,13 @@ struct ContentView: View {
                     //Admitted flyout
                 }
             }
-                .animation(.spring(response: 0.3, dampingFraction: 0.4, blendDuration: 0.5)),
+                .animation(.spring(response: 0.3, dampingFraction: 0.4, blendDuration: 0.5), value: showAdmitView),
             alignment: .bottom
         )
         .preferredColorScheme(.dark)
         .sensoryFeedback(.impact, trigger: cameraController.barcodeString)
-        .onChange(of: cameraController.barcodeString) { newBarcode in
-            handleBarcodeChange(newBarcode: newBarcode) //fix deprecation soon!!!
+        .onChange(of: cameraController.barcodeString) {
+            handleBarcodeChange(newBarcode: cameraController.barcodeString)
         }
     }
     

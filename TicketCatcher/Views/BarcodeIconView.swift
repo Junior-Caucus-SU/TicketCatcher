@@ -17,7 +17,7 @@ struct BarcodeIconView: View {
                 .foregroundColor((barcode == "Place Barcode in View to Scan") ? .white : (barcode == "Invalid or Used Ticket") ? .red : .green )
                 .font(.title)
                 .frame(width: 55, height: 55)
-                .animation(.easeInOut)
+                .animation(.easeInOut, value: barcode)
             HStack {
                 if (barcode != "Place Barcode in View to Scan") {
                     if (barcode != "Invalid or Used Ticket") {

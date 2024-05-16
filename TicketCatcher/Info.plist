@@ -4,10 +4,6 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-	<key>NSCameraUsageDescription</key>
-	<string>TicketCatcher needs access to your camera to do the scanning.</string>
-	<key>NSFileProviderPresenceUsageDescription</key>
-	<string>TicketCatcher needs access to your files for uploading.</string>
 	<key>UILaunchScreen</key>
 	<dict/>
 </dict>

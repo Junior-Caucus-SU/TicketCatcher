@@ -43,8 +43,10 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
             self.previewLayer.videoGravity = .resizeAspectFill
             view.layer.addSublayer(self.previewLayer)
             if !self.captureSession.isRunning {
-                self.captureSession.startRunning()//NEED TO FIX TO CALL ON BACKGROUND THREAD!!!
-                LogManager.shared.log("Starting new capture session on the main thread")
+                DispatchQueue.global(qos: .background).async {
+                    self.captureSession.startRunning()
+                    LogManager.shared.log("Starting new capture session")
+                }
             }
         }
     }

@@ -13,11 +13,16 @@ struct TicketCatcherApp: App {
     @State private var entered = false
     var body: some Scene {
         WindowGroup {
-            if !entered {
-                EntrantView(entered: $entered)
-            } else {
-                ContentView()
+            ZStack {
+                if !entered {
+                    EntrantView(entered: $entered)
+                        .transition(.opacity)
+                } else {
+                    ContentView()
+                        .transition(.opacity)
+                }
             }
+            .animation(.easeInOut(duration: 0.5), value: entered)
         }
     }
 }

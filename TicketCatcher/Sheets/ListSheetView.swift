@@ -11,6 +11,8 @@ import CloudKit
 struct ListSheetView: View {
     @State private var codenames = [Codename]()
     @State private var showRemoveSheet = false
+    @State private var showAddSheet = false
+    @State private var showUploadSheet = false
     @State private var searchText = ""
     let codeFont = Font
         .system(size: 14)
@@ -36,16 +38,29 @@ struct ListSheetView: View {
             .toolbar {
                 ToolbarItem(placement: .status) {
                     HStack {
-                        Text("\(scannedCount) Scanned Tickets of \(totalCount) Total").bold()
+                        Text("\(scannedCount) Scanned Tickets of \(totalCount) Total").bold().font(.footnote)
                         Image(systemName: "person.fill.checkmark")
                     }.foregroundColor(.accentColor)
+                }
+                ToolbarItem(placement: .automatic) {
+                    Button {
+                        showAddSheet.toggle()
+                    } label: {
+                        Image(systemName: "plus.circle")
+                    }
+                }
+                ToolbarItem(placement: .automatic) {
+                    Button {
+                        showUploadSheet.toggle()
+                    } label: {
+                        Image(systemName: "arrow.up.doc")
+                    }
                 }
                 ToolbarItem(placement: .destructiveAction) {
                     Button {
                         showRemoveSheet.toggle()
                     } label: {
                         Image(systemName: "trash")
-                        Text("Remove All")
                     }.foregroundColor(.red)
                 }
             }
@@ -55,6 +70,14 @@ struct ListSheetView: View {
         }
         .sheet(isPresented: $showRemoveSheet) {
             RemoveSheetView()
+                .presentationBackground(.thickMaterial)
+        }
+        .sheet(isPresented: $showAddSheet) {
+            AddSheetView()
+                .presentationBackground(.thickMaterial)
+        }
+        .sheet(isPresented: $showUploadSheet) {
+            UploadSheetView()
                 .presentationBackground(.thickMaterial)
         }
     }

@@ -11,7 +11,7 @@
 		3001D41E2BF0539A00652C6B /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3001D41D2BF0539A00652C6B /* CKManager.swift */; };
 		301195252BEFFFBD00544510 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195242BEFFFBD00544510 /* CSVParser.swift */; };
 		301195272BF00B1200544510 /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195262BF00B1200544510 /* UploadManager.swift */; };
-		3011952A2BF019E300544510 /* ListSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195292BF019E300544510 /* ListSheetView.swift */; };
+		3011952A2BF019E300544510 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195292BF019E300544510 /* ListView.swift */; };
 		3019E5972BFA8E7400A0F886 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E5962BFA8E7400A0F886 /* ScanView.swift */; };
 		3019E5992BFA949100A0F886 /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E5982BFA949100A0F886 /* ActionView.swift */; };
 		302769A22AEDE02500B33074 /* TicketCatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302769A12AEDE02500B33074 /* TicketCatcherApp.swift */; };
@@ -22,14 +22,14 @@
 		302ACBC62BEF0DE000791571 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302ACBC52BEF0DE000791571 /* CameraView.swift */; };
 		302ACBCA2BEF0DF300791571 /* BarcodeIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302ACBC92BEF0DF300791571 /* BarcodeIconView.swift */; };
 		3036807D2BF0487200509514 /* BarcodeValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3036807C2BF0487200509514 /* BarcodeValidator.swift */; };
-		304321772BEFEC6600EDF9D2 /* UploadSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304321762BEFEC6600EDF9D2 /* UploadSheetView.swift */; };
+		304321772BEFEC6600EDF9D2 /* UploadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304321762BEFEC6600EDF9D2 /* UploadSheet.swift */; };
 		304BC2B72BF10F8100701726 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 304BC2B62BF10F8100701726 /* .gitignore */; };
 		304BC2B92BF1118D00701726 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304BC2B82BF1118D00701726 /* Secrets.swift */; };
-		3053DEF02BF1C1BE00239BB0 /* BarcodeSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3053DEEF2BF1C1BE00239BB0 /* BarcodeSheetView.swift */; };
+		3053DEF02BF1C1BE00239BB0 /* BarcodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3053DEEF2BF1C1BE00239BB0 /* BarcodeSheet.swift */; };
 		3058AB192BF2CF3400AEF971 /* AdmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3058AB182BF2CF3400AEF971 /* AdmitView.swift */; };
-		307A97252BF17C80007193D3 /* LogSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A97242BF17C80007193D3 /* LogSheetView.swift */; };
-		30B5C90D2BF1053800F12B4C /* AddSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5C90C2BF1053800F12B4C /* AddSheetView.swift */; };
-		30ED93E72BF5803300657E3C /* RemoveSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ED93E62BF5803300657E3C /* RemoveSheetView.swift */; };
+		307A97252BF17C80007193D3 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A97242BF17C80007193D3 /* LogView.swift */; };
+		30B5C90D2BF1053800F12B4C /* AddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5C90C2BF1053800F12B4C /* AddSheet.swift */; };
+		30ED93E72BF5803300657E3C /* RemoveSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ED93E62BF5803300657E3C /* RemoveSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 		3001D41D2BF0539A00652C6B /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
 		301195242BEFFFBD00544510 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
 		301195262BF00B1200544510 /* UploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
-		301195292BF019E300544510 /* ListSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSheetView.swift; sourceTree = "<group>"; };
+		301195292BF019E300544510 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		3019E5962BFA8E7400A0F886 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		3019E5982BFA949100A0F886 /* ActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
 		3027699E2AEDE02500B33074 /* TicketCatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketCatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,15 +51,15 @@
 		302ACBC52BEF0DE000791571 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		302ACBC92BEF0DF300791571 /* BarcodeIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeIconView.swift; sourceTree = "<group>"; };
 		3036807C2BF0487200509514 /* BarcodeValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeValidator.swift; sourceTree = "<group>"; };
-		304321762BEFEC6600EDF9D2 /* UploadSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSheetView.swift; sourceTree = "<group>"; };
+		304321762BEFEC6600EDF9D2 /* UploadSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSheet.swift; sourceTree = "<group>"; };
 		304BC2B62BF10F8100701726 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		304BC2B82BF1118D00701726 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		3053DEEF2BF1C1BE00239BB0 /* BarcodeSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeSheetView.swift; sourceTree = "<group>"; };
+		3053DEEF2BF1C1BE00239BB0 /* BarcodeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeSheet.swift; sourceTree = "<group>"; };
 		3058AB182BF2CF3400AEF971 /* AdmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmitView.swift; sourceTree = "<group>"; };
 		3075FBAD2BF43FEA00260395 /* Privacy Policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Privacy Policy.md"; sourceTree = "<group>"; };
-		307A97242BF17C80007193D3 /* LogSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSheetView.swift; sourceTree = "<group>"; };
-		30B5C90C2BF1053800F12B4C /* AddSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheetView.swift; sourceTree = "<group>"; };
-		30ED93E62BF5803300657E3C /* RemoveSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSheetView.swift; sourceTree = "<group>"; };
+		307A97242BF17C80007193D3 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		30B5C90C2BF1053800F12B4C /* AddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheet.swift; sourceTree = "<group>"; };
+		30ED93E62BF5803300657E3C /* RemoveSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +73,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3019E59A2BFA9BC200A0F886 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				302769A32AEDE02500B33074 /* ContentView.swift */,
+				3019E5962BFA8E7400A0F886 /* ScanView.swift */,
+				301195292BF019E300544510 /* ListView.swift */,
+				307A97242BF17C80007193D3 /* LogView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		302769952AEDE02500B33074 = {
 			isa = PBXGroup;
 			children = (
@@ -97,10 +108,10 @@
 			isa = PBXGroup;
 			children = (
 				302769A12AEDE02500B33074 /* TicketCatcherApp.swift */,
-				302769A32AEDE02500B33074 /* ContentView.swift */,
 				304321752BEFEB6500EDF9D2 /* Utilities */,
+				3019E59A2BFA9BC200A0F886 /* Views */,
 				302ACBD12BEF0F8800791571 /* Camera */,
-				302ACBD22BEF0FAD00791571 /* Views */,
+				302ACBD22BEF0FAD00791571 /* Components */,
 				307A97232BF17C2E007193D3 /* Sheets */,
 				302769A52AEDE02600B33074 /* Assets.xcassets */,
 				302769AF2AEDE02600B33074 /* TicketCatcher.entitlements */,
@@ -127,14 +138,14 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		302ACBD22BEF0FAD00791571 /* Views */ = {
+		302ACBD22BEF0FAD00791571 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				3019E5982BFA949100A0F886 /* ActionView.swift */,
 				3058AB182BF2CF3400AEF971 /* AdmitView.swift */,
 				302ACBC92BEF0DF300791571 /* BarcodeIconView.swift */,
 			);
-			path = Views;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		304321752BEFEB6500EDF9D2 /* Utilities */ = {
@@ -151,13 +162,10 @@
 		307A97232BF17C2E007193D3 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				3019E5962BFA8E7400A0F886 /* ScanView.swift */,
-				30B5C90C2BF1053800F12B4C /* AddSheetView.swift */,
-				3053DEEF2BF1C1BE00239BB0 /* BarcodeSheetView.swift */,
-				304321762BEFEC6600EDF9D2 /* UploadSheetView.swift */,
-				301195292BF019E300544510 /* ListSheetView.swift */,
-				307A97242BF17C80007193D3 /* LogSheetView.swift */,
-				30ED93E62BF5803300657E3C /* RemoveSheetView.swift */,
+				30B5C90C2BF1053800F12B4C /* AddSheet.swift */,
+				3053DEEF2BF1C1BE00239BB0 /* BarcodeSheet.swift */,
+				30ED93E62BF5803300657E3C /* RemoveSheet.swift */,
+				304321762BEFEC6600EDF9D2 /* UploadSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -234,23 +242,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				304321772BEFEC6600EDF9D2 /* UploadSheetView.swift in Sources */,
+				304321772BEFEC6600EDF9D2 /* UploadSheet.swift in Sources */,
 				3019E5972BFA8E7400A0F886 /* ScanView.swift in Sources */,
 				302769A42AEDE02500B33074 /* ContentView.swift in Sources */,
 				3001D41E2BF0539A00652C6B /* CKManager.swift in Sources */,
-				3053DEF02BF1C1BE00239BB0 /* BarcodeSheetView.swift in Sources */,
+				3053DEF02BF1C1BE00239BB0 /* BarcodeSheet.swift in Sources */,
 				302ACBC62BEF0DE000791571 /* CameraView.swift in Sources */,
-				307A97252BF17C80007193D3 /* LogSheetView.swift in Sources */,
+				307A97252BF17C80007193D3 /* LogView.swift in Sources */,
 				304BC2B92BF1118D00701726 /* Secrets.swift in Sources */,
 				3058AB192BF2CF3400AEF971 /* AdmitView.swift in Sources */,
-				3011952A2BF019E300544510 /* ListSheetView.swift in Sources */,
+				3011952A2BF019E300544510 /* ListView.swift in Sources */,
 				3036807D2BF0487200509514 /* BarcodeValidator.swift in Sources */,
 				301195252BEFFFBD00544510 /* CSVParser.swift in Sources */,
 				302769A22AEDE02500B33074 /* TicketCatcherApp.swift in Sources */,
 				3019E5992BFA949100A0F886 /* ActionView.swift in Sources */,
-				30ED93E72BF5803300657E3C /* RemoveSheetView.swift in Sources */,
+				30ED93E72BF5803300657E3C /* RemoveSheet.swift in Sources */,
 				302ACBCA2BEF0DF300791571 /* BarcodeIconView.swift in Sources */,
-				30B5C90D2BF1053800F12B4C /* AddSheetView.swift in Sources */,
+				30B5C90D2BF1053800F12B4C /* AddSheet.swift in Sources */,
 				301195272BF00B1200544510 /* UploadManager.swift in Sources */,
 				302769D32AEDE79200B33074 /* CameraController.swift in Sources */,
 			);
@@ -385,7 +393,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;
@@ -423,7 +431,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;

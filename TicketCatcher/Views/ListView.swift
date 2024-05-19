@@ -8,7 +8,7 @@
 import SwiftUI
 import CloudKit
 
-struct ListSheetView: View {
+struct ListView: View {
     @State private var codenames = [Codename]()
     @State private var showRemoveSheet = false
     @State private var showAddSheet = false
@@ -43,17 +43,19 @@ struct ListSheetView: View {
                         .padding()
                 }
                 ToolbarItem(placement: .automatic) {
-                    Button {
-                        showAddSheet.toggle()
+                    Menu {
+                        Button(action: {
+                            showAddSheet.toggle()
+                        }) {
+                            Label("Add Attendee", systemImage: "plus.circle")
+                        }
+                        Button(action: {
+                            showUploadSheet.toggle()
+                        }) {
+                            Label("Upload CSV", systemImage: "arrow.up.doc")
+                        }
                     } label: {
                         Image(systemName: "plus.circle")
-                    }
-                }
-                ToolbarItem(placement: .automatic) {
-                    Button {
-                        showUploadSheet.toggle()
-                    } label: {
-                        Image(systemName: "arrow.up.doc")
                     }
                 }
                 ToolbarItem(placement: .destructiveAction) {
@@ -122,5 +124,5 @@ struct Codename: Hashable {
 }
 
 #Preview {
-    ListSheetView()
+    ListView()
 }

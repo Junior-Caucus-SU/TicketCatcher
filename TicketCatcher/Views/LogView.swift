@@ -28,7 +28,7 @@ class LogManager: ObservableObject {
     }
 }
 
-struct LogSheetView: View {
+struct LogView: View {
     @ObservedObject var logManager = LogManager.shared
     let textColor = Color.primary
     let timestampColor = Color.secondary
@@ -67,5 +67,5 @@ struct LogSheetView: View {
 }
 
 #Preview {
-    LogSheetView()
+    LogView()
 }

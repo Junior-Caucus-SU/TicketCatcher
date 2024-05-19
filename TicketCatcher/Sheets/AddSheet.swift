@@ -6,7 +6,7 @@
 
 import SwiftUI
 
-struct AddSheetView: View {
+struct AddSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var atname: String = ""
     @State private var osis: String = ""
@@ -16,9 +16,6 @@ struct AddSheetView: View {
     @State private var Message = ""
     @State private var Title = ""
     @State private var showBarcodeSheet = false
-    
-    let correctPassword = Secrets.adminPassword
-    let correctName = Secrets.adminName
     
     var body: some View {
         NavigationStack {
@@ -84,7 +81,7 @@ struct AddSheetView: View {
             }
             .sheet(isPresented: $showBarcodeSheet) {
                 if let barcodeNumber = Int(osis) {
-                    BarcodeSheetView(barcodeValue: "\(barcodeNumber)")
+                    BarcodeSheet(barcodeValue: "\(barcodeNumber)")
                 } else {
                     Text("Invalid OSIS number")
                 }
@@ -94,5 +91,5 @@ struct AddSheetView: View {
 }
 
 #Preview {
-    AddSheetView()
+    AddSheet()
 }

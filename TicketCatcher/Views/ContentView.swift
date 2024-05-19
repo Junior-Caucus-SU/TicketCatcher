@@ -14,15 +14,15 @@ struct ContentView: View {
                 .tabItem {
                     Label("Scan", systemImage: "barcode.viewfinder")
                 }
-            ListSheetView()
+            ListView()
                 .tabItem {
                     Label("Manage", systemImage: "person.crop.rectangle.stack")
                 }
-            LogSheetView()
+            LogView()
                 .tabItem {
                     Label("Event Logs", systemImage: "doc.text.below.ecg")
                 }
-            AddSheetView()
+            EmptyView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }

@@ -11,7 +11,7 @@ enum Schema: String, CaseIterable, Identifiable {
     var id: Self { self }
 }
 
-struct UploadSheetView: View {
+struct UploadSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var uploadManager = UploadManager()
     @State private var pickingFile = false
@@ -120,5 +120,5 @@ struct UploadSheetView: View {
 }
 
 #Preview {
-    UploadSheetView()
+    UploadSheet()
 }

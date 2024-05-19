@@ -38,6 +38,7 @@ struct EntrantView: View {
     @State private var passphrase: String = ""
     @State private var selectedEvent: EventType = .jprom
     @Binding var entered: Bool
+    @State private var showingAlert = false
     
     var body: some View {
         VStack {
@@ -74,7 +75,9 @@ struct EntrantView: View {
             
             VStack {
                 Button {
-                    entered.toggle()
+                    if account == Secrets.accountName && passphrase == Secrets.accountPassword {
+                        entered.toggle()
+                    }
                 } label: {
                     ZStack {
                         Text("Log In")
@@ -86,6 +89,7 @@ struct EntrantView: View {
                         }
                     }
                 }
+                .disabled(!(account == Secrets.accountName && passphrase == Secrets.accountPassword))
                 .cornerRadius(20)
                 .buttonStyle(.borderedProminent)
                 Button {

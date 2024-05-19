@@ -7,11 +7,8 @@
 
 import SwiftUI
 
-struct RemoveSheetView: View {
+struct RemoveSheet: View {
     @State private var isRemoving: Bool = false
-    
-    let correctPassword = Secrets.adminPassword
-    let correctName = Secrets.adminName
     
     var body: some View {
         NavigationStack {
@@ -68,5 +65,5 @@ struct RemoveSheetView: View {
 }
 
 #Preview {
-    RemoveSheetView()
+    RemoveSheet()
 }

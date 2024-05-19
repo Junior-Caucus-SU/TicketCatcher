@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreImage.CIFilterBuiltins
 
-struct BarcodeSheetView: View {
+struct BarcodeSheet: View {
     let numberFont = Font
         .system(size: 28)
         .monospaced()
@@ -68,5 +68,5 @@ struct BarcodeSheetView: View {
 }
 
 #Preview {
-    BarcodeSheetView(barcodeValue: "12345")
+    BarcodeSheet(barcodeValue: "12345")
 }

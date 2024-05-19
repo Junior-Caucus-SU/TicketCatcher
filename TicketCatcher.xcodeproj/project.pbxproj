@@ -29,7 +29,6 @@
 		3058AB192BF2CF3400AEF971 /* AdmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3058AB182BF2CF3400AEF971 /* AdmitView.swift */; };
 		307A97252BF17C80007193D3 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A97242BF17C80007193D3 /* LogView.swift */; };
 		30B5C90D2BF1053800F12B4C /* AddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5C90C2BF1053800F12B4C /* AddSheet.swift */; };
-		30ED93E72BF5803300657E3C /* RemoveSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30ED93E62BF5803300657E3C /* RemoveSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +58,6 @@
 		3075FBAD2BF43FEA00260395 /* Privacy Policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Privacy Policy.md"; sourceTree = "<group>"; };
 		307A97242BF17C80007193D3 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		30B5C90C2BF1053800F12B4C /* AddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheet.swift; sourceTree = "<group>"; };
-		30ED93E62BF5803300657E3C /* RemoveSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,7 +162,6 @@
 			children = (
 				30B5C90C2BF1053800F12B4C /* AddSheet.swift */,
 				3053DEEF2BF1C1BE00239BB0 /* BarcodeSheet.swift */,
-				30ED93E62BF5803300657E3C /* RemoveSheet.swift */,
 				304321762BEFEC6600EDF9D2 /* UploadSheet.swift */,
 			);
 			path = Sheets;
@@ -256,7 +253,6 @@
 				301195252BEFFFBD00544510 /* CSVParser.swift in Sources */,
 				302769A22AEDE02500B33074 /* TicketCatcherApp.swift in Sources */,
 				3019E5992BFA949100A0F886 /* ActionView.swift in Sources */,
-				30ED93E72BF5803300657E3C /* RemoveSheet.swift in Sources */,
 				302ACBCA2BEF0DF300791571 /* BarcodeIconView.swift in Sources */,
 				30B5C90D2BF1053800F12B4C /* AddSheet.swift in Sources */,
 				301195272BF00B1200544510 /* UploadManager.swift in Sources */,
@@ -393,7 +389,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;
@@ -431,7 +427,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;

@@ -10,8 +10,8 @@ import CloudKit
 
 struct ListView: View {
     @State private var codenames = [Codename]()
-    @State private var showRemoveSheet = false
     @State private var showAddSheet = false
+    @State private var showingDeletion = false
     @State private var showUploadSheet = false
     @State private var searchText = ""
     let codeFont = Font
@@ -19,7 +19,7 @@ struct ListView: View {
         .monospaced()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(filteredCodes, id: \.self) { codename in
                 HStack {
                     VStack(alignment: .leading) {
@@ -35,14 +35,30 @@ struct ListView: View {
                 }
             }
             .navigationTitle("Attendees")
-            .toolbar {
-                ToolbarItem(placement: .status) {
-                    Text("\(scannedCount) Scanned Tickets of \(totalCount) Total").bold()
-                        .font(.footnote)
-                        .foregroundColor(.accentColor)
-                        .padding()
+            .confirmationDialog(
+                "Delete All Records",
+                isPresented: $showingDeletion
+            ) {
+                Button("Remove Records", role: .destructive) {
+                    CKManager.shared.removeAllCodenames() { error in
+                        if error != nil {
+                            LogManager.shared.log("Could not remove all records.")
+                        } else {
+                            LogManager.shared.log("Removed all records.")
+                        }
+                        exit(0)
+                    }
                 }
-                ToolbarItem(placement: .automatic) {
+            } message: {
+                Text("This will remove all records up until the single operation limit. If you wish to remove all records, you may have to try multiple times. This is not reversible. The app will quit upon completion.")
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigation){
+                    Text("\(scannedCount)/\(totalCount)")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                }
+                ToolbarItem(placement: .primaryAction) {
                     Menu {
                         Button(action: {
                             showAddSheet.toggle()
@@ -54,25 +70,20 @@ struct ListView: View {
                         }) {
                             Label("Upload CSV", systemImage: "arrow.up.doc")
                         }
+                        Divider()
+                        Button(role: .destructive) {
+                            showingDeletion.toggle()
+                        } label: {
+                            Label("Clear Attendees", systemImage: "trash")
+                        }
                     } label: {
-                        Image(systemName: "plus.circle")
+                        Image(systemName: "ellipsis.circle")
                     }
-                }
-                ToolbarItem(placement: .destructiveAction) {
-                    Button {
-                        showRemoveSheet.toggle()
-                    } label: {
-                        Image(systemName: "trash")
-                    }.foregroundColor(.red)
                 }
             }
             .searchable(text: $searchText, prompt: "Search")
             .onAppear(perform: loadData)
             .scrollContentBackground(.hidden)
-        }
-        .sheet(isPresented: $showRemoveSheet) {
-            RemoveSheet()
-                .presentationBackground(.thickMaterial)
         }
         .sheet(isPresented: $showAddSheet) {
             AddSheet()

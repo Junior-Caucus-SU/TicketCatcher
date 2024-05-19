@@ -37,10 +37,10 @@ struct ListSheetView: View {
             .navigationTitle("Attendees")
             .toolbar {
                 ToolbarItem(placement: .status) {
-                    HStack {
-                        Text("\(scannedCount) Scanned Tickets of \(totalCount) Total").bold().font(.footnote)
-                        Image(systemName: "person.fill.checkmark")
-                    }.foregroundColor(.accentColor)
+                    Text("\(scannedCount) Scanned Tickets of \(totalCount) Total").bold()
+                        .font(.footnote)
+                        .foregroundColor(.accentColor)
+                        .padding()
                 }
                 ToolbarItem(placement: .automatic) {
                     Button {

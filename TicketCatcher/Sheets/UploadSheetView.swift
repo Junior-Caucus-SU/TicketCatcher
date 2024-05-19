@@ -14,8 +14,6 @@ enum Schema: String, CaseIterable, Identifiable {
 struct UploadSheetView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var uploadManager = UploadManager()
-    @State private var account: String = ""
-    @State private var passphrase: String = ""
     @State private var pickingFile = false
     @State private var csvURL: URL?
     @State private var selectedSchema: Schema = .jprom
@@ -41,10 +39,6 @@ struct UploadSheetView: View {
                 }.padding([.top, .leading, .trailing])
                 
                 Form {
-                    Section{
-                        TextField("Account", text: $account)
-                        SecureField("Passphrase", text: $passphrase)
-                    }
                     Section {
                         Button {
                             pickingFile = true
@@ -113,7 +107,7 @@ struct UploadSheetView: View {
                 .cornerRadius(20)
                 .padding()
                 .controlSize(.large)
-                .disabled(uploadManager.isUploading || !(account == correctName && passphrase == correctPassword))
+                .disabled(uploadManager.isUploading)
             }
             .navigationTitle("Upload List")
             .onDisappear {

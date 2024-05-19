@@ -8,8 +8,6 @@ import SwiftUI
 
 struct AddSheetView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var account: String = ""
-    @State private var passphrase: String = ""
     @State private var atname: String = ""
     @State private var osis: String = ""
     @State private var sessionID: String = ""
@@ -40,20 +38,11 @@ struct AddSheetView: View {
                 }.padding([.top, .leading, .trailing])
                 
                 Form {
-                    Section{
-                        TextField("Account", text: $account)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                        SecureField("Passphrase", text: $passphrase)
-                    }
-                    
-                    Section{
-                        TextField("Attendee Name", text: $atname)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                        SecureField("OSIS", text: $osis)
-                        SecureField("Session ID (Leave blank for a new ID)", text: $sessionID)
-                    }
+                    TextField("Attendee Name", text: $atname)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                    SecureField("OSIS", text: $osis)
+                    SecureField("Session ID (Leave blank for a new ID)", text: $sessionID)
                     
                 }
                 .scrollContentBackground(.hidden)
@@ -84,7 +73,6 @@ struct AddSheetView: View {
             .cornerRadius(20)
             .padding()
             .controlSize(.large)
-            .disabled(!(account == correctName && passphrase == correctPassword))
             }
             .navigationTitle("Add Attendee")
             .alert(isPresented: $showAlert) {

@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct RemoveSheetView: View {
-    @State private var account: String = ""
-    @State private var passphrase: String = ""
     @State private var isRemoving: Bool = false
     
     let correctPassword = Secrets.adminPassword
@@ -32,17 +30,7 @@ struct RemoveSheetView: View {
                         .foregroundColor(.red)
                         .multilineTextAlignment(.leading)
                 }.padding([.top, .leading, .trailing])
-                
-                Form {
-                    Section{
-                        TextField("Account", text: $account)
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
-                        SecureField("Passphrase", text: $passphrase)
-                    }
-                }
-                .scrollContentBackground(.hidden)
-                
+                Spacer()
                 Button(role: .destructive, action: {
                     isRemoving = true
                     CKManager.shared.removeAllCodenames() { error in
@@ -72,7 +60,7 @@ struct RemoveSheetView: View {
                 .cornerRadius(20)
                 .padding()
                 .controlSize(.large)
-                .disabled(isRemoving || !(account == correctName && passphrase == correctPassword))
+                .disabled(isRemoving)
             }
             .navigationTitle("Remove Attendees")
         }

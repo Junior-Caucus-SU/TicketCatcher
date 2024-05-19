@@ -71,15 +71,15 @@ struct ListView: View {
             .scrollContentBackground(.hidden)
         }
         .sheet(isPresented: $showRemoveSheet) {
-            RemoveSheetView()
+            RemoveSheet()
                 .presentationBackground(.thickMaterial)
         }
         .sheet(isPresented: $showAddSheet) {
-            AddSheetView()
+            AddSheet()
                 .presentationBackground(.thickMaterial)
         }
         .sheet(isPresented: $showUploadSheet) {
-            UploadSheetView()
+            UploadSheet()
                 .presentationBackground(.thickMaterial)
         }
     }

@@ -14,7 +14,7 @@ struct BarcodeIconView: View {
         VStack {
             Image(systemName: (barcode == "Place Barcode in View to Scan") ? "barcode.viewfinder" : "ticket")
                 .contentTransition(.symbolEffect(.replace))
-                .foregroundColor((barcode == "Place Barcode in View to Scan") ? .white : (barcode == "Invalid or Used Ticket") ? .red : .green )
+                .foregroundColor((barcode == "Place Barcode in View to Scan") ? .primary : (barcode == "Invalid or Used Ticket") ? .red : .green )
                 .font(.title)
                 .frame(width: 55, height: 55)
                 .animation(.easeInOut, value: barcode)
@@ -27,12 +27,12 @@ struct BarcodeIconView: View {
                 Text(barcode)
                     .font(.system(size: 16).monospaced())
                     .bold()
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
         }
     }
 }
 
 #Preview {
-    BarcodeIconView(barcode: "Example Text")
+    BarcodeIconView(barcode: "Place Barcode in View to Scan")
 }

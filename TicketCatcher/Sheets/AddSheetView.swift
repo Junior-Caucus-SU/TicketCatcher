@@ -28,14 +28,14 @@ struct AddSheetView: View {
                 VStack (alignment: .leading){
                     Text("Manually add an attendee and create a barcode for that person. This should only be used for administration purposes.")
                         .font(.caption)
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color.secondary)
                         .multilineTextAlignment(.leading)
                         .padding(.bottom)
                     
                     Text("Need help? Call 929-519-5260")
                         .font(.caption)
                         .bold()
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color.secondary)
                         .multilineTextAlignment(.leading)
                 }.padding([.top, .leading, .trailing])
                 

@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum EventType: String, CaseIterable, Identifiable {
+    case jprom, testing, dreams
+    var id: Self {self}
+}
+
 ///Main log in screne. Maybe consider moving login logic here.
 @main
 struct TicketCatcherApp: App {
@@ -29,41 +34,88 @@ struct TicketCatcherApp: App {
 
 ///Login view.
 struct EntrantView: View {
+    @State private var account: String = ""
+    @State private var passphrase: String = ""
+    @State private var selectedEvent: EventType = .jprom
     @Binding var entered: Bool
+    
     var body: some View {
         VStack {
             Spacer()
             Image("Logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 200, height: 200)
+                .frame(width: 100, height: 100)
                 .clipShape(RoundedRectangle(cornerSize: CGSize(width: 50, height: 50)))
             Image("Title")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 200, height: 50)
-            Spacer()
+                .frame(width: 160, height: 30)
+                .padding(.bottom)
+            
+            Form {
+                Section{
+                    TextField("Account", text: $account)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                    SecureField("Passphrase", text: $passphrase)
+                }
+                
+                Picker("Event", selection: $selectedEvent) {
+                    //Add sections in the future
+                    Text("Junior Prom 2024").tag(EventType.jprom)
+                    Text("Night of Dreams").tag(EventType.dreams)
+                    HStack {
+                        Image(systemName: "testtube.2")
+                        Text("Sandbox")
+                    }.tag(EventType.testing)
+                }
+            }.scrollDisabled(true)
+            
             VStack {
                 Button {
                     entered.toggle()
                 } label: {
-                    Text("Junior Prom 2024")
-                        .frame(maxWidth: .infinity, alignment: .center)
+                    ZStack {
+                        Text("Log In")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .bold()
+                        HStack {
+                            Image(systemName: "key.horizontal.fill")
+                            Spacer()
+                        }
+                    }
                 }
                 .cornerRadius(20)
+                .buttonStyle(.borderedProminent)
                 Button {
-                    entered.toggle()
+                    if let url = URL(string: "mailto:yinwei.zhang@stuysu.org") {
+                        UIApplication.shared.open(url)
+                    }
                 } label: {
-                    Text("Other Events Coming Soon")
-                        .frame(maxWidth: .infinity, alignment: .center)
+                    ZStack {
+                        Text("Request Access")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        HStack {
+                            Image(systemName: "envelope.fill")
+                            Spacer()
+                        }
+                    }
                 }
-                .disabled(true)
                 .cornerRadius(20)
+                .buttonStyle(.bordered)
+                Text("You must be logged in to an iCloud account to continue.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+                    .padding(.top)
+                Text("Created by Will Zhang for the Junior Caucus.")
+                    .font(.footnote)
+                    .bold()
+                    .foregroundStyle(.secondary)
             }
-            .buttonStyle(.borderedProminent)
             .padding()
             .controlSize(.large)
-        }
+        }.ignoresSafeArea(.keyboard)
     }
 }
 

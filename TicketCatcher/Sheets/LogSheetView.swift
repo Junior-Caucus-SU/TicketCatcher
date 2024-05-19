@@ -30,8 +30,8 @@ class LogManager: ObservableObject {
 
 struct LogSheetView: View {
     @ObservedObject var logManager = LogManager.shared
-    let textColor = Color.white
-    let timestampColor = Color.gray
+    let textColor = Color.primary
+    let timestampColor = Color.secondary
     let messageFont = Font
         .system(size: 14)
         .monospaced()

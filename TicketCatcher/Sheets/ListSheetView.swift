@@ -25,7 +25,7 @@ struct ListSheetView: View {
                             .font(.headline)
                         Text("\(codename.barcode)".prefix(3) + "xxxxxx")
                             .font(codeFont)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                     }
                     Spacer()
                     Image(systemName: codename.scanStatus == 1 ? "person.fill.checkmark" : "ticket")

@@ -56,7 +56,6 @@ struct ContentView: View {
                 .animation(.spring(response: 0.3, dampingFraction: 0.4, blendDuration: 0.5), value: showAdmitView),
             alignment: .bottom
         )
-        .preferredColorScheme(.dark)
         .sensoryFeedback(.impact, trigger: cameraController.barcodeString)
         .onChange(of: cameraController.barcodeString) {
             handleBarcodeChange(newBarcode: cameraController.barcodeString)

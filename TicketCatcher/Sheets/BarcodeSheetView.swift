@@ -30,7 +30,7 @@ struct BarcodeSheetView: View {
                 .scaledToFit()
             Text(barcodeValue)
                 .font(numberFont)
-                .foregroundColor(.gray)
+                .foregroundColor(.secondary)
             Spacer()
             ShareLink(
                 item: (barcodeImage)!,

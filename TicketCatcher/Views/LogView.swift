@@ -30,6 +30,7 @@ class LogManager: ObservableObject {
 
 struct LogView: View {
     @ObservedObject var logManager = LogManager.shared
+    @State private var searchText = ""
     let textColor = Color.primary
     let timestampColor = Color.secondary
     let messageFont = Font
@@ -60,6 +61,7 @@ struct LogView: View {
                         .foregroundColor(textColor)
                 }
             }
+            .searchable(text: $searchText, prompt: "Search")
             .scrollContentBackground(.hidden)
             .navigationTitle("Logs")
         }

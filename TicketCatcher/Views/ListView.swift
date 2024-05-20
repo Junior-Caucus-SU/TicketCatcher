@@ -41,16 +41,16 @@ struct ListView: View {
             ) {
                 Button("Remove Records", role: .destructive) {
                     CKManager.shared.removeAllCodenames() { error in
-                        if error != nil {
-                            LogManager.shared.log("Could not remove all records.")
+                        LogManager.shared.log("Removing all records")
+                        if let error = error {
+                            LogManager.shared.log("Could not remove all records with error \(error)")
                         } else {
-                            LogManager.shared.log("Removed all records.")
+                            LogManager.shared.log("Removed all records")
                         }
-                        exit(0)
                     }
                 }
             } message: {
-                Text("This will remove all records up until the single operation limit. If you wish to remove all records, you may have to try multiple times. This is not reversible. The app will quit upon completion.")
+                Text("Are you sure you want to remove all attendee records? This is not reversible.")
             }
             .toolbar {
                 ToolbarItem(placement: .navigation){

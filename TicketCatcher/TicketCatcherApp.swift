@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 enum EventType: String, CaseIterable, Identifiable {
     case jprom, testing, dreams
@@ -55,7 +56,7 @@ struct EntrantView: View {
                 .padding(.bottom)
             
             Form {
-                Section{
+                Section {
                     TextField("Account", text: $account)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
@@ -63,7 +64,6 @@ struct EntrantView: View {
                 }
                 
                 Picker("Event", selection: $selectedEvent) {
-                    //Add sections in the future
                     Text("Junior Prom 2024").tag(EventType.jprom)
                     Text("Night of Dreams").tag(EventType.dreams)
                     HStack {
@@ -75,9 +75,7 @@ struct EntrantView: View {
             
             VStack {
                 Button {
-                    if account == Secrets.accountName && passphrase == Secrets.accountPassword {
-                        entered.toggle()
-                    }
+                    logIn()
                 } label: {
                     ZStack {
                         Text("Log In")
@@ -119,7 +117,33 @@ struct EntrantView: View {
             }
             .padding()
             .controlSize(.large)
-        }.ignoresSafeArea(.keyboard)
+        }
+        .ignoresSafeArea(.keyboard)
+        .onAppear(perform: authenticate)
+    }
+    
+    func logIn() {
+        if account == Secrets.accountName && passphrase == Secrets.accountPassword {
+            UserDefaults.standard.set(true, forKey: "hasLoggedIn")
+            entered.toggle()
+        }
+    }
+    
+    func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "Quickly log in to TicketCatcher."
+            
+            if UserDefaults.standard.bool(forKey: "hasLoggedIn") && UserDefaults.standard.bool(forKey: "canUseFaceID") {
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                    if success {
+                        entered.toggle()
+                    }
+                }
+            }
+        }
     }
 }
 

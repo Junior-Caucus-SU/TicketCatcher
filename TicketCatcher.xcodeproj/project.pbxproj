@@ -14,6 +14,7 @@
 		3011952A2BF019E300544510 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195292BF019E300544510 /* ListView.swift */; };
 		3019E5972BFA8E7400A0F886 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E5962BFA8E7400A0F886 /* ScanView.swift */; };
 		3019E5992BFA949100A0F886 /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E5982BFA949100A0F886 /* ActionView.swift */; };
+		3019E59C2BFAD21F00A0F886 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E59B2BFAD21F00A0F886 /* SettingsView.swift */; };
 		302769A22AEDE02500B33074 /* TicketCatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302769A12AEDE02500B33074 /* TicketCatcherApp.swift */; };
 		302769A42AEDE02500B33074 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302769A32AEDE02500B33074 /* ContentView.swift */; };
 		302769A62AEDE02600B33074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 302769A52AEDE02600B33074 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		301195292BF019E300544510 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		3019E5962BFA8E7400A0F886 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		3019E5982BFA949100A0F886 /* ActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
+		3019E59B2BFAD21F00A0F886 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3027699E2AEDE02500B33074 /* TicketCatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketCatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		302769A12AEDE02500B33074 /* TicketCatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCatcherApp.swift; sourceTree = "<group>"; };
 		302769A32AEDE02500B33074 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,10 +76,10 @@
 		3019E59A2BFA9BC200A0F886 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				302769A32AEDE02500B33074 /* ContentView.swift */,
 				3019E5962BFA8E7400A0F886 /* ScanView.swift */,
 				301195292BF019E300544510 /* ListView.swift */,
 				307A97242BF17C80007193D3 /* LogView.swift */,
+				3019E59B2BFAD21F00A0F886 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				302769A12AEDE02500B33074 /* TicketCatcherApp.swift */,
+				302769A32AEDE02500B33074 /* ContentView.swift */,
 				304321752BEFEB6500EDF9D2 /* Utilities */,
 				3019E59A2BFA9BC200A0F886 /* Views */,
 				302ACBD12BEF0F8800791571 /* Camera */,
@@ -242,6 +245,7 @@
 				304321772BEFEC6600EDF9D2 /* UploadSheet.swift in Sources */,
 				3019E5972BFA8E7400A0F886 /* ScanView.swift in Sources */,
 				302769A42AEDE02500B33074 /* ContentView.swift in Sources */,
+				3019E59C2BFAD21F00A0F886 /* SettingsView.swift in Sources */,
 				3001D41E2BF0539A00652C6B /* CKManager.swift in Sources */,
 				3053DEF02BF1C1BE00239BB0 /* BarcodeSheet.swift in Sources */,
 				302ACBC62BEF0DE000791571 /* CameraView.swift in Sources */,
@@ -416,7 +420,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -454,7 +458,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -20,9 +20,9 @@ struct ContentView: View {
                 }
             LogView()
                 .tabItem {
-                    Label("Event Logs", systemImage: "doc.text.below.ecg")
+                    Label("Logs", systemImage: "doc.text.below.ecg")
                 }
-            EmptyView()
+            SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }

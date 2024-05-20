@@ -19,8 +19,8 @@ class CKManager {
     func addCodenameRecord(name: String, barcode: Int, validity: String, completion: @escaping (Error?) -> Void) {
         if !validity.contains("Approved") {
             LogManager.shared.log("Record \(barcode) is correctly formatted but not approved. Skipping.")
-        } else
-        {
+            completion(nil)
+        } else {
             let record = CKRecord(recordType: "Codename")
             record["Name"] = name as CKRecordValue
             record["Barcode"] = barcode as CKRecordValue
@@ -57,7 +57,7 @@ class CKManager {
             switch result {
             case .success(let cursor):
                 if let cursor = cursor {
-                    self.fetchMoreCodenames(cursor: cursor, currentCodenames: newCodenames, completion: completion)
+                    self.fetchMoreRecords(cursor: cursor, currentRecords: newCodenames, completion: completion)
                 } else {
                     DispatchQueue.main.async {
                         completion(newCodenames, nil)
@@ -73,17 +73,17 @@ class CKManager {
         database.add(operation)
     }
     
-    ///Fetch more codenames according to the cursor location.
-    private func fetchMoreCodenames(cursor: CKQueryOperation.Cursor, currentCodenames: [Codename], completion: @escaping ([Codename], Error?) -> Void) {
+    ///Fetch more records according to the cursor location.
+    private func fetchMoreRecords(cursor: CKQueryOperation.Cursor, currentRecords: [Codename], completion: @escaping ([Codename], Error?) -> Void) {
         let operation = CKQueryOperation(cursor: cursor)
         operation.resultsLimit = 200
-        var newCodenames = currentCodenames
+        var newRecords = currentRecords
         
         operation.recordMatchedBlock = { recordID, result in
             switch result {
             case .success(let record):
                 let codename = Codename(record: record)
-                newCodenames.append(codename)
+                newRecords.append(codename)
             case .failure(let error):
                 LogManager.shared.log("Failed to fetch a record with error \(error)")
             }
@@ -93,10 +93,10 @@ class CKManager {
             switch result {
             case .success(let cursor):
                 if let cursor = cursor {
-                    self.fetchMoreCodenames(cursor: cursor, currentCodenames: newCodenames, completion: completion)
+                    self.fetchMoreRecords(cursor: cursor, currentRecords: newRecords, completion: completion)
                 } else {
                     DispatchQueue.main.async {
-                        completion(newCodenames, nil)
+                        completion(newRecords, nil)
                     }
                 }
             case .failure(let error):
@@ -105,6 +105,7 @@ class CKManager {
                 }
             }
         }
+        
         database.add(operation)
     }
     
@@ -131,24 +132,83 @@ class CKManager {
         }
     }
     
+    ///Remove all codenames.
     func removeAllCodenames(completion: @escaping (Error?) -> Void) {
         let query = CKQuery(recordType: "Codename", predicate: NSPredicate(value: true))
+        let operation = CKQueryOperation(query: query)
+        operation.resultsLimit = 200
+        var allRecordIDs = [CKRecord.ID]()
         
-        database.perform(query, inZoneWith: nil) { records, error in
-            guard let records = records, error == nil else {
-                DispatchQueue.main.async {
-                    completion(error)
-                }
-                return
+        operation.recordMatchedBlock = { recordID, result in
+            switch result {
+            case .success(let record):
+                allRecordIDs.append(record.recordID)
+            case .failure(let error):
+                LogManager.shared.log("Failed to fetch a record with error \(error)")
             }
-            let recordIDs = records.map { $0.recordID }
-            let deleteOp = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: recordIDs)
-            deleteOp.modifyRecordsCompletionBlock = { _, _, error in
-                DispatchQueue.main.async {
-                    completion(error)
-                }
-            }
-            self.database.add(deleteOp)
         }
+        
+        operation.queryResultBlock = { result in
+            switch result {
+            case .success(let cursor):
+                if let cursor = cursor {
+                    self.fetchMoreRecordsForDeletion(cursor: cursor, currentRecordIDs: allRecordIDs, completion: completion)
+                } else {
+                    self.deleteRecords(recordIDs: allRecordIDs, completion: completion)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            }
+        }
+        
+        database.add(operation)
+    }
+    
+    ///Fetch more records according to the cursor location for deletion.
+    private func fetchMoreRecordsForDeletion(cursor: CKQueryOperation.Cursor, currentRecordIDs: [CKRecord.ID], completion: @escaping (Error?) -> Void) {
+        let operation = CKQueryOperation(cursor: cursor)
+        operation.resultsLimit = 200
+        var allRecordIDs = currentRecordIDs
+        
+        operation.recordMatchedBlock = { recordID, result in
+            switch result {
+            case .success(let record):
+                allRecordIDs.append(record.recordID)
+            case .failure(let error):
+                LogManager.shared.log("Failed to fetch a record with error \(error)")
+            }
+        }
+        
+        operation.queryResultBlock = { result in
+            switch result {
+            case .success(let cursor):
+                if let cursor = cursor {
+                    self.fetchMoreRecordsForDeletion(cursor: cursor, currentRecordIDs: allRecordIDs, completion: completion)
+                } else {
+                    self.deleteRecords(recordIDs: allRecordIDs, completion: completion)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    completion(error)
+                }
+            }
+        }
+        
+        database.add(operation)
+    }
+    
+    ///Delete all records with the given record IDs.
+    private func deleteRecords(recordIDs: [CKRecord.ID], completion: @escaping (Error?) -> Void) {
+        let deleteOp = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: recordIDs)
+        
+        deleteOp.modifyRecordsCompletionBlock = { _, _, error in
+            DispatchQueue.main.async {
+                completion(error)
+            }
+        }
+        
+        database.add(deleteOp)
     }
 }

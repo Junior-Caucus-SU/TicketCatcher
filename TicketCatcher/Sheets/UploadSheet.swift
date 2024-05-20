@@ -90,7 +90,7 @@ struct UploadSheet: View {
                         }
                 } label: {
                     HStack {
-                        Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Upload List to CloudKit")
+                        Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Upload List")
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                         if (uploadManager.isUploading) {

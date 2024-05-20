@@ -14,6 +14,7 @@ struct ListView: View {
     @State private var showingDeletion = false
     @State private var showUploadSheet = false
     @State private var searchText = ""
+    @State private var isDeleting = false
     let codeFont = Font
         .system(size: 14)
         .monospaced()
@@ -39,7 +40,8 @@ struct ListView: View {
                 "Delete All Records",
                 isPresented: $showingDeletion
             ) {
-                Button("Remove Records", role: .destructive) {
+                Button("Remove All Records", role: .destructive) {
+                    isDeleting = true
                     CKManager.shared.removeAllCodenames() { error in
                         LogManager.shared.log("Removing all records")
                         if let error = error {
@@ -47,6 +49,7 @@ struct ListView: View {
                         } else {
                             LogManager.shared.log("Removed all records")
                         }
+                        isDeleting = false
                     }
                 }
             } message: {
@@ -93,6 +96,32 @@ struct ListView: View {
             UploadSheet()
                 .presentationBackground(.thickMaterial)
         }
+        .overlay {
+            if isDeleting {
+                Rectangle()
+                    .fill(.thinMaterial)
+                    .overlay(
+                        VStack {
+                            Image(systemName: "square.stack.3d.down.right")
+                                .symbolEffect(.variableColor)
+                                .imageScale(.large)
+                                .padding()
+                            Text("Resetting the Database")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                                .padding(.bottom, 7.5)
+                            Text("Everyone scanning for this event should temporarily stop using the app while we clear all the records. This will take a minute...")
+                                .font(.subheadline)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.secondary)
+                                .padding(.horizontal, 30.0)
+                            Spacer()
+                                .frame(height: 50)
+                        }
+                    )
+            }
+        }
+        .ignoresSafeArea()
     }
     
     private var filteredCodes: [Codename] {

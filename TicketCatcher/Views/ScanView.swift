@@ -55,6 +55,12 @@ struct ScanView: View {
         .onChange(of: cameraController.barcodeString) {
             handleBarcodeChange(newBarcode: cameraController.barcodeString)
         }
+        .onAppear {
+            cameraController.startCamera()
+        }
+        .onDisappear {
+            cameraController.stopCamera()
+        }
     }
     
     ///If the barcode is not idle, then stop the camera

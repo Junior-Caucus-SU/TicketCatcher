@@ -42,12 +42,7 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
             self.previewLayer.frame = view.bounds
             self.previewLayer.videoGravity = .resizeAspectFill
             view.layer.addSublayer(self.previewLayer)
-            if !self.captureSession.isRunning {
-                DispatchQueue.global(qos: .background).async {
-                    self.captureSession.startRunning()
-                    LogManager.shared.log("Starting new capture session")
-                }
-            }
+            self.startCamera()
         }
     }
     
@@ -101,6 +96,15 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
             if self.captureSession.isRunning {
                 self.captureSession.stopRunning()
                 LogManager.shared.log("Camera stopped")
+            }
+        }
+    }
+    
+    func startCamera() {
+        DispatchQueue.global(qos: .background).async {
+            if !self.captureSession.isRunning {
+                self.captureSession.startRunning()
+                LogManager.shared.log("Camera started")
             }
         }
     }

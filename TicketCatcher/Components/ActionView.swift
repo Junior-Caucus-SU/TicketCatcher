@@ -21,11 +21,10 @@ struct ActionView: View {
                 //Mark as admitted
                 Button {
                     LogManager.shared.log("Selected to mark valid admission, restarting camera session")
-                    if let barcodeInt = Int(cameraController.barcodeString) {
                         cameraController.resetBarcode()
                         cameraController.restartCameraSession()
                         
-                        CKManager.shared.markBarcodeAsScanned(barcode: barcodeInt) { success, err in
+                        CKManager.shared.markBarcodeAsScanned(barcode: barcode) { success, err in
                             if success {
                                 LogManager.shared.log("Barcode marked as scanned successfully")
                                 DispatchQueue.main.async {
@@ -38,7 +37,6 @@ struct ActionView: View {
                                 LogManager.shared.log("Failed to mark barcode with reason \(err ?? "unknown")")
                             }
                         }
-                    }
                 } label: {
                     HStack {
                         Text("Admit Now")

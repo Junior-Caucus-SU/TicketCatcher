@@ -8,8 +8,8 @@
 import Foundation
 
 class CSVParser {
-    ///Parse a CSV file to return its Name, Validity, and Barcode
-    func parseCSV(contentsOfURL: URL, encoding: String.Encoding) -> [(name: String, barcode: String, validity: String)]? {
+    ///Parse a CSV file to return its Name, OSIS, Validity, and Barcode (Session ID)
+    func parseCSV(contentsOfURL: URL, encoding: String.Encoding) -> [(name: String, osis: Int, validity: String, barcode: String)]? {
         do {
             let content = try String(contentsOf: contentsOfURL, encoding: encoding)
             var rows = content.components(separatedBy: "\n")
@@ -19,8 +19,12 @@ class CSVParser {
                 guard columns.count > 16 else { return nil }
                 let validity = columns[13]
                 let name = columns[15]
-                let barcode = columns[16]
-                return (name, barcode, validity)
+                guard let osis = Int(columns[16]) else {
+                    LogManager.shared.log("Error converting osis to int at row \(rowIndex)")
+                    return nil
+                }
+                let barcode = columns[1]
+                return (name, osis, validity, barcode)
             }
         } catch {
             LogManager.shared.log("Error reading CSV file: \(error)")

@@ -15,15 +15,16 @@ class CKManager {
         return container.publicCloudDatabase
     }
     
-    ///Add a codename record with provided name,  barcode, and validity
-    func addCodenameRecord(name: String, barcode: Int, validity: String, completion: @escaping (Error?) -> Void) {
+    ///Add a codename record with provided name, barcode, and validity
+    func addCodenameRecord(name: String, osis: Int, validity: String, barcode: String, completion: @escaping (Error?) -> Void) {
         if !validity.contains("Approved") {
             LogManager.shared.log("Record \(barcode) is correctly formatted but not approved. Skipping.")
             completion(nil)
         } else {
             let record = CKRecord(recordType: "Codename")
             record["Name"] = name as CKRecordValue
-            record["Barcode"] = barcode as CKRecordValue
+            record["SessionID"] = barcode as CKRecordValue
+            record["Barcode"] = osis as CKRecordValue //RECORD NAME BARCODE IS ACTUALLY OSIS
             
             database.save(record) { _, error in
                 DispatchQueue.main.async {
@@ -110,9 +111,9 @@ class CKManager {
     }
     
     ///Mark the selected barcode as scanned.
-    func markBarcodeAsScanned(barcode: Int, completion: @escaping (Bool, String?) -> Void) {
+    func markBarcodeAsScanned(barcode: String, completion: @escaping (Bool, String?) -> Void) {
         LogManager.shared.log("Marking barcode as scanned")
-        let pred = NSPredicate(format: "Barcode == %d", barcode)
+        let pred = NSPredicate(format: "SessionID == %@", barcode)
         let query = CKQuery(recordType: "Codename", predicate: pred)
         
         database.perform(query, inZoneWith: nil) { records, error in

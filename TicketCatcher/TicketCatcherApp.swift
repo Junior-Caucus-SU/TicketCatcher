@@ -17,6 +17,10 @@ enum EventType: String, CaseIterable, Identifiable {
 @main
 struct TicketCatcherApp: App {
     @State private var entered = false
+    
+    init() {
+        UserDefaults.standard.register(defaults: ["canUseFaceID": true])
+    }
     var body: some Scene {
         WindowGroup {
             ZStack {

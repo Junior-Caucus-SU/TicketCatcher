@@ -38,14 +38,15 @@ struct AddSheet: View {
                     TextField("Attendee Name", text: $atname)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
-                    SecureField("OSIS", text: $osis)
-                    SecureField("Session ID (Leave blank for a new ID)", text: $sessionID)
+                    TextField("OSIS", text: $osis)
+                        .keyboardType(.numberPad)
+                    SecureField("Session ID", text: $sessionID)
                     
                 }
                 .scrollContentBackground(.hidden)
                 
                 Button {
-                    CKManager.shared.addCodenameRecord(name: atname, barcode: Int(osis)!, validity: "Approved") { error in
+                    CKManager.shared.addCodenameRecord(name: atname, osis: Int(osis)!, validity: "Approved", barcode: sessionID) { error in
                         if error != nil {
                             LogManager.shared.log("No record added due to an error")
                             Message = "Failed to add attendee due to an error."
@@ -80,11 +81,7 @@ struct AddSheet: View {
                 }), secondaryButton: .destructive(Text("Dismiss")))
             }
             .sheet(isPresented: $showBarcodeSheet) {
-                if let barcodeNumber = Int(osis) {
-                    BarcodeSheet(barcodeValue: "\(barcodeNumber)")
-                } else {
-                    Text("Invalid OSIS number")
-                }
+                BarcodeSheet(barcodeValue: sessionID)
             }
         }
     }

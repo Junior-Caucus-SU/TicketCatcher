@@ -72,11 +72,10 @@ class CameraController: NSObject, ObservableObject, AVCaptureMetadataOutputObjec
     ///Output the recognized barcode
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let metadataObject = metadataObjects.first as? AVMetadataMachineReadableCodeObject,
-           let stringValue = metadataObject.stringValue,
-           let barcodeValue = Int(stringValue) {
-            BarcodeValidator.validate(barcode: barcodeValue) { isValid in
+           let barcodeSessionIDString = metadataObject.stringValue {
+            BarcodeValidator.validate(SessionID: barcodeSessionIDString) { isValid in
                 DispatchQueue.main.async {
-                    self.barcodeString = isValid ? "\(barcodeValue)" : "Invalid or Used Ticket"
+                    self.barcodeString = isValid ? "\(barcodeSessionIDString)" : "Invalid or Used Ticket"
                 }
             }
         }

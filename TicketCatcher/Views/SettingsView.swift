@@ -9,14 +9,22 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("canUseFaceID") private var canUseFaceID = true
+    @AppStorage("updateRecordsAutomatically") private var updateRecordsAutomatically = false
+    @AppStorage("enableBackgroundFetch") private var enableBackgroundFetch = false
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    Toggle("Enable Face ID", isOn: $canUseFaceID)
-                    Text("Use Face ID to log in to TicketCatcher.")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                Section(header: Label("Account Type", systemImage: "person")) {
+                    Text("Administrator")
+                    Text("As an administrator, you can upload attendee lists, view logs, add individual attendees, clear all attendees, and scan tickets.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Section(header: Label("Security", systemImage: "lock.shield")) {
+                    Toggle("Log In with Face ID", isOn: $canUseFaceID)
+                }
+                Section(header: Label("Refreshing", systemImage: "arrow.clockwise")) {
+                    Toggle("Update Records Automatically", isOn: $updateRecordsAutomatically)
                 }
             }
             .navigationTitle("Settings")

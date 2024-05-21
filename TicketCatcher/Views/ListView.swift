@@ -8,6 +8,13 @@
 import SwiftUI
 import CloudKit
 
+enum SortOrder: String, CaseIterable {
+    case nameAscending = "Name Ascending"
+    case nameDescending = "Name Descending"
+    case osisAscending = "OSIS Ascending"
+    case osisDescending = "OSIS Descending"
+}
+
 struct ListView: View {
     @State private var codenames = [Codename]()
     @State private var showAddSheet = false
@@ -15,13 +22,15 @@ struct ListView: View {
     @State private var showUploadSheet = false
     @State private var searchText = ""
     @State private var isDeleting = false
+    @State private var sortOrder: SortOrder = .nameAscending
+    
     let codeFont = Font
         .system(size: 14)
         .monospaced()
     
     var body: some View {
         NavigationStack {
-            List(filteredCodes, id: \.self) { codename in
+            List(sortedFilteredCodes, id: \.self) { codename in
                 HStack {
                     VStack(alignment: .leading) {
                         Text(codename.name)
@@ -79,6 +88,12 @@ struct ListView: View {
                         } label: {
                             Label("Clear Attendees", systemImage: "trash")
                         }
+                        Divider()
+                        Picker("Sort By", selection: $sortOrder) {
+                            ForEach(SortOrder.allCases, id: \.self) { sortOrder in
+                                Text(sortOrder.rawValue).tag(sortOrder)
+                            }
+                        }
                     } label: {
                         Image(systemName: "ellipsis.circle")
                     }
@@ -124,11 +139,18 @@ struct ListView: View {
         .ignoresSafeArea()
     }
     
-    private var filteredCodes: [Codename] {
-        if searchText.isEmpty {
-            return codenames
-        } else {
-            return codenames.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+    private var sortedFilteredCodes: [Codename] {
+        let filtered = searchText.isEmpty ? codenames : codenames.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        
+        switch sortOrder {
+        case .nameAscending:
+            return filtered.sorted { $0.name < $1.name }
+        case .nameDescending:
+            return filtered.sorted { $0.name > $1.name }
+        case .osisAscending:
+            return filtered.sorted { $0.barcode < $1.barcode }
+        case .osisDescending:
+            return filtered.sorted { $0.barcode > $1.barcode }
         }
     }
     

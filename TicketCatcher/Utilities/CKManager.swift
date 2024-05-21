@@ -17,7 +17,7 @@ class CKManager {
     
     ///Add a codename record with provided name, barcode, and validity
     func addCodenameRecord(name: String, osis: Int, validity: String, barcode: String, completion: @escaping (Error?) -> Void) {
-        if !validity.contains("Approved") {
+        if !(validity == "Approved") {
             LogManager.shared.log("Record \(barcode) is correctly formatted but not approved. Skipping.")
             completion(nil)
         } else {

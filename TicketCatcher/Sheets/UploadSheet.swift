@@ -25,13 +25,13 @@ struct UploadSheet: View {
         NavigationStack {
             VStack(spacing: 0){
                 VStack (alignment: .leading){
-                    Text("Upload an attendee CSV file with the correct identifications and formatting. The file header should be removed. Files with incorrect formatting will not be accepted. CloudKit will be updated immediately post-upload. All existing IDs will not have their statuses changed.")
+                    Text("Upload an attendee CSV file with the correct identifications and formatting. The database will be updated immediately post-upload.")
                         .font(.caption)
                         .foregroundColor(Color.secondary)
                         .multilineTextAlignment(.leading)
                         .padding(.bottom)
                     
-                    Text("Need help? Call 929-519-5260")
+                    Text("The file header should be removed. Files with incorrect formatting will not be accepted. Clear the database before uploading a new list. Need help? Call 929-519-5260")
                         .font(.caption)
                         .bold()
                         .foregroundColor(Color.secondary)

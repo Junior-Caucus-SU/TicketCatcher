@@ -61,7 +61,7 @@ struct LogView: View {
                         .foregroundColor(textColor)
                 }
             }
-            .searchable(text: $searchText, prompt: "Search")
+            .searchable(text: $searchText, prompt: "Search Logs")
             .scrollContentBackground(.hidden)
             .navigationTitle("Logs")
         }

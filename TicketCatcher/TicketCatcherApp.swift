@@ -32,7 +32,7 @@ struct TicketCatcherApp: App {
                         .transition(.opacity)
                 }
             }
-            .animation(.easeInOut(duration: 0.5), value: entered)
+            .animation(.smooth(duration: 1), value: entered)
         }
     }
 }

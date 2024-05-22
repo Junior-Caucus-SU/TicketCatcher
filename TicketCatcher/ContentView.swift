@@ -18,6 +18,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Manage", systemImage: "person.crop.rectangle.stack")
                 }
+            DistributeView()
+                .tabItem {
+                    Label("SendIt", systemImage: "paperplane")
+                }
             LogView()
                 .tabItem {
                     Label("Logs", systemImage: "doc.text.below.ecg")

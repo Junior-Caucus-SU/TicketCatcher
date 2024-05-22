@@ -99,7 +99,7 @@ struct ListView: View {
                     }
                 }
             }
-            .searchable(text: $searchText, prompt: "Search")
+            .searchable(text: $searchText, prompt: "Search by First Name")
             .onAppear(perform: loadData)
             .scrollContentBackground(.hidden)
         }

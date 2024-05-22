@@ -41,7 +41,7 @@ struct ListView: View {
                     }
                     Spacer()
                     Image(systemName: codename.scanStatus == 1 ? "person.fill.checkmark" : "ticket")
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(codename.scanStatus == 1 ? .orange : .accentColor)
                 }
             }
             .navigationTitle("Attendees")

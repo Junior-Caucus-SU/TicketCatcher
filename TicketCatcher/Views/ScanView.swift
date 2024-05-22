@@ -35,7 +35,7 @@ struct ScanView: View {
                 ActionView(barcode: $barcode, showAdmitView: $showAdmitView, cameraController: cameraController)
                     .zIndex(2) //Should be above the shadow
             }
-            .animation(.smooth(duration: 1), value: barcode)
+            .animation(.smooth, value: barcode)
             Spacer()
         }
         .padding(25)
@@ -48,7 +48,7 @@ struct ScanView: View {
                     //Admitted flyout
                 }
             }
-                .animation(.bouncy(duration: 1), value: showAdmitView),
+                .animation(.bouncy, value: showAdmitView),
             alignment: .bottom
         )
         .sensoryFeedback(.impact, trigger: cameraController.barcodeString)

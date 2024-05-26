@@ -29,7 +29,7 @@ struct ActionView: View {
                                 LogManager.shared.log("Barcode marked as scanned successfully")
                                 DispatchQueue.main.async {
                                     self.showAdmitView = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                                         self.showAdmitView = false
                                     }
                                 }

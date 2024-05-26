@@ -15,6 +15,7 @@
 		3019E5972BFA8E7400A0F886 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E5962BFA8E7400A0F886 /* ScanView.swift */; };
 		3019E5992BFA949100A0F886 /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E5982BFA949100A0F886 /* ActionView.swift */; };
 		3019E59C2BFAD21F00A0F886 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E59B2BFAD21F00A0F886 /* SettingsView.swift */; };
+		3021FF002BFEE9EF00C036A6 /* stuy_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3021FEFF2BFEE9EE00C036A6 /* stuy_logo.png */; };
 		302769A22AEDE02500B33074 /* TicketCatcherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302769A12AEDE02500B33074 /* TicketCatcherApp.swift */; };
 		302769A42AEDE02500B33074 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302769A32AEDE02500B33074 /* ContentView.swift */; };
 		302769A62AEDE02600B33074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 302769A52AEDE02600B33074 /* Assets.xcassets */; };
@@ -26,6 +27,8 @@
 		304321772BEFEC6600EDF9D2 /* UploadSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304321762BEFEC6600EDF9D2 /* UploadSheet.swift */; };
 		304BC2B72BF10F8100701726 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 304BC2B62BF10F8100701726 /* .gitignore */; };
 		304BC2B92BF1118D00701726 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304BC2B82BF1118D00701726 /* Secrets.swift */; };
+		305253222BFEC44E008CE450 /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = 305253212BFEC44E008CE450 /* SwiftSMTP */; };
+		305253252BFEC48E008CE450 /* Send.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305253242BFEC48E008CE450 /* Send.swift */; };
 		3053DEF02BF1C1BE00239BB0 /* BarcodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3053DEEF2BF1C1BE00239BB0 /* BarcodeSheet.swift */; };
 		3058AB192BF2CF3400AEF971 /* AdmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3058AB182BF2CF3400AEF971 /* AdmitView.swift */; };
 		307A97252BF17C80007193D3 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A97242BF17C80007193D3 /* LogView.swift */; };
@@ -42,6 +45,7 @@
 		3019E5962BFA8E7400A0F886 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		3019E5982BFA949100A0F886 /* ActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
 		3019E59B2BFAD21F00A0F886 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3021FEFF2BFEE9EE00C036A6 /* stuy_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stuy_logo.png; sourceTree = "<group>"; };
 		3027699E2AEDE02500B33074 /* TicketCatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketCatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		302769A12AEDE02500B33074 /* TicketCatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCatcherApp.swift; sourceTree = "<group>"; };
 		302769A32AEDE02500B33074 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,6 +60,7 @@
 		304321762BEFEC6600EDF9D2 /* UploadSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSheet.swift; sourceTree = "<group>"; };
 		304BC2B62BF10F8100701726 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		304BC2B82BF1118D00701726 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		305253242BFEC48E008CE450 /* Send.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Send.swift; sourceTree = "<group>"; };
 		3053DEEF2BF1C1BE00239BB0 /* BarcodeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeSheet.swift; sourceTree = "<group>"; };
 		3058AB182BF2CF3400AEF971 /* AdmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmitView.swift; sourceTree = "<group>"; };
 		3075FBAD2BF43FEA00260395 /* Privacy Policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Privacy Policy.md"; sourceTree = "<group>"; };
@@ -69,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				305253222BFEC44E008CE450 /* SwiftSMTP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,8 +96,10 @@
 		302769952AEDE02500B33074 = {
 			isa = PBXGroup;
 			children = (
+				3021FEFF2BFEE9EE00C036A6 /* stuy_logo.png */,
 				3075FBAD2BF43FEA00260395 /* Privacy Policy.md */,
 				304BC2B62BF10F8100701726 /* .gitignore */,
+				305253242BFEC48E008CE450 /* Send.swift */,
 				304BC2B82BF1118D00701726 /* Secrets.swift */,
 				3001D4192BF04FBC00652C6B /* Launch Screen.storyboard */,
 				302769A02AEDE02500B33074 /* TicketCatcher */,
@@ -189,6 +197,9 @@
 			dependencies = (
 			);
 			name = TicketCatcher;
+			packageProductDependencies = (
+				305253212BFEC44E008CE450 /* SwiftSMTP */,
+			);
 			productName = JPromScanner;
 			productReference = 3027699E2AEDE02500B33074 /* TicketCatcher.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +228,9 @@
 				Base,
 			);
 			mainGroup = 302769952AEDE02500B33074;
+			packageReferences = (
+				305253202BFEC44E008CE450 /* XCRemoteSwiftPackageReference "Swift-SMTP" */,
+			);
 			productRefGroup = 3027699F2AEDE02500B33074 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +247,7 @@
 			files = (
 				304BC2B72BF10F8100701726 /* .gitignore in Resources */,
 				3001D41A2BF04FBC00652C6B /* Launch Screen.storyboard in Resources */,
+				3021FF002BFEE9EF00C036A6 /* stuy_logo.png in Resources */,
 				302769A92AEDE02600B33074 /* Preview Assets.xcassets in Resources */,
 				302769A62AEDE02600B33074 /* Assets.xcassets in Resources */,
 			);
@@ -252,6 +267,7 @@
 				3001D41E2BF0539A00652C6B /* CKManager.swift in Sources */,
 				3053DEF02BF1C1BE00239BB0 /* BarcodeSheet.swift in Sources */,
 				302ACBC62BEF0DE000791571 /* CameraView.swift in Sources */,
+				305253252BFEC48E008CE450 /* Send.swift in Sources */,
 				307A97252BF17C80007193D3 /* LogView.swift in Sources */,
 				304BC2B92BF1118D00701726 /* Secrets.swift in Sources */,
 				3058AB192BF2CF3400AEF971 /* AdmitView.swift in Sources */,
@@ -488,6 +504,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		305253202BFEC44E008CE450 /* XCRemoteSwiftPackageReference "Swift-SMTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/IBM-Swift/Swift-SMTP.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		305253212BFEC44E008CE450 /* SwiftSMTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 305253202BFEC44E008CE450 /* XCRemoteSwiftPackageReference "Swift-SMTP" */;
+			productName = SwiftSMTP;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 302769962AEDE02500B33074 /* Project object */;
 }

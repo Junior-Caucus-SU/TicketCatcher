@@ -30,10 +30,8 @@ struct ScanView: View {
                             return Color.green.opacity(0.6)
                         }
                     }(), radius: 20, x: 0, y: 0)
-                    .zIndex(1)
                 //Action buttons when a valid barcode is found
                 ActionView(barcode: $barcode, showAdmitView: $showAdmitView, cameraController: cameraController)
-                    .zIndex(2) //Should be above the shadow
             }
             .animation(.smooth, value: barcode)
             Spacer()

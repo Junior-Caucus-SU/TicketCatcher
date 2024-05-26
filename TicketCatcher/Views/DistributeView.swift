@@ -19,6 +19,15 @@ struct DistributeView: View {
                 .multilineTextAlignment(.center)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
+            
+            Button {
+                sendEmails()
+            } label: {
+                Text("Send Example Emails")
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .bold()
+            }
+            
             Spacer()
         }
     }

@@ -34,7 +34,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     }
     
     private func handleLiveActivityUpdate(notification: CKQueryNotification?) {
-        guard notification?.recordID != nil else {return}
+        guard notification?.recordID != nil else { return }
         CKFetcher.shared.fetchAttendeeCount { count in
             let activityAttributes = LiveCountAttributes(eventName: "TicketCatcher Session")
             let initialContentState = LiveCountAttributes.ContentState(attendeeCount: count)
@@ -49,8 +49,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     private func handleScanStatusUpdate(notification: CKQueryNotification?) {
         guard let recordID = notification?.recordID else { return }
         
-        let database = CKContainer.default().publicCloudDatabase
-        database.fetch(withRecordID: recordID) { record, error in
+        CKFetcher.shared.database.fetch(withRecordID: recordID) { record, error in
             guard let record = record, error == nil else {
                 print("Error fetching record with error \(error?.localizedDescription ?? "unknown")")
                 return
@@ -72,5 +71,4 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
             }
         }
     }
-    
 }

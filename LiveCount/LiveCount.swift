@@ -19,12 +19,9 @@ struct LiveCountWidget: Widget {
                 Text("\(context.state.attendeeCount) Attendees")
                     .font(.title).bold()
                     .contentTransition(.numericText())
-                Text("\(context.attributes.eventName)")
-                    .font(.system(size: 14, design: .monospaced))
+                Text(context.isStale ? "Outdated Session" : "\(context.attributes.eventName)")
+                    .font(.system(size: 16, design: .monospaced))
                     .opacity(0.5)
-                    .onAppear {
-                        print("Widget updated to \(context.state.attendeeCount) attendees for \(context.attributes.eventName)")
-                    }
             }
             .padding()
             .activityBackgroundTint(Color.black.opacity(0.5))
@@ -32,14 +29,13 @@ struct LiveCountWidget: Widget {
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("\(context.state.attendeeCount) Attendees")
+                    Text(context.isStale ? "Outdated" : "Active").opacity(0.5)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Image(systemName: "person.3.fill")
+                    Image(systemName: "person.3.fill").opacity(0.5)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("\(context.attributes.eventName) Active ")
-                        .opacity(0.5)
+                    Text("\(context.state.attendeeCount) Attendees").bold().padding().font(.title)
                 }
             } compactLeading: {
                 Text("\(context.state.attendeeCount)")

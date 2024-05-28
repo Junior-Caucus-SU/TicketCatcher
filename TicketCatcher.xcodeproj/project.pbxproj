@@ -12,6 +12,7 @@
 		301195252BEFFFBD00544510 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195242BEFFFBD00544510 /* CSVParser.swift */; };
 		301195272BF00B1200544510 /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195262BF00B1200544510 /* UploadManager.swift */; };
 		3011952A2BF019E300544510 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195292BF019E300544510 /* ListView.swift */; };
+		30186D9C2C0CF21F0080EAB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B47CFE2C0C045B00DB5A08 /* AppDelegate.swift */; };
 		3019E5972BFA8E7400A0F886 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E5962BFA8E7400A0F886 /* ScanView.swift */; };
 		3019E5992BFA949100A0F886 /* ActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E5982BFA949100A0F886 /* ActionView.swift */; };
 		3019E59C2BFAD21F00A0F886 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3019E59B2BFAD21F00A0F886 /* SettingsView.swift */; };
@@ -430,6 +431,7 @@
 				307734D62C0B8340000743D4 /* LiveCountLiveActivity.swift in Sources */,
 				307734D82C0B8340000743D4 /* LiveCount.swift in Sources */,
 				307734EA2C0B8908000743D4 /* LogView.swift in Sources */,
+				30186D9C2C0CF21F0080EAB6 /* AppDelegate.swift in Sources */,
 				307734EE2C0B89F5000743D4 /* CKFetcher.swift in Sources */,
 				307734D42C0B8340000743D4 /* LiveCountBundle.swift in Sources */,
 			);
@@ -654,7 +656,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = LiveCountExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveCount/Info.plist;
@@ -666,7 +668,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzhang.TicketCatcher.LiveCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -686,7 +688,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = LiveCountExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LiveCount/Info.plist;
@@ -698,7 +700,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzhang.TicketCatcher.LiveCount;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

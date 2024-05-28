@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CloudKit
+import Combine
 
 enum SortOrder: String, CaseIterable {
     case nameAscending = "Name Ascending"
@@ -21,8 +22,15 @@ struct ListView: View {
     @State private var showingDeletion = false
     @State private var showUploadSheet = false
     @State private var searchText = ""
-    @State private var isDeleting = false
+    @State private var isDeleting = false {
+        didSet {
+            if !isDeleting {
+                loadData()
+            }
+        }
+    }
     @State private var sortOrder: SortOrder = .nameAscending
+    @State private var subscription: AnyCancellable? = nil
     
     let codeFont = Font
         .system(size: 14)
@@ -100,16 +108,24 @@ struct ListView: View {
                 }
             }
             .searchable(text: $searchText, prompt: "Search by First Name")
-            .onAppear(perform: loadData)
-            .scrollContentBackground(.hidden)
+            .onAppear(perform: setup)
+            .refreshable {
+                loadData()
+            }
         }
         .sheet(isPresented: $showAddSheet) {
             AddSheet()
                 .presentationBackground(.thickMaterial)
+                .onDisappear {
+                    loadData()
+                }
         }
         .sheet(isPresented: $showUploadSheet) {
             UploadSheet()
                 .presentationBackground(.thickMaterial)
+                .onDisappear {
+                    loadData()
+                }
         }
         .overlay {
             if isDeleting {
@@ -162,6 +178,14 @@ struct ListView: View {
         codenames.filter { $0.scanStatus == 1 }.count
     }
     
+    private func setup() {
+        loadData()
+        subscription = NotificationCenter.default.publisher(for: .attendeeUpdates)
+            .sink { _ in
+                loadData()
+            }
+    }
+    
     private func loadData() {
         CKManager.shared.fetchCodenames { codenames, error in
             if let error = error {
@@ -183,6 +207,10 @@ struct Codename: Hashable {
         self.name = record["Name"] as? String ?? "Unknown"
         self.barcode = record["Barcode"] as? Int ?? 0
     }
+}
+
+extension Notification.Name {
+    static let attendeeUpdates = Notification.Name("attendeeUpdates")
 }
 
 #Preview {

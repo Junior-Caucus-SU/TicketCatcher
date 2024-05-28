@@ -28,13 +28,51 @@
 		304BC2B72BF10F8100701726 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 304BC2B62BF10F8100701726 /* .gitignore */; };
 		304BC2B92BF1118D00701726 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304BC2B82BF1118D00701726 /* Secrets.swift */; };
 		305253222BFEC44E008CE450 /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = 305253212BFEC44E008CE450 /* SwiftSMTP */; };
-		305253252BFEC48E008CE450 /* Send.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305253242BFEC48E008CE450 /* Send.swift */; };
+		305253252BFEC48E008CE450 /* SendIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305253242BFEC48E008CE450 /* SendIt.swift */; };
 		3053DEF02BF1C1BE00239BB0 /* BarcodeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3053DEEF2BF1C1BE00239BB0 /* BarcodeSheet.swift */; };
 		3058AB192BF2CF3400AEF971 /* AdmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3058AB182BF2CF3400AEF971 /* AdmitView.swift */; };
+		307734D02C0B8340000743D4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301E9F642C0AED410091008A /* WidgetKit.framework */; };
+		307734D12C0B8340000743D4 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301E9F662C0AED410091008A /* SwiftUI.framework */; };
+		307734D42C0B8340000743D4 /* LiveCountBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307734D32C0B8340000743D4 /* LiveCountBundle.swift */; };
+		307734D62C0B8340000743D4 /* LiveCountLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307734D52C0B8340000743D4 /* LiveCountLiveActivity.swift */; };
+		307734D82C0B8340000743D4 /* LiveCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307734D72C0B8340000743D4 /* LiveCount.swift */; };
+		307734DA2C0B8342000743D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 307734D92C0B8342000743D4 /* Assets.xcassets */; };
+		307734DE2C0B8342000743D4 /* LiveCountExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 307734CF2C0B8340000743D4 /* LiveCountExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		307734E82C0B885C000743D4 /* LiveCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307734D72C0B8340000743D4 /* LiveCount.swift */; };
+		307734EA2C0B8908000743D4 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A97242BF17C80007193D3 /* LogView.swift */; };
+		307734EC2C0B893B000743D4 /* CKFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307734EB2C0B893B000743D4 /* CKFetcher.swift */; };
+		307734EE2C0B89F5000743D4 /* CKFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307734EB2C0B893B000743D4 /* CKFetcher.swift */; };
+		307734F92C0BA56D000743D4 /* LiveCountLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307734D52C0B8340000743D4 /* LiveCountLiveActivity.swift */; };
 		307A97252BF17C80007193D3 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307A97242BF17C80007193D3 /* LogView.swift */; };
 		309844DD2BFCEFE300DDA15F /* DistributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309844DC2BFCEFE300DDA15F /* DistributeView.swift */; };
+		30B47CFF2C0C045B00DB5A08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B47CFE2C0C045B00DB5A08 /* AppDelegate.swift */; };
+		30B47D012C0C06F100DB5A08 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B47D002C0C06F100DB5A08 /* AuthManager.swift */; };
 		30B5C90D2BF1053800F12B4C /* AddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5C90C2BF1053800F12B4C /* AddSheet.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		307734DC2C0B8342000743D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 302769962AEDE02500B33074 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 307734CE2C0B8340000743D4;
+			remoteInfo = LiveCountExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		301E9FB62C0AF23C0091008A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				307734DE2C0B8342000743D4 /* LiveCountExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3001D4192BF04FBC00652C6B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -45,6 +83,8 @@
 		3019E5962BFA8E7400A0F886 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		3019E5982BFA949100A0F886 /* ActionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionView.swift; sourceTree = "<group>"; };
 		3019E59B2BFAD21F00A0F886 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		301E9F642C0AED410091008A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		301E9F662C0AED410091008A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3021FEFF2BFEE9EE00C036A6 /* stuy_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stuy_logo.png; sourceTree = "<group>"; };
 		3027699E2AEDE02500B33074 /* TicketCatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicketCatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		302769A12AEDE02500B33074 /* TicketCatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketCatcherApp.swift; sourceTree = "<group>"; };
@@ -60,12 +100,22 @@
 		304321762BEFEC6600EDF9D2 /* UploadSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSheet.swift; sourceTree = "<group>"; };
 		304BC2B62BF10F8100701726 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		304BC2B82BF1118D00701726 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		305253242BFEC48E008CE450 /* Send.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Send.swift; sourceTree = "<group>"; };
+		305253242BFEC48E008CE450 /* SendIt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendIt.swift; sourceTree = "<group>"; };
 		3053DEEF2BF1C1BE00239BB0 /* BarcodeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeSheet.swift; sourceTree = "<group>"; };
 		3058AB182BF2CF3400AEF971 /* AdmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdmitView.swift; sourceTree = "<group>"; };
 		3075FBAD2BF43FEA00260395 /* Privacy Policy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Privacy Policy.md"; sourceTree = "<group>"; };
+		307734CF2C0B8340000743D4 /* LiveCountExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LiveCountExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		307734D32C0B8340000743D4 /* LiveCountBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCountBundle.swift; sourceTree = "<group>"; };
+		307734D52C0B8340000743D4 /* LiveCountLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCountLiveActivity.swift; sourceTree = "<group>"; };
+		307734D72C0B8340000743D4 /* LiveCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCount.swift; sourceTree = "<group>"; };
+		307734D92C0B8342000743D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		307734DB2C0B8342000743D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		307734EB2C0B893B000743D4 /* CKFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKFetcher.swift; sourceTree = "<group>"; };
+		307734F12C0B97E1000743D4 /* LiveCountExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveCountExtension.entitlements; sourceTree = "<group>"; };
 		307A97242BF17C80007193D3 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		309844DC2BFCEFE300DDA15F /* DistributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistributeView.swift; sourceTree = "<group>"; };
+		30B47CFE2C0C045B00DB5A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		30B47D002C0C06F100DB5A08 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		30B5C90C2BF1053800F12B4C /* AddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +125,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				305253222BFEC44E008CE450 /* SwiftSMTP in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		307734CC2C0B8340000743D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307734D12C0B8340000743D4 /* SwiftUI.framework in Frameworks */,
+				307734D02C0B8340000743D4 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,16 +152,27 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		301E9F632C0AED410091008A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				301E9F642C0AED410091008A /* WidgetKit.framework */,
+				301E9F662C0AED410091008A /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		302769952AEDE02500B33074 = {
 			isa = PBXGroup;
 			children = (
 				3021FEFF2BFEE9EE00C036A6 /* stuy_logo.png */,
 				3075FBAD2BF43FEA00260395 /* Privacy Policy.md */,
 				304BC2B62BF10F8100701726 /* .gitignore */,
-				305253242BFEC48E008CE450 /* Send.swift */,
 				304BC2B82BF1118D00701726 /* Secrets.swift */,
+				307734F12C0B97E1000743D4 /* LiveCountExtension.entitlements */,
 				3001D4192BF04FBC00652C6B /* Launch Screen.storyboard */,
 				302769A02AEDE02500B33074 /* TicketCatcher */,
+				307734D22C0B8340000743D4 /* LiveCount */,
+				301E9F632C0AED410091008A /* Frameworks */,
 				3027699F2AEDE02500B33074 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				3027699E2AEDE02500B33074 /* TicketCatcher.app */,
+				307734CF2C0B8340000743D4 /* LiveCountExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,7 +190,10 @@
 			isa = PBXGroup;
 			children = (
 				302769A12AEDE02500B33074 /* TicketCatcherApp.swift */,
+				30B47CFE2C0C045B00DB5A08 /* AppDelegate.swift */,
 				302769A32AEDE02500B33074 /* ContentView.swift */,
+				30B47D042C0C083900DB5A08 /* SentIt */,
+				30B47D022C0C07FA00DB5A08 /* Cloud */,
 				304321752BEFEB6500EDF9D2 /* Utilities */,
 				3019E59A2BFA9BC200A0F886 /* Views */,
 				302ACBD12BEF0F8800791571 /* Camera */,
@@ -163,12 +237,22 @@
 		304321752BEFEB6500EDF9D2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				3001D41D2BF0539A00652C6B /* CKManager.swift */,
-				3036807C2BF0487200509514 /* BarcodeValidator.swift */,
 				301195242BEFFFBD00544510 /* CSVParser.swift */,
-				301195262BF00B1200544510 /* UploadManager.swift */,
+				30B47D002C0C06F100DB5A08 /* AuthManager.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		307734D22C0B8340000743D4 /* LiveCount */ = {
+			isa = PBXGroup;
+			children = (
+				307734D32C0B8340000743D4 /* LiveCountBundle.swift */,
+				307734D52C0B8340000743D4 /* LiveCountLiveActivity.swift */,
+				307734D72C0B8340000743D4 /* LiveCount.swift */,
+				307734D92C0B8342000743D4 /* Assets.xcassets */,
+				307734DB2C0B8342000743D4 /* Info.plist */,
+			);
+			path = LiveCount;
 			sourceTree = "<group>";
 		};
 		307A97232BF17C2E007193D3 /* Sheets */ = {
@@ -181,6 +265,25 @@
 			path = Sheets;
 			sourceTree = "<group>";
 		};
+		30B47D022C0C07FA00DB5A08 /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				307734EB2C0B893B000743D4 /* CKFetcher.swift */,
+				3001D41D2BF0539A00652C6B /* CKManager.swift */,
+				3036807C2BF0487200509514 /* BarcodeValidator.swift */,
+				301195262BF00B1200544510 /* UploadManager.swift */,
+			);
+			path = Cloud;
+			sourceTree = "<group>";
+		};
+		30B47D042C0C083900DB5A08 /* SentIt */ = {
+			isa = PBXGroup;
+			children = (
+				305253242BFEC48E008CE450 /* SendIt.swift */,
+			);
+			path = SentIt;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -191,10 +294,12 @@
 				3027699A2AEDE02500B33074 /* Sources */,
 				3027699B2AEDE02500B33074 /* Frameworks */,
 				3027699C2AEDE02500B33074 /* Resources */,
+				301E9FB62C0AF23C0091008A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				307734DD2C0B8342000743D4 /* PBXTargetDependency */,
 			);
 			name = TicketCatcher;
 			packageProductDependencies = (
@@ -204,6 +309,23 @@
 			productReference = 3027699E2AEDE02500B33074 /* TicketCatcher.app */;
 			productType = "com.apple.product-type.application";
 		};
+		307734CE2C0B8340000743D4 /* LiveCountExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 307734DF2C0B8342000743D4 /* Build configuration list for PBXNativeTarget "LiveCountExtension" */;
+			buildPhases = (
+				307734CB2C0B8340000743D4 /* Sources */,
+				307734CC2C0B8340000743D4 /* Frameworks */,
+				307734CD2C0B8340000743D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LiveCountExtension;
+			productName = LiveCountExtension;
+			productReference = 307734CF2C0B8340000743D4 /* LiveCountExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -211,11 +333,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1500;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					3027699D2AEDE02500B33074 = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					307734CE2C0B8340000743D4 = {
+						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
@@ -236,6 +361,7 @@
 			projectRoot = "";
 			targets = (
 				3027699D2AEDE02500B33074 /* TicketCatcher */,
+				307734CE2C0B8340000743D4 /* LiveCountExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -253,6 +379,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		307734CD2C0B8340000743D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307734DA2C0B8342000743D4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -262,15 +396,19 @@
 			files = (
 				304321772BEFEC6600EDF9D2 /* UploadSheet.swift in Sources */,
 				3019E5972BFA8E7400A0F886 /* ScanView.swift in Sources */,
+				307734EC2C0B893B000743D4 /* CKFetcher.swift in Sources */,
+				30B47D012C0C06F100DB5A08 /* AuthManager.swift in Sources */,
 				302769A42AEDE02500B33074 /* ContentView.swift in Sources */,
 				3019E59C2BFAD21F00A0F886 /* SettingsView.swift in Sources */,
 				3001D41E2BF0539A00652C6B /* CKManager.swift in Sources */,
 				3053DEF02BF1C1BE00239BB0 /* BarcodeSheet.swift in Sources */,
+				307734E82C0B885C000743D4 /* LiveCount.swift in Sources */,
 				302ACBC62BEF0DE000791571 /* CameraView.swift in Sources */,
-				305253252BFEC48E008CE450 /* Send.swift in Sources */,
+				305253252BFEC48E008CE450 /* SendIt.swift in Sources */,
 				307A97252BF17C80007193D3 /* LogView.swift in Sources */,
 				304BC2B92BF1118D00701726 /* Secrets.swift in Sources */,
 				3058AB192BF2CF3400AEF971 /* AdmitView.swift in Sources */,
+				30B47CFF2C0C045B00DB5A08 /* AppDelegate.swift in Sources */,
 				3011952A2BF019E300544510 /* ListView.swift in Sources */,
 				3036807D2BF0487200509514 /* BarcodeValidator.swift in Sources */,
 				301195252BEFFFBD00544510 /* CSVParser.swift in Sources */,
@@ -278,13 +416,34 @@
 				302769A22AEDE02500B33074 /* TicketCatcherApp.swift in Sources */,
 				3019E5992BFA949100A0F886 /* ActionView.swift in Sources */,
 				302ACBCA2BEF0DF300791571 /* BarcodeIconView.swift in Sources */,
+				307734F92C0BA56D000743D4 /* LiveCountLiveActivity.swift in Sources */,
 				30B5C90D2BF1053800F12B4C /* AddSheet.swift in Sources */,
 				301195272BF00B1200544510 /* UploadManager.swift in Sources */,
 				302769D32AEDE79200B33074 /* CameraController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		307734CB2C0B8340000743D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				307734D62C0B8340000743D4 /* LiveCountLiveActivity.swift in Sources */,
+				307734D82C0B8340000743D4 /* LiveCount.swift in Sources */,
+				307734EA2C0B8908000743D4 /* LogView.swift in Sources */,
+				307734EE2C0B89F5000743D4 /* CKFetcher.swift in Sources */,
+				307734D42C0B8340000743D4 /* LiveCountBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		307734DD2C0B8342000743D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 307734CE2C0B8340000743D4 /* LiveCountExtension */;
+			targetProxy = 307734DC2C0B8342000743D4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		302769C72AEDE02700B33074 /* Debug */ = {
@@ -409,11 +568,12 @@
 		302769CA2AEDE02700B33074 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;
@@ -422,7 +582,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = TicketCatcher;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "TicketCatcher needs access to your camera to do the scanning.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "You can use Face ID to quickly log in to TicketCatcher.";
 				INFOPLIST_KEY_NSFileProviderPresenceUsageDescription = "TicketCatcher needs access to your files for uploading.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -432,7 +594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzhang.TicketCatcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -440,18 +602,19 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		302769CB2AEDE02700B33074 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TicketCatcher/TicketCatcher.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_ASSET_PATHS = "\"TicketCatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = 6N94J8GW7F;
 				ENABLE_PREVIEWS = YES;
@@ -460,7 +623,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = TicketCatcher;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "TicketCatcher needs access to your camera to do the scanning.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "You can use Face ID to quickly log in to TicketCatcher.";
 				INFOPLIST_KEY_NSFileProviderPresenceUsageDescription = "TicketCatcher needs access to your files for uploading.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
@@ -470,7 +635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yzhang.TicketCatcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -478,7 +643,71 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		307734E02C0B8342000743D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LiveCountExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 6N94J8GW7F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LiveCount/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LiveCount;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yzhang.TicketCatcher.LiveCount;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		307734E12C0B8342000743D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = LiveCountExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 6N94J8GW7F;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LiveCount/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LiveCount;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yzhang.TicketCatcher.LiveCount;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -499,6 +728,15 @@
 			buildConfigurations = (
 				302769CA2AEDE02700B33074 /* Debug */,
 				302769CB2AEDE02700B33074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		307734DF2C0B8342000743D4 /* Build configuration list for PBXNativeTarget "LiveCountExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				307734E02C0B8342000743D4 /* Debug */,
+				307734E12C0B8342000743D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

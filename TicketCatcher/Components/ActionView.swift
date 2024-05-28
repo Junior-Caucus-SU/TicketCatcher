@@ -21,22 +21,22 @@ struct ActionView: View {
                 //Mark as admitted
                 Button {
                     LogManager.shared.log("Selected to mark valid admission, restarting camera session")
-                        cameraController.resetBarcode()
-                        cameraController.restartCameraSession()
-                        
-                        CKManager.shared.markBarcodeAsScanned(barcode: barcode) { success, err in
-                            if success {
-                                LogManager.shared.log("Barcode marked as scanned successfully")
-                                DispatchQueue.main.async {
-                                    self.showAdmitView = true
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                        self.showAdmitView = false
-                                    }
+                    cameraController.resetBarcode()
+                    cameraController.restartCameraSession()
+                    
+                    CKManager.shared.markBarcodeAsScanned(barcode: barcode) { success, err in
+                        if success {
+                            LogManager.shared.log("Barcode marked as scanned successfully")
+                            DispatchQueue.main.async {
+                                self.showAdmitView = true
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                    self.showAdmitView = false
                                 }
-                            } else {
-                                LogManager.shared.log("Failed to mark barcode with reason \(err ?? "unknown")")
                             }
+                        } else {
+                            LogManager.shared.log("Failed to mark barcode with reason \(err ?? "unknown")")
                         }
+                    }
                 } label: {
                     HStack {
                         Text("Admit Now")
@@ -85,5 +85,6 @@ struct ActionView: View {
                 EmptyView()
             }
         }
+        .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 }

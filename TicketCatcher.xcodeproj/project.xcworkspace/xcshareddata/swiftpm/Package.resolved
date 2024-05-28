@@ -1,4 +1,5 @@
 {
+  "originHash" : "4827c0a373afade3eab367e81d042ac88c484bc43728cedea7e90b5fcd7b93b5",
   "pins" : [
     {
       "identity" : "bluecryptor",
@@ -55,5 +56,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

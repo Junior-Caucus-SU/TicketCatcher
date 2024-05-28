@@ -16,6 +16,7 @@ enum EventType: String, CaseIterable, Identifiable {
 ///Main log in screne. Maybe consider moving login logic here.
 @main
 struct TicketCatcherApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State private var entered = false
     
     init() {
@@ -79,7 +80,11 @@ struct EntrantView: View {
             
             VStack {
                 Button {
-                    logIn()
+                    AuthenticationManager.shared.logIn(account: account, passphrase: passphrase) { success in
+                        if success {
+                            entered.toggle()
+                        }
+                    }
                 } label: {
                     ZStack {
                         Text("Log In")
@@ -123,28 +128,10 @@ struct EntrantView: View {
             .controlSize(.large)
         }
         .ignoresSafeArea(.keyboard)
-        .onAppear(perform: authenticate)
-    }
-    
-    func logIn() {
-        if account == Secrets.accountName && passphrase == Secrets.accountPassword {
-            UserDefaults.standard.set(true, forKey: "hasLoggedIn")
-            entered.toggle()
-        }
-    }
-    
-    func authenticate() {
-        let context = LAContext()
-        var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = "Quickly log in to TicketCatcher."
-            
-            if UserDefaults.standard.bool(forKey: "hasLoggedIn") && UserDefaults.standard.bool(forKey: "canUseFaceID") {
-                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                    if success {
-                        entered.toggle()
-                    }
+        .onAppear {
+            AuthenticationManager.shared.authenticate { success in
+                if success {
+                    entered.toggle()
                 }
             }
         }

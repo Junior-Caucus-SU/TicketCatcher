@@ -12,8 +12,7 @@ import Combine
 enum SortOrder: String, CaseIterable {
     case nameAscending = "Name Ascending"
     case nameDescending = "Name Descending"
-    case osisAscending = "OSIS Ascending"
-    case osisDescending = "OSIS Descending"
+    case scanStatus = "Admission Status"
 }
 
 struct ListView: View {
@@ -38,79 +37,136 @@ struct ListView: View {
     
     var body: some View {
         NavigationStack {
-            List(sortedFilteredCodes, id: \.self) { codename in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(codename.name)
+            if totalCount == 0 {
+                VStack {
+                    Image(systemName: "person.crop.circle.dashed")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 75, height: 75)
+                        .foregroundStyle(.tertiary)
+                    Text("No attendees added for this event")
+                        .font(.headline)
+                        .padding()
+                        .foregroundStyle(.tertiary)
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigation) {
+                        Text("0/0")
                             .font(.headline)
-                        Text("\(codename.barcode)".prefix(3) + "xxxxxx")
-                            .font(codeFont)
                             .foregroundColor(.secondary)
                     }
-                    Spacer()
-                    Image(systemName: codename.scanStatus == 1 ? "person.fill.checkmark" : "ticket")
-                        .foregroundColor(codename.scanStatus == 1 ? .orange : .accentColor)
-                }
-            }
-            .navigationTitle("Attendees")
-            .confirmationDialog(
-                "Delete All Records",
-                isPresented: $showingDeletion
-            ) {
-                Button("Remove All Records", role: .destructive) {
-                    isDeleting = true
-                    CKManager.shared.removeAllCodenames() { error in
-                        LogManager.shared.log("Removing all records")
-                        if let error = error {
-                            LogManager.shared.log("Could not remove all records with error \(error)")
-                        } else {
-                            LogManager.shared.log("Removed all records")
-                        }
-                        isDeleting = false
-                    }
-                }
-            } message: {
-                Text("Are you sure you want to remove all attendee records? This is not reversible.")
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigation){
-                    Text("\(scannedCount)/\(totalCount)")
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                }
-                ToolbarItem(placement: .primaryAction) {
-                    Menu {
-                        Button(action: {
-                            showAddSheet.toggle()
-                        }) {
-                            Label("Add Attendee", systemImage: "plus.circle")
-                        }
-                        Button(action: {
-                            showUploadSheet.toggle()
-                        }) {
-                            Label("Upload CSV", systemImage: "arrow.up.doc")
-                        }
-                        Divider()
-                        Button(role: .destructive) {
-                            showingDeletion.toggle()
-                        } label: {
-                            Label("Clear Attendees", systemImage: "trash")
-                        }
-                        Divider()
-                        Picker("Sort By", selection: $sortOrder) {
-                            ForEach(SortOrder.allCases, id: \.self) { sortOrder in
-                                Text(sortOrder.rawValue).tag(sortOrder)
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu {
+                            Button(action: {
+                                showAddSheet.toggle()
+                            }) {
+                                Label("Add Attendee", systemImage: "plus.circle")
                             }
+                            Button(action: {
+                                showUploadSheet.toggle()
+                            }) {
+                                Label("Upload CSV", systemImage: "arrow.up.doc")
+                            }
+                            Divider()
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
                         }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
                     }
                 }
-            }
-            .searchable(text: $searchText, prompt: "Search by First Name")
-            .onAppear(perform: setup)
-            .refreshable {
-                loadData()
+                .navigationTitle("Attendees")
+                .onAppear(perform: setup)
+                .refreshable {
+                    loadData()
+                }
+            } else {
+                List(sortedFilteredCodes, id: \.self) { codename in
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(codename.name)
+                                .font(.headline)
+                            Text("\(codename.barcode)".prefix(3) + "xxxxxx")
+                                .font(codeFont)
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                        Image(systemName: codename.scanStatus == 1 ? "person.fill.checkmark" : "ticket")
+                            .foregroundColor(codename.scanStatus == 1 ? .orange : .accentColor)
+                    }
+                    .swipeActions(edge: .trailing) {
+                        Button {
+                            CKManager.shared.markBarcodeAsScanned(barcode: codename.sessionID) { success, error in
+                                if success {
+                                    loadData()
+                                } else if let error = error {
+                                    LogManager.shared.log("Error marking barcode as scanned with error \(error) for \(codename.sessionID)")
+                                }
+                            }
+                        } label: {
+                            Label("Admit", systemImage: "checkmark.circle")
+                        }
+                        .tint(.green)
+                    }
+                }
+                .navigationTitle("Attendees")
+                .confirmationDialog(
+                    "Delete All Records",
+                    isPresented: $showingDeletion
+                ) {
+                    Button("Remove All Records", role: .destructive) {
+                        isDeleting = true
+                        CKManager.shared.removeAllCodenames() { error in
+                            LogManager.shared.log("Removing all records")
+                            if let error = error {
+                                LogManager.shared.log("Could not remove all records with error \(error)")
+                            } else {
+                                LogManager.shared.log("Removed all records")
+                            }
+                            isDeleting = false
+                        }
+                    }
+                } message: {
+                    Text("Are you sure you want to remove all attendee records? This is not reversible.")
+                }
+                .toolbar {
+                    ToolbarItem(placement: .navigation) {
+                        Text("\(scannedCount)/\(totalCount)")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                    }
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu {
+                            Button(action: {
+                                showAddSheet.toggle()
+                            }) {
+                                Label("Add Attendee", systemImage: "plus.circle")
+                            }
+                            Button(action: {
+                                showUploadSheet.toggle()
+                            }) {
+                                Label("Upload CSV", systemImage: "arrow.up.doc")
+                            }
+                            Divider()
+                            Button(role: .destructive) {
+                                showingDeletion.toggle()
+                            } label: {
+                                Label("Clear Attendees", systemImage: "trash")
+                            }
+                            Divider()
+                            Picker("Sort By", selection: $sortOrder) {
+                                ForEach(SortOrder.allCases, id: \.self) { sortOrder in
+                                    Text(sortOrder.rawValue).tag(sortOrder)
+                                }
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                    }
+                }
+                .searchable(text: $searchText, prompt: "Search by First Name")
+                .onAppear(perform: setup)
+                .refreshable {
+                    loadData()
+                }
             }
         }
         .sheet(isPresented: $showAddSheet) {
@@ -163,10 +219,8 @@ struct ListView: View {
             return filtered.sorted { $0.name < $1.name }
         case .nameDescending:
             return filtered.sorted { $0.name > $1.name }
-        case .osisAscending:
-            return filtered.sorted { $0.barcode < $1.barcode }
-        case .osisDescending:
-            return filtered.sorted { $0.barcode > $1.barcode }
+        case .scanStatus:
+            return filtered.sorted { $0.scanStatus > $1.scanStatus }
         }
     }
     
@@ -200,12 +254,14 @@ struct ListView: View {
 struct Codename: Hashable {
     let name: String
     let barcode: Int
+    let sessionID: String
     let scanStatus: Int
     
     init(record: CKRecord) {
         self.scanStatus = record["ScanStatus"] as? Int ?? 0
         self.name = record["Name"] as? String ?? "Unknown"
         self.barcode = record["Barcode"] as? Int ?? 0
+        self.sessionID = record["SessionID"] as? String ?? "Unknown"
     }
 }
 

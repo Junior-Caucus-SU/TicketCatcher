@@ -51,6 +51,7 @@ class CKFetcher {
         }
     }
     
+    ///Subscribe to Attendee Scan Status Updates
     func subscribeToScanStatusUpdates() {
         let predicate = NSPredicate(format: "ScanStatus == 1")
         let subscriptionID = "scanStatusUpdates"

@@ -40,12 +40,19 @@ struct SettingsView: View {
                     }
                 }
                 
+                Section(header: Label("My Schemas", systemImage: "pencil.and.list.clipboard")) {
+                    NavigationLink(destination: SchemaTotalView()) {
+                        Text("Manage Local Schemas")
+                    }
+                }
+                
                 Section(header: Label("Custom Sendgrid API Key", systemImage: "paperplane")) {
                     TextField("API Key", text: $key)
                 }
                 
-                Text("TicketCatcher is in beta. To request a new user slot or create a new event, please call 929-519-5260.")
+                Text("TicketCatcher is in beta. Features may not function fully. MANAGE USERS IN EVENTS?!?!?")
                     .font(.subheadline)
+                    .foregroundStyle(.secondary)
             }
             .navigationTitle("Settings")
         }

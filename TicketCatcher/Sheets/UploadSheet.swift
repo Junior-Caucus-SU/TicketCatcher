@@ -23,92 +23,92 @@ struct UploadSheet: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0){
-                VStack (alignment: .leading){
-                    Text("Upload an attendee CSV file with the correct identifications and formatting. The database will be updated immediately post-upload.")
-                        .font(.caption)
-                        .foregroundColor(Color.secondary)
-                        .multilineTextAlignment(.leading)
-                        .padding(.bottom)
-                    
-                    Text("The file header should be removed. Files with incorrect formatting will not be accepted. Clear the database before uploading a new list. Need help? Call 929-519-5260")
-                        .font(.caption)
-                        .bold()
-                        .foregroundColor(Color.secondary)
-                        .multilineTextAlignment(.leading)
-                }.padding([.top, .leading, .trailing])
-                
-                Form {
-                    Section {
-                        Button {
-                            pickingFile = true
-                        } label: {
-                            HStack {
-                                if let csvURL = csvURL {
-                                    Text(csvURL.lastPathComponent)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                } else {
-                                    Text("Add CSV File")
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                                Image(systemName: "plus")
-                            }
-                        }
-                        List {
-                            Picker("Schema", selection: $selectedSchema) {
-                                Text("Junior Prom 2024 Receipt").tag(Schema.jprom)
-                                Text("General").tag(Schema.general)
-                                Text("Internal Testing").tag(Schema.testing)
-                            }
-                        }
-                    }
-                    .fileImporter(
-                        isPresented: $pickingFile,
-                        allowedContentTypes: [.commaSeparatedText],
-                        allowsMultipleSelection: false
-                    ) { result in
-                        switch result {
-                        case .success(let urls):
-                            guard let url = urls.first else { return }
-                            if url.startAccessingSecurityScopedResource() {
-                                csvURL = url
+            Form {
+                Section {
+                    Button {
+                        pickingFile = true
+                    } label: {
+                        HStack {
+                            if let csvURL = csvURL {
+                                Text(csvURL.lastPathComponent)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             } else {
-                                LogManager.shared.log("Cannot access CSV")
+                                Text("Add CSV File")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                        case .failure(let error):
-                            LogManager.shared.log("File selection error on \(error.localizedDescription)")
+                            Image(systemName: "plus")
+                        }
+                    }
+                    List {
+                        Picker("Schema", selection: $selectedSchema) {
+                            Text("Junior Prom 2024 Receipt").tag(Schema.jprom)
+                            Text("General").tag(Schema.general)
+                            Text("Internal Testing").tag(Schema.testing)
                         }
                     }
                 }
-                .scrollContentBackground(.hidden)
-                
-                Button {
-                        if let csvURL = csvURL {
-                            uploadManager.uploadData(url: csvURL) {
-                                self.presentationMode.wrappedValue.dismiss()
-                            }
-                        }
-                } label: {
-                    HStack {
-                        Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Upload List")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        if (uploadManager.isUploading) {
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle())
-                                .scaleEffect(0.5)
-                                .frame(width: 20, height: 20)
+                .fileImporter(
+                    isPresented: $pickingFile,
+                    allowedContentTypes: [.commaSeparatedText],
+                    allowsMultipleSelection: false
+                ) { result in
+                    switch result {
+                    case .success(let urls):
+                        guard let url = urls.first else { return }
+                        if url.startAccessingSecurityScopedResource() {
+                            csvURL = url
                         } else {
-                            Image(systemName: "cloud")
+                            LogManager.shared.log("Cannot access CSV")
                         }
+                    case .failure(let error):
+                        LogManager.shared.log("File selection error on \(error.localizedDescription)")
                     }
                 }
-                .buttonStyle(.borderedProminent)
-                .cornerRadius(20)
-                .padding()
-                .controlSize(.large)
-                .disabled(uploadManager.isUploading)
+                Section {
+                    VStack (alignment: .leading){
+                        Text("Upload an attendee CSV file with the correct format. The database will be updated immediately.")
+                            .font(.caption)
+                            .foregroundColor(Color.secondary)
+                            .multilineTextAlignment(.leading)
+                            .padding(.bottom)
+                        
+                        Text("The file header should be removed. Files with incorrect formatting will not be accepted. Clear the database before uploading a new list. You can use an existing schema, or create a new one in Settings.")
+                            .font(.caption)
+                            .bold()
+                            .foregroundColor(Color.secondary)
+                            .multilineTextAlignment(.leading)
+                    }
+                }
+                .listRowBackground(EmptyView())
+                .listSectionSpacing(10)
             }
+            .scrollContentBackground(.hidden)
+            Button {
+                if let csvURL = csvURL {
+                    uploadManager.uploadData(url: csvURL) {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            } label: {
+                HStack {
+                    Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Upload CSV File")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if (uploadManager.isUploading) {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .scaleEffect(0.5)
+                            .frame(width: 20, height: 20)
+                    } else {
+                        Image(systemName: "cloud")
+                    }
+                }
+            }
+            .buttonStyle(.borderedProminent)
+            .cornerRadius(20)
+            .padding()
+            .controlSize(.large)
+            .disabled(uploadManager.isUploading)
             .navigationTitle("Upload List")
             .onDisappear {
                 if let csvURL = csvURL {

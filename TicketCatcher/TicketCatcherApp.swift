@@ -48,19 +48,20 @@ struct EntrantView: View {
     
     var body: some View {
         VStack {
-            Spacer()
-            Image("Logo")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 100, height: 100)
-                .clipShape(RoundedRectangle(cornerSize: CGSize(width: 50, height: 50)))
-            Image("Title")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 160, height: 30)
-                .padding(.bottom)
-            
             Form {
+                VStack {
+                    Image("Logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 100, height: 100)
+                    Image("Title")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 160, height: 30)
+                        .padding(.bottom)
+                }
+                .listRowBackground(EmptyView())
+                .frame(maxWidth: .infinity, alignment: .center)
                 Section {
                     TextField("Account", text: $account)
                         .autocapitalization(.none)

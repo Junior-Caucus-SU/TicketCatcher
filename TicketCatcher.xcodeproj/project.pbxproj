@@ -153,8 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				3019E5962BFA8E7400A0F886 /* ScanView.swift */,
-				3034EDB22C125ADA000F7CBC /* SchemaEditorView.swift */,
-				3034EDB42C1282D7000F7CBC /* SchemaTotalView.swift */,
 				301195292BF019E300544510 /* ListView.swift */,
 				307A97242BF17C80007193D3 /* LogView.swift */,
 				3019E59B2BFAD21F00A0F886 /* SettingsView.swift */,
@@ -179,7 +177,6 @@
 				3075FBAD2BF43FEA00260395 /* Privacy Policy.md */,
 				304BC2B62BF10F8100701726 /* .gitignore */,
 				304BC2B82BF1118D00701726 /* Secrets.swift */,
-				3001D4192BF04FBC00652C6B /* Launch Screen.storyboard */,
 				302769A02AEDE02500B33074 /* TicketCatcher */,
 				307734D22C0B8340000743D4 /* LiveCount */,
 				301E9F632C0AED410091008A /* Frameworks */,
@@ -199,6 +196,7 @@
 		302769A02AEDE02500B33074 /* TicketCatcher */ = {
 			isa = PBXGroup;
 			children = (
+				3001D4192BF04FBC00652C6B /* Launch Screen.storyboard */,
 				302769A12AEDE02500B33074 /* TicketCatcherApp.swift */,
 				30B47CFE2C0C045B00DB5A08 /* AppDelegate.swift */,
 				302769A32AEDE02500B33074 /* ContentView.swift */,
@@ -209,10 +207,11 @@
 				302ACBD12BEF0F8800791571 /* Camera */,
 				302ACBD22BEF0FAD00791571 /* Components */,
 				307A97232BF17C2E007193D3 /* Sheets */,
+				3038EEA12C15F383005DE2B9 /* Schema */,
+				302769A72AEDE02600B33074 /* Preview Content */,
 				302769A52AEDE02600B33074 /* Assets.xcassets */,
 				302769AF2AEDE02600B33074 /* TicketCatcher.entitlements */,
 				302769B02AEDE02600B33074 /* Info.plist */,
-				302769A72AEDE02600B33074 /* Preview Content */,
 			);
 			path = TicketCatcher;
 			sourceTree = "<group>";
@@ -244,9 +243,20 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		3038EEA12C15F383005DE2B9 /* Schema */ = {
+			isa = PBXGroup;
+			children = (
+				3034EDB22C125ADA000F7CBC /* SchemaEditorView.swift */,
+				3034EDB42C1282D7000F7CBC /* SchemaTotalView.swift */,
+			);
+			path = Schema;
+			sourceTree = "<group>";
+		};
 		304321752BEFEB6500EDF9D2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				301195262BF00B1200544510 /* UploadManager.swift */,
+				3036807C2BF0487200509514 /* BarcodeValidator.swift */,
 				301195242BEFFFBD00544510 /* CSVParser.swift */,
 				30B47D002C0C06F100DB5A08 /* AuthManager.swift */,
 			);
@@ -282,8 +292,6 @@
 				307734EB2C0B893B000743D4 /* CKFetcher.swift */,
 				3001D41D2BF0539A00652C6B /* CKManager.swift */,
 				3034EDB82C129668000F7CBC /* CKOperations.swift */,
-				3036807C2BF0487200509514 /* BarcodeValidator.swift */,
-				301195262BF00B1200544510 /* UploadManager.swift */,
 			);
 			path = Cloud;
 			sourceTree = "<group>";

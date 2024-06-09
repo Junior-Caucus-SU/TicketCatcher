@@ -88,11 +88,18 @@ struct EntrantView: View {
                     }
                 } label: {
                     ZStack {
-                        Text("Log In")
+                        Text(entered ? "Logging In..." : "Log In")
                             .frame(maxWidth: .infinity, alignment: .center)
                             .bold()
                         HStack {
-                            Image(systemName: "key.horizontal.fill")
+                            if entered {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                    .scaleEffect(0.5)
+                                    .frame(width: 20, height: 20)
+                            } else {
+                                Image(systemName: "key.horizontal.fill")
+                            }
                             Spacer()
                         }
                     }

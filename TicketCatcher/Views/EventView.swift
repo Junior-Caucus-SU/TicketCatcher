@@ -14,16 +14,17 @@ struct EventView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     HStack {
                         Text("Currently Operating")
-                            .font(.title2)
-                            .bold()
                         Spacer()
                         Image(systemName: "person.3.sequence.fill")
                             .symbolEffect(.variableColor)
                     }
+                    .font(.headline)
+                    .foregroundStyle(.secondary)
                     VStack {
                         Image("Jprom")
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
+                            .frame(maxHeight: 250)
+                            .aspectRatio(contentMode: .fill)
                         VStack(alignment: .leading) {
                             HStack {
                                 Text("Junior Prom 2024")
@@ -44,74 +45,94 @@ struct EventView: View {
                             
                             Divider()
                                 .padding(.vertical, 10)
-                            HStack(alignment: .top) {
+                            
+                            HStack(alignment: .firstTextBaseline, spacing: 15) {
                                 NavigationLink(destination: LogView()) {
-                                    Label("View Logs", systemImage: "doc.text.below.ecg")
-                                        .font(.subheadline)
+                                    Label("Logs", systemImage: "doc.text.below.ecg")
                                 }
+                                .buttonStyle(BorderedButtonStyle())
+                                .cornerRadius(8)
+                                
                                 NavigationLink(destination: LogView()) {
-                                    Label("Manage Users", systemImage: "person.badge.shield.checkmark")
-                                        .font(.subheadline)
+                                    Label("Operators", systemImage: "person.badge.shield.checkmark")
+                                }
+                                
+                                NavigationLink(destination: LogView()) {
+                                    Label("Options", systemImage: "slider.horizontal.3")
                                 }
                             }
+                            .font(.subheadline)
                         }
                         .padding([.bottom, .leading, .trailing])
                         .padding(.top, 10)
                     }
+                    .backgroundStyle(.secondary)
                     .background(
                         Image("Jprom")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .blur(radius: 20)
-                            .opacity(0.3)
+                            .blur(radius: 50)
+                            .opacity(0.5)
                     )
                     .cornerRadius(20)
+                    .scrollTransition { content, phase in
+                        content
+                            .opacity(phase.isIdentity ? 1 : 0)
+                            .scaleEffect(phase.isIdentity ? 1 : 0.75)
+                    }
                     
                     Spacer().frame(height: 0)
                     
                     Text("Upcoming Events")
-                        .font(.title2)
-                        .bold()
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
                     
-                    VStack {
-                        Image("Placeholder")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text("Future Event")
-                                    .font(.headline)
-                                    .foregroundStyle(.tertiary)
-                                Spacer()
-                                Image(systemName: "ellipsis")
-                                    .font(.headline)
-                                    .foregroundStyle(.placeholder)
-                            }
-                            Text("Future Date")
-                                .font(.subheadline)
-                                .foregroundStyle(.placeholder)
-                            NavigationLink(destination: LogView()) {
-                                Label("Switch & Connect to Event", systemImage: "person.wave.2")
+                    ForEach(0..<10) { i in
+                        VStack {
+                            Image("Placeholder")
+                                .resizable()
+                                .frame(maxHeight: 250)
+                                .aspectRatio(contentMode: .fill)
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text("Future Event")
+                                        .font(.headline)
+                                        .foregroundStyle(.tertiary)
+                                    Spacer()
+                                    Image(systemName: "ellipsis")
+                                        .font(.headline)
+                                        .foregroundStyle(.placeholder)
+                                }
+                                Text("Inactive")
                                     .font(.subheadline)
-                                    .frame(maxWidth: .infinity)
+                                    .foregroundStyle(.placeholder)
+                                NavigationLink(destination: LogView()) {
+                                    Label("Connect to Event", systemImage: "person.wave.2")
+                                        .font(.subheadline.bold())
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .cornerRadius(8)
+                                .padding(.top,5)
+                                .buttonStyle(BorderedProminentButtonStyle())
                             }
-                            .cornerRadius(8)
-                            .padding(.top,5)
-                            .disabled(true)
-                            .buttonStyle(BorderedProminentButtonStyle())
+                            .padding([.bottom, .leading, .trailing])
+                            .padding(.top, 10)
                         }
-                        .padding([.bottom, .leading, .trailing])
-                        .padding(.top, 10)
+                        .backgroundStyle(.secondary)
+                        .background(
+                            Image("Jprom")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .blur(radius: 50)
+                                .opacity(0.5)
+                        )
+                        .cornerRadius(20)
+                        .scrollTransition { content, phase in
+                            content
+                                .opacity(phase.isIdentity ? 1 : 0)
+                                .scaleEffect(phase.isIdentity ? 1 : 0.75)
+                        }
                     }
-                    .background(
-                        Image("Placeholder")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .blur(radius: 20)
-                            .opacity(0.3)
-                    )
-                    .cornerRadius(20)
-                    
                     Spacer().frame(height: 0)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

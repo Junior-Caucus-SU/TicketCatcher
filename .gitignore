@@ -3,9 +3,8 @@
 ## User settings
 xcuserdata/
 
-## Passwords & Keys
+## Passwords
 Secrets.swift
-SendIt.swift
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint

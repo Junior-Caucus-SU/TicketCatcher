@@ -15,6 +15,9 @@ struct ScanView: View {
     
     var body: some View {
         ZStack {
+            ColorBGView()
+                .zIndex(-1)
+                .opacity(0.5)
             VStack {
                 //Icon and barcode status text
                 BarcodeIconView(barcode: barcode, entrantName: entrantName)
@@ -26,13 +29,17 @@ struct ScanView: View {
                 Spacer()
                 CameraView(cameraController: cameraController)
                     .frame(maxHeight: 300)
-                    .background(.primary)
+                    .background(.tertiary)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 30)
+                            .stroke(.quaternary, lineWidth: 2)
+                    )
                     .cornerRadius(30)
                     .shadow(color: {
                         if barcode == "Invalid or Used Ticket" {
                             return Color.red.opacity(0.6)
                         } else if barcode == "Place Barcode in View to Scan" {
-                            return Color.clear
+                            return Color.secondary.opacity(0.6)
                         } else {
                             return Color.green.opacity(0.6)
                         }

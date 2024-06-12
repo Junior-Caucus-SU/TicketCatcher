@@ -14,7 +14,7 @@ enum LogType: String, CaseIterable, Identifiable {
 
 struct SettingsView: View {
     @State private var logType: LogType = .onDevice
-    @State private var key = ""
+    @AppStorage("key") private var key = ""
     @AppStorage("canUseFaceID") private var canUseFaceID = true
     @AppStorage("notifyChanges") private var notifyChanges = true
     @AppStorage("useAutoRefresh") private var useAutoRefresh = true

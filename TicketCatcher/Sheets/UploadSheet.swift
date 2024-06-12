@@ -93,6 +93,11 @@ struct UploadSheet: View {
                 HStack {
                     Text(uploadManager.isUploading ? "Uploading \(Int(uploadManager.progress * 100))%" : "Upload CSV File")
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .transaction { t in
+                            t.animation = .default
+                        }
+                        .contentTransition(.numericText())
+                        .monospacedDigit()
                     
                     if (uploadManager.isUploading) {
                         ProgressView()

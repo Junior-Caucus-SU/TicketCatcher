@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3001D41A2BF04FBC00652C6B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3001D4192BF04FBC00652C6B /* Launch Screen.storyboard */; };
 		3001D41E2BF0539A00652C6B /* CKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3001D41D2BF0539A00652C6B /* CKManager.swift */; };
+		300BE2832C1926CE00C4FD6F /* EntrantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300BE2822C1926CE00C4FD6F /* EntrantView.swift */; };
 		301195252BEFFFBD00544510 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195242BEFFFBD00544510 /* CSVParser.swift */; };
 		301195272BF00B1200544510 /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195262BF00B1200544510 /* UploadManager.swift */; };
 		3011952A2BF019E300544510 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301195292BF019E300544510 /* ListView.swift */; };
@@ -53,6 +54,7 @@
 		30B47CFF2C0C045B00DB5A08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B47CFE2C0C045B00DB5A08 /* AppDelegate.swift */; };
 		30B47D012C0C06F100DB5A08 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B47D002C0C06F100DB5A08 /* AuthManager.swift */; };
 		30B5C90D2BF1053800F12B4C /* AddSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5C90C2BF1053800F12B4C /* AddSheet.swift */; };
+		30FC261B2C17E15900A3BB3C /* ColorBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FC261A2C17E15900A3BB3C /* ColorBGView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,7 @@
 /* Begin PBXFileReference section */
 		3001D4192BF04FBC00652C6B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3001D41D2BF0539A00652C6B /* CKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKManager.swift; sourceTree = "<group>"; };
+		300BE2822C1926CE00C4FD6F /* EntrantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntrantView.swift; sourceTree = "<group>"; };
 		301195242BEFFFBD00544510 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
 		301195262BF00B1200544510 /* UploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
 		301195292BF019E300544510 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		30B47CFE2C0C045B00DB5A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30B47D002C0C06F100DB5A08 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		30B5C90C2BF1053800F12B4C /* AddSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSheet.swift; sourceTree = "<group>"; };
+		30FC261A2C17E15900A3BB3C /* ColorBGView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBGView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				3019E5962BFA8E7400A0F886 /* ScanView.swift */,
+				30FC261A2C17E15900A3BB3C /* ColorBGView.swift */,
 				301195292BF019E300544510 /* ListView.swift */,
 				307A97242BF17C80007193D3 /* LogView.swift */,
 				3019E59B2BFAD21F00A0F886 /* SettingsView.swift */,
@@ -199,6 +204,7 @@
 				3001D4192BF04FBC00652C6B /* Launch Screen.storyboard */,
 				302769A12AEDE02500B33074 /* TicketCatcherApp.swift */,
 				30B47CFE2C0C045B00DB5A08 /* AppDelegate.swift */,
+				300BE2822C1926CE00C4FD6F /* EntrantView.swift */,
 				302769A32AEDE02500B33074 /* ContentView.swift */,
 				30B47D042C0C083900DB5A08 /* SentIt */,
 				30B47D022C0C07FA00DB5A08 /* Cloud */,
@@ -418,6 +424,7 @@
 				304321772BEFEC6600EDF9D2 /* UploadSheet.swift in Sources */,
 				3019E5972BFA8E7400A0F886 /* ScanView.swift in Sources */,
 				307734EC2C0B893B000743D4 /* CKFetcher.swift in Sources */,
+				300BE2832C1926CE00C4FD6F /* EntrantView.swift in Sources */,
 				30B47D012C0C06F100DB5A08 /* AuthManager.swift in Sources */,
 				302769A42AEDE02500B33074 /* ContentView.swift in Sources */,
 				3019E59C2BFAD21F00A0F886 /* SettingsView.swift in Sources */,
@@ -441,6 +448,7 @@
 				3034EDB72C1286E8000F7CBC /* EventView.swift in Sources */,
 				302ACBCA2BEF0DF300791571 /* BarcodeIconView.swift in Sources */,
 				3034EDB32C125ADA000F7CBC /* SchemaEditorView.swift in Sources */,
+				30FC261B2C17E15900A3BB3C /* ColorBGView.swift in Sources */,
 				307734F92C0BA56D000743D4 /* LiveCountLiveActivity.swift in Sources */,
 				30B5C90D2BF1053800F12B4C /* AddSheet.swift in Sources */,
 				301195272BF00B1200544510 /* UploadManager.swift in Sources */,
@@ -627,7 +635,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -668,7 +676,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -700,7 +708,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -732,7 +740,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

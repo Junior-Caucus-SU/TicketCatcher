@@ -81,7 +81,12 @@ struct DistributeView: View {
                                 Text("Sending Ticket E-Mails")
                                     .font(.headline)
                                     .foregroundStyle(.primary)
-                                    .padding(.bottom, 20)
+                                    .padding(.bottom, 10)
+                                Text("Communicating with Sendgrid and sending out e-mails to attendees on your behalf...")
+                                    .font(.footnote)
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(.secondary)
+                                    .padding(.horizontal, 50)
                                 
                                 ZStack(alignment: .leading) {
                                     Rectangle()
@@ -93,6 +98,7 @@ struct DistributeView: View {
                                 }
                                 .frame(height: 3)
                                 .cornerRadius(5)
+                                .padding(.top, 25)
                                 .padding(.horizontal, 75)
                                 
                                 Text("\(sentCount) of \(totalEmails) Sent")
@@ -110,12 +116,14 @@ struct DistributeView: View {
                         .ignoresSafeArea()
                 }
             }
+            .animation(.smooth, value: isSending)
+            .transition(.blurReplace)
         }
     }
     
     func updateProgress(sentCount: Int) {
         self.sentCount = sentCount
-        self.progress = CGFloat(sentCount) / CGFloat(totalEmails)
+        self.progress = (CGFloat(sentCount) + 1) / CGFloat(totalEmails)
         if sentCount == totalEmails {
             isSending = false
         }

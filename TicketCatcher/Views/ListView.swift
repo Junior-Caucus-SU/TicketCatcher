@@ -16,6 +16,7 @@ enum SortOrder: String, CaseIterable {
 }
 
 struct ListView: View {
+    @State private var offset: CGFloat = -UIScreen.main.bounds.width + 100
     @State private var codenames = [Codename]()
     @State private var showAddSheet = false
     @State private var showingDeletion = false
@@ -196,19 +197,54 @@ struct ListView: View {
                             Text("Resetting the Database")
                                 .font(.headline)
                                 .foregroundColor(.primary)
-                                .padding(.bottom, 7.5)
-                            Text("Everyone scanning for this event should temporarily stop using the app while we clear all the records. This will take a minute...")
-                                .font(.subheadline)
+                                .padding(.bottom, 10)
+                            Text("Operators for this event should temporarily stop using the app while we clear all the records.")
+                                .font(.footnote)
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.secondary)
-                                .padding(.horizontal, 30.0)
-                            Spacer()
-                                .frame(height: 50)
+                                .padding(.horizontal, 50)
+                            
+                            ZStack(alignment: .leading) {
+                                Rectangle()
+                                    .foregroundStyle(.tertiary)
+                                Rectangle()
+                                    .foregroundStyle(.blue)
+                                    .offset(x: offset)
+                                    .onAppear {
+                                        let screenWidth = UIScreen.main.bounds.width
+                                        withAnimation(
+                                            Animation
+                                                .easeInOut(
+                                                    duration: 2.0
+                                                )
+                                                .repeatForever(autoreverses: true)
+                                        ) {
+                                            offset = screenWidth - 100
+                                        }
+                                    }
+                            }
+                            .frame(height: 3)
+                            .cornerRadius(5)
+                            .padding(.top, 25)
+                            .padding(.horizontal, 75)
+                            
+                            Text("This may take a few minutes...")
+                                .font(.subheadline)
+                                .transaction { t in
+                                    t.animation = .default
+                                }
+                                .contentTransition(.numericText())
+                                .monospacedDigit()
+                                .foregroundStyle(.secondary)
+                                .padding(.top, 5)
+                            
                         }
                     )
+                    .ignoresSafeArea()
             }
         }
-        .ignoresSafeArea()
+        .animation(.smooth, value: isDeleting)
+        .transition(.blurReplace)
     }
     
     private var sortedFilteredCodes: [Codename] {

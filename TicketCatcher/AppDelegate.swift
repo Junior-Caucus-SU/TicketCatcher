@@ -36,7 +36,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     private func handleLiveActivityUpdate(notification: CKQueryNotification?) {
         guard notification?.recordID != nil else { return }
         CKFetcher.shared.fetchAttendeeCount { count in
-            let activityAttributes = LiveCountAttributes(eventName: "TicketCatcher Session")
+            _ = LiveCountAttributes(eventName: "TicketCatcher Session")
             let initialContentState = LiveCountAttributes.ContentState(attendeeCount: count)
             Task {
                 if let activity = Activity<LiveCountAttributes>.activities.first {

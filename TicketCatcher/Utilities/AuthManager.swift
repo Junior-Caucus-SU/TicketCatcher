@@ -9,7 +9,7 @@ import Foundation
 import LocalAuthentication
 
 class AuthenticationManager {
-    static let shared = AuthenticationManager()
+    @MainActor static let shared = AuthenticationManager()
     
     func logIn(account: String, passphrase: String, completion: @escaping (Bool) -> Void) {
         if account == Secrets.accountName && passphrase == Secrets.accountPassword {

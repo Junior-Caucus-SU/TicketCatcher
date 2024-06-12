@@ -11,10 +11,10 @@ struct ColorBGView: View {
     @State private var positions: [CGPoint] = []
     @State private var colors: [Color] = []
     @State private var timer: Timer?
-
+    
     let ellipseCount = 5
     let animationDuration: Double = 5.0
-
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -36,19 +36,22 @@ struct ColorBGView: View {
         }
         .edgesIgnoringSafeArea(.all)
     }
-
+    
+    @MainActor
     private func initializePositionsAndColors(in size: CGSize) {
         positions = (0..<ellipseCount).map { _ in randomPosition(in: size) }
         colors = (0..<ellipseCount).map { _ in randomColor() }
     }
-
+    
+    @MainActor
     private func randomPosition(in size: CGSize) -> CGPoint {
         CGPoint(
             x: CGFloat.random(in: 0...size.width),
             y: CGFloat.random(in: 0...size.height)
         )
     }
-
+    
+    @MainActor
     private func randomColor() -> Color {
         Color(
             hue: Double.random(in: 0...1),
@@ -56,18 +59,20 @@ struct ColorBGView: View {
             brightness: Double.random(in: 0.8...1)
         )
     }
-
+    
     private func startTimer(in size: CGSize) {
         timer = Timer.scheduledTimer(withTimeInterval: animationDuration, repeats: true) { _ in
-            withAnimation(.easeInOut(duration: self.animationDuration)) {
-                for index in 0..<self.ellipseCount {
-                    self.positions[index] = self.randomPosition(in: size)
-                    self.colors[index] = self.randomColor()
+            Task { @MainActor in
+                withAnimation(.easeInOut(duration: self.animationDuration)) {
+                    for index in 0..<self.ellipseCount {
+                        self.positions[index] = self.randomPosition(in: size)
+                        self.colors[index] = self.randomColor()
+                    }
                 }
             }
         }
     }
-
+    
     private func stopTimer() {
         timer?.invalidate()
         timer = nil

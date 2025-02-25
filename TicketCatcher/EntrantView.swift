@@ -9,9 +9,9 @@ import SwiftUI
 import LocalAuthentication
 
 struct EntrantView: View {
+    @Environment(\.colorScheme) var colorScheme
     @State private var account: String = ""
     @State private var passphrase: String = ""
-    @State private var selectedEvent: EventType = .jprom
     @Binding var entered: Bool
     @Binding var attemptingToEnter: Bool
     @State private var showingAlert = false
@@ -23,31 +23,35 @@ struct EntrantView: View {
                     Image("Logo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100)
+                        .frame(width: 80, height: 80)
                     Image("Title")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 160, height: 30)
-                        .padding(.bottom)
+                        .frame(width: 150, height: 25)
                 }
                 .listRowBackground(EmptyView())
                 .frame(maxWidth: .infinity, alignment: .center)
                 Section {
-                    TextField("Account", text: $account)
-                        .autocapitalization(.none)
-                        .disableAutocorrection(true)
-                    SecureField("Passphrase", text: $passphrase)
+                    if (
+                        UserDefaults.standard.bool(forKey: "hasLoggedIn") && UserDefaults.standard.bool(forKey: "canAndMustUseFaceID")
+                    ) {
+                        HStack {
+                            Spacer()
+                            Text("You may only use Face ID to log in.")
+                                .font(.headline)
+                                .bold()
+                            Spacer()
+                        }
+                    } else {
+                        TextField("Username", text: $account)
+                            .autocapitalization(.none)
+                            .disableAutocorrection(true)
+                        SecureField("Password", text: $passphrase)
+                    }
                 }
-                
-                Picker("Event", selection: $selectedEvent) {
-                    Text("Junior Prom 2024").tag(EventType.jprom)
-                    Text("Night of Dreams").tag(EventType.dreams)
-                    HStack {
-                        Image(systemName: "testtube.2")
-                        Text("Sandbox")
-                    }.tag(EventType.testing)
-                }
-            }.scrollDisabled(true)
+
+            }
+            .scrollDisabled(true)
             
             VStack {
                 Button {
@@ -68,8 +72,6 @@ struct EntrantView: View {
                                     .progressViewStyle(CircularProgressViewStyle())
                                     .scaleEffect(0.5)
                                     .frame(width: 20, height: 20)
-                            } else {
-                                Image(systemName: "key.horizontal.fill")
                             }
                             Spacer()
                         }
@@ -84,11 +86,12 @@ struct EntrantView: View {
                     }
                 } label: {
                     ZStack {
-                        Text("Request Access")
-                            .frame(maxWidth: .infinity, alignment: .center)
-                        HStack {
-                            Image(systemName: "envelope.fill")
-                            Spacer()
+                        if UserDefaults.standard.bool(forKey: "hasLoggedIn") {
+                            Text("Switch Account")
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        } else {
+                            Text("Create an Account")
+                                .frame(maxWidth: .infinity, alignment: .center)
                         }
                     }
                 }
@@ -98,7 +101,7 @@ struct EntrantView: View {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .padding(.top)
-                Text("Created by Will Zhang for the Junior Caucus.")
+                Text("Created by Will Zhang, Class of 2025")
                     .font(.footnote)
                     .bold()
                     .foregroundStyle(.secondary)

@@ -8,22 +8,15 @@
 import SwiftUI
 import LocalAuthentication
 
-enum EventType: String, CaseIterable, Identifiable {
-    case jprom, testing, dreams
-    var id: Self { self }
-}
-
 @main
 struct TicketCatcherApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State private var entered = false
     @State private var attemptingToEnter = false
     
     init() {
         UserDefaults.standard.register(defaults: [
-            "canUseFaceID": true,
+            "canAndMustUseFaceID": true,
             "notifyChanges": true,
-            "useAutoRefresh": true,
             "useLiveActivity": true
         ])
     }

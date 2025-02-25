@@ -37,13 +37,11 @@ struct ColorBGView: View {
         .edgesIgnoringSafeArea(.all)
     }
     
-    @MainActor
     private func initializePositionsAndColors(in size: CGSize) {
         positions = (0..<ellipseCount).map { _ in randomPosition(in: size) }
         colors = (0..<ellipseCount).map { _ in randomColor() }
     }
     
-    @MainActor
     private func randomPosition(in size: CGSize) -> CGPoint {
         CGPoint(
             x: CGFloat.random(in: 0...size.width),
@@ -51,7 +49,6 @@ struct ColorBGView: View {
         )
     }
     
-    @MainActor
     private func randomColor() -> Color {
         Color(
             hue: Double.random(in: 0...1),

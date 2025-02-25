@@ -13,6 +13,7 @@ struct DistributeView: View {
     @State private var bcColor = Color(.sRGB, red: 1, green: 1, blue: 1)
     @State private var barcodeNumberDisplay = "Session ID (Unsecure)"
     @State private var schemaUsage = "Schema"
+    @State private var sendOption = "Send All"
     @State private var textContent = ""
     @State private var isSending = false
     @State private var progress: CGFloat = 0.0
@@ -22,6 +23,7 @@ struct DistributeView: View {
     @State private var limit = ""
     private let barcodeNumberOptions = ["Session ID (Unsecure)", "OSIS", "Name", "None"]
     private let schemaOptions = ["Schema", "OSIS", "Name", "None"]
+    private let sendOptions = ["Send All", "Send Half", "Custom Limit"]
     
     var body: some View {
         NavigationView {
@@ -47,18 +49,35 @@ struct DistributeView: View {
                             Text($0)
                         }
                     }
+                    
+                    Picker("Send Count Option", selection: $sendOption) {
+                        ForEach(sendOptions, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    
                     TextField("Send Count Limit", text: $limit)
                         .keyboardType(.numberPad)
                 }
+                
+                Section(
+                    header: Label("Distribution Service", systemImage: "paperplane"),
+                    footer: Text("You may add your own SendGrid API key.")
+                ) {
+                    NavigationLink(destination: SendMethodSheet()) {
+                        Text("Select a Method")
+                    }
+                }
+                
                 Section {
-                    Button(action: {
+                    Button("Send All Tickets Now") {
                         let limitInt = Int(limit) ?? 0
                         totalEmails = limitInt
                         isSending = true
                         sendEmails(bgColor: bgColor, fgColor: fgColor, imgAssetLink: insigniaImageAssetLink, title: barcodeNumberDisplay, limit: limitInt, paragraph: textContent, updateProgress: updateProgress)
-                    }) {
-                        Label("Send E-Mails Now", systemImage: "paperplane.fill")
-                    }.bold()
+                    }
+                        .disabled(!(Int(limit) ?? 0 > 0))
+                        .bold()
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -78,11 +97,11 @@ struct DistributeView: View {
                                     .symbolEffect(.pulse)
                                     .imageScale(.large)
                                     .padding()
-                                Text("Sending Ticket E-Mails")
+                                Text("Sending Ticket Emails")
                                     .font(.headline)
                                     .foregroundStyle(.primary)
                                     .padding(.bottom, 10)
-                                Text("Communicating with Sendgrid and sending out e-mails to attendees on your behalf...")
+                                Text("Communicating with Sendgrid and sending out Emails to attendees on your behalf...")
                                     .font(.footnote)
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(.secondary)

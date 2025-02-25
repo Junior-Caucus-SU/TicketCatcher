@@ -33,7 +33,7 @@ struct SchemaEditorView: View {
                     RectangleView(title: "Name", description: "The Name must be the first and last name of the attendee.", columnText: $nameColumn)
                         .padding()
                     Divider()
-                    RectangleView(title: "E-Mail", description: "The e-mail address of the attendee. This is used for SendIt services.", columnText: $emailColumn)
+                    RectangleView(title: "Email", description: "The Email address of the attendee. This is used for SendIt services.", columnText: $emailColumn)
                         .padding()
                 }
                 .padding()

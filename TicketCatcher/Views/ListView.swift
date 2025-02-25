@@ -74,7 +74,7 @@ struct ListView: View {
                         }
                     }
                 }
-                .navigationTitle("Attendees")
+                .navigationTitle("Manage Attendees")
                 .onAppear(perform: setup)
                 .refreshable {
                     loadData()
@@ -108,7 +108,7 @@ struct ListView: View {
                         .tint(.green)
                     }
                 }
-                .navigationTitle("Attendees")
+                .navigationTitle("Manage Attendees")
                 .confirmationDialog(
                     "Delete All Records",
                     isPresented: $showingDeletion

@@ -60,7 +60,7 @@ struct LogView: View {
                         .foregroundColor(textColor)
                 }
             }
-            .navigationTitle("Logs")
+            .navigationTitle("Audit Logs")
         }
     }
 }

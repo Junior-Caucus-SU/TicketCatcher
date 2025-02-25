@@ -88,3 +88,11 @@ struct ActionView: View {
         .transition(.move(edge: .bottom).combined(with: .opacity))
     }
 }
+
+#Preview {
+    ActionView(
+        barcode: .constant("123"),
+        showAdmitView: .constant(false),
+        cameraController: CameraController()
+    )
+}

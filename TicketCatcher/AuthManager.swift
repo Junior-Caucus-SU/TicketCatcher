@@ -9,7 +9,7 @@ import Foundation
 import LocalAuthentication
 
 class AuthenticationManager {
-    @MainActor static let shared = AuthenticationManager()
+    static let shared = AuthenticationManager()
     
     func logIn(account: String, passphrase: String, completion: @escaping (Bool) -> Void) {
         if account == Secrets.accountName && passphrase == Secrets.accountPassword {
@@ -27,7 +27,7 @@ class AuthenticationManager {
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
             let reason = "Quickly log in to TicketCatcher."
             
-            if UserDefaults.standard.bool(forKey: "hasLoggedIn") && UserDefaults.standard.bool(forKey: "canUseFaceID") {
+            if UserDefaults.standard.bool(forKey: "hasLoggedIn") && UserDefaults.standard.bool(forKey: "canAndMustUseFaceID") {
                 context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
                     completion(success)
                 }

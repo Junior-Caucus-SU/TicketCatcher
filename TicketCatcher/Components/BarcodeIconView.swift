@@ -17,7 +17,7 @@ struct BarcodeIconView: View {
                 .contentTransition(.symbolEffect(.replace))
                 .foregroundColor((barcode == "Place Barcode in View to Scan") ? .secondary : (barcode == "Invalid or Used Ticket") ? .red : .green )
                 .font(.title)
-                .frame(width: 55, height: 55)
+                .frame(width: 50, height: 50)
                 .animation(.snappy, value: barcode)
             Text(
                 barcode == "Place Barcode in View to Scan"
@@ -30,7 +30,6 @@ struct BarcodeIconView: View {
             .bold()
             .foregroundColor(barcode == "Place Barcode in View to Scan" ? .secondary : (barcode == "Invalid or Used Ticket") ? .red : .green)
             .transition(.blurReplace)
-            .padding(.bottom)
             .id(barcode)
             
             if let name = entrantName, barcode != "Place Barcode in View to Scan" && barcode != "Invalid or Used Ticket" {
@@ -38,9 +37,9 @@ struct BarcodeIconView: View {
                     .font(.system(size: 14).monospaced())
                     .bold()
                     .foregroundColor(.green)
-                    .padding(.horizontal, 14)
-                    .padding(.vertical, 7)
-                    .background(RoundedRectangle(cornerRadius: 15).fill(Color.green.opacity(0.2)))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.green.opacity(0.2)))
                     .transition(.blurReplace())
             }
         }

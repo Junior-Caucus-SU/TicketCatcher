@@ -7,10 +7,26 @@
 
 import SwiftUI
 
-struct EventView: View {
+struct UserView: View {
+    @AppStorage("canAndMustUseFaceID") private var canAndMustUseFaceID = true
+
     var body: some View {
         NavigationStack {
             ScrollView {
+                
+                VStack(alignment: .leading) {
+                    Toggle("Enable & Require Biometric Login", isOn: $canAndMustUseFaceID)
+                        .bold()
+                    Text("When this is enabled, you will only be able to log in with Face ID or Touch ID after the initial log in. It is recommended that this be enabled, as it provides an extra layer of security against unauthorized access.")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .padding(.top, 5)
+                }
+                .padding()
+                .background(.quinary)
+                .cornerRadius(20)
+                .padding()
+                
                 VStack(alignment: .leading, spacing: 20) {
                     HStack {
                         Text("Currently Operating")
@@ -42,29 +58,10 @@ struct EventView: View {
                                 .font(.system(size: 9))
                                 .foregroundStyle(.secondary)
                                 .baselineOffset(6.0)
-                            
-                            Divider()
-                                .padding(.vertical, 10)
-                            
-                            HStack(alignment: .firstTextBaseline, spacing: 15) {
-                                NavigationLink(destination: LogView()) {
-                                    Label("Logs", systemImage: "doc.text.below.ecg")
-                                }
-                                .buttonStyle(BorderedButtonStyle())
-                                .cornerRadius(8)
-                                
-                                NavigationLink(destination: LogView()) {
-                                    Label("Operators", systemImage: "person.badge.shield.checkmark")
-                                }
-                                
-                                NavigationLink(destination: LogView()) {
-                                    Label("Options", systemImage: "slider.horizontal.3")
-                                }
-                            }
-                            .font(.subheadline)
                         }
-                        .padding([.bottom, .leading, .trailing])
+                        .padding(.horizontal)
                         .padding(.top, 10)
+                        .padding(.bottom, 20)
                     }
                     .backgroundStyle(.secondary)
                     .background(
@@ -72,22 +69,22 @@ struct EventView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .blur(radius: 50)
-                            .opacity(0.5)
+                            .opacity(0.3)
                     )
                     .cornerRadius(20)
                     .scrollTransition { content, phase in
                         content
-                            .opacity(phase.isIdentity ? 1 : 0)
-                            .scaleEffect(phase.isIdentity ? 1 : 0.75)
+                            .blur(radius: phase.isIdentity ? 0 : 20)
+                            .opacity(phase.isIdentity ? 1 : 0.3)
                     }
                     
                     Spacer().frame(height: 0)
                     
-                    Text("Upcoming Events")
+                    Text("My Events")
                         .font(.headline)
                         .foregroundStyle(.secondary)
                     
-                    ForEach(0..<10) { i in
+                    ForEach(0..<3) { i in
                         VStack {
                             Image("Placeholder")
                                 .resizable()
@@ -107,13 +104,13 @@ struct EventView: View {
                                     .font(.subheadline)
                                     .foregroundStyle(.placeholder)
                                 NavigationLink(destination: LogView()) {
-                                    Label("Connect to Event", systemImage: "person.wave.2")
+                                    Label("Forfeit Current Event & Connect", systemImage: "person.wave.2")
                                         .font(.subheadline.bold())
                                         .frame(maxWidth: .infinity)
                                 }
-                                .cornerRadius(8)
+                                .cornerRadius(10)
                                 .padding(.top,5)
-                                .buttonStyle(BorderedProminentButtonStyle())
+                                .buttonStyle(BorderedButtonStyle())
                             }
                             .padding([.bottom, .leading, .trailing])
                             .padding(.top, 10)
@@ -124,13 +121,13 @@ struct EventView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .blur(radius: 50)
-                                .opacity(0.5)
+                                .opacity(0.3)
                         )
                         .cornerRadius(20)
                         .scrollTransition { content, phase in
                             content
-                                .opacity(phase.isIdentity ? 1 : 0)
-                                .scaleEffect(phase.isIdentity ? 1 : 0.75)
+                                .blur(radius: phase.isIdentity ? 0 : 20)
+                                .opacity(phase.isIdentity ? 1 : 0.3)
                         }
                     }
                     Spacer().frame(height: 0)
@@ -139,18 +136,18 @@ struct EventView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {}) {
-                            Text("Register")
+                            Text("Register Event")
                         }
                     }
                 }
                 .padding()
                 Spacer()
             }
-            .navigationTitle("Events")
+            .navigationTitle("Profile")
         }
     }
 }
 
 #Preview {
-    EventView()
+    UserView()
 }
